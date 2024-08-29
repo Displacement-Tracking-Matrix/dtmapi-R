@@ -1,0 +1,19 @@
+url: https://displacement-tracking-matrix.github.io/dtmapi-R/
+template:
+  bootstrap: 5
+
+# Add navigation bar configuration
+navbar:
+  title: "dtmapi"
+  structure:
+    left:
+    - home
+    - Reference
+  components:
+    home:
+      text: Home
+      href: articles/introduction.html
+    Reference:
+      text: Reference
+      href: reference/index.html
+
