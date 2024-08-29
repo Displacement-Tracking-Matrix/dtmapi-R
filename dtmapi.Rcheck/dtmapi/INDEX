@@ -1,0 +1,5 @@
+get_all_countries       Fetch All Countries
+get_all_operations      Fetch All Operations
+get_idp_admin0_data     Fetch IDP Admin0 Data
+get_idp_admin1_data     Fetch IDP Admin1 Data
+get_idp_admin2_data     Fetch IDP Admin2 Data
