@@ -6,10 +6,8 @@
 
 -----------------
 
-# dtmapi
-
 ## About
-`dtmapi` is a R package developed by [Displacement Tracking Matrix (DTM)](https://dtm.iom.int/). This package allows the humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by DTM. It provides non-sensitive Internally Displaced Person (IDP) figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller subnational administrative areas) levels. Country Name and Operation can be found in this [data coverage](https://dtm.iom.int/data-and-analysis/dtm-api/data-coverage) matrix. 
+`dtmapi` is an R package developed by [Displacement Tracking Matrix (DTM)](https://dtm.iom.int/). This package allows the humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by DTM. It provides non-sensitive Internally Displaced Person (IDP) figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller subnational administrative areas) levels. Country Name and Operation can be found in this [data coverage](https://dtm.iom.int/data-and-analysis/dtm-api/data-coverage) matrix. 
 
 ## Installation
 `dtmapi` can be installed as below:
@@ -26,9 +24,7 @@ library(dtmapi)
 
 ## Usage
 Here's a quick example to get you started:
-```python
-import dtmapi
-
+```R
 # Get all countries for which DTM data is publicly available through the API.
 countries_df <- get_all_countries()
 head(countries_df)
@@ -50,7 +46,7 @@ admin2_data_df <- get_idp_admin2_data(Operation="Displacement due to conflict", 
 head(admin2_data_df)
 ```
 ## Documentation
-Comprehensive documentation is available at [dtmapi.readthedocs.io](https://dtmapi.readthedocs.io/en/latest/index.html).
+Comprehensive documentation is available at [github.io](https://displacement-tracking-matrix.github.io/dtmapi-R/).
 
 ## Source Code
 The source code for `dtmapi` is available on [GitHub](https://github.com/Displacement-tracking-Matrix/dtmapi-R).
