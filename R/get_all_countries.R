@@ -2,7 +2,7 @@ library(httr)
 library(jsonlite)
 #' Fetch All Countries
 #'
-#' This function sends a GET request to retrieve a list of all countries from the API specified in the configuration file.
+#' Retrieve all countries for which DTM data is publicly available through the API.
 #'
 #' @return A data frame containing the list of all countries.
 #' @export

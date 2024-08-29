@@ -14,7 +14,7 @@ Imports: httr, jsonlite, config
 Suggests: knitr, rmarkdown, testthat (>= 3.1.0)
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2024-08-29 18:06:42 UTC; bangtranl
+Packaged: 2024-08-29 19:38:53 UTC; bangtranl
 Author: Luong Bang Tran [aut, cre]
 Maintainer: Luong Bang Tran <lutran@iom.int>
-Built: R 4.4.1; ; 2024-08-29 18:06:43 UTC; unix
+Built: R 4.4.1; ; 2024-08-29 19:38:55 UTC; unix

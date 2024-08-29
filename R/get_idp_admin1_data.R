@@ -3,7 +3,7 @@ library(jsonlite)
 
 #' Fetch IDP Admin1 Data
 #'
-#' This function retrieves IDP data at the Admin 1 level based on specified parameters from the API.
+#' Retrieve IDP data at Admin 1 level based on specified parameters.
 #' At least one of the following parameters must be provided: Operation, CountryName, or Admin0Pcode.
 #'
 #' @param Operation Optional; Name of the DTM operation for which the data was collected.

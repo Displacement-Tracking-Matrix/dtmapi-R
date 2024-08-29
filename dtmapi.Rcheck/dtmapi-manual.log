@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.29)  29 AUG 2024 20:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.29)  29 AUG 2024 21:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -347,8 +347,8 @@ File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count294
 \l__pdf_internal_box=\box58
 )
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/Rtmpo9CaBN/Rd2pdf999e
-36dc5332/Rd2.aux)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
+16ae1136/Rd2.aux)
 \openout1 = `Rd2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
@@ -386,10 +386,10 @@ LaTeX Font Info:    ... okay on input line 8.
 )
 Package hyperref Info: Link coloring ON on input line 8.
 
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/Rtmpo9CaBN/Rd2pdf999e
-36dc5332/Rd2.out)
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/Rtmpo9CaBN/Rd2pdf999e
-36dc5332/Rd2.out)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
+16ae1136/Rd2.out)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
+16ae1136/Rd2.out)
 \@outlinefile=\write4
 \openout4 = `Rd2.out'.
 
@@ -419,8 +419,8 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 22
 (/usr/local/texlive/2024/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/Rtmpo9CaBN/Rd2pdf999e
-36dc5332/Rd2.toc)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
+16ae1136/Rd2.toc)
 \tf@toc=\write5
 \openout5 = `Rd2.toc'.
 
@@ -450,13 +450,13 @@ oundNumber=10)[]
 
 [3{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}]
 [4] [5]
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/Rtmpo9CaBN/Rd2pdf999e
-36dc5332/Rd2.ind [6] [7
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
+16ae1136/Rd2.ind [6] [7
 
 
 ])
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/Rtmpo9CaBN/Rd2pdf999e
-36dc5332/Rd2.aux)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
+16ae1136/Rd2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -477,7 +477,7 @@ a-zi4r.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/loc
 al/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive
 /2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (7 pages, 81283 bytes).
+Output written on Rd2.pdf (7 pages, 80902 bytes).
 PDF statistics:
  148 PDF objects out of 1000 (max. 8388607)
  126 compressed objects within 2 object streams

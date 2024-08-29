@@ -10,7 +10,7 @@ get_all_operations()
 A data frame containing the list of all operations.
 }
 \description{
-This function sends a GET request to retrieve a list of all operations from the API specified in the configuration file.
+Retrieve all operations for which DTM data is publicly available through the API.
 }
 \examples{
 \dontrun{

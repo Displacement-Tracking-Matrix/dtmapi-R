@@ -10,7 +10,7 @@ get_all_countries()
 A data frame containing the list of all countries.
 }
 \description{
-This function sends a GET request to retrieve a list of all countries from the API specified in the configuration file.
+Retrieve all countries for which DTM data is publicly available through the API.
 }
 \examples{
 \dontrun{

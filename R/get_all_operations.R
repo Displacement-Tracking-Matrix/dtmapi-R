@@ -3,7 +3,7 @@ library(jsonlite)
 
 #' Fetch All Operations
 #'
-#' This function sends a GET request to retrieve a list of all operations from the API specified in the configuration file.
+#' Retrieve all operations for which DTM data is publicly available through the API.
 #'
 #' @return A data frame containing the list of all operations.
 #' @export
