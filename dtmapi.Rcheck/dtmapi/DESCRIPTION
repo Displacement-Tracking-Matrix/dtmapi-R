@@ -4,7 +4,8 @@ Title: An R Package for Fetching Data from the Displacement Tracking
 Version: 0.0.1
 Authors@R: 
   person("Luong Bang", "Tran", email = "lutran@iom.int", role = c("aut", "cre"))
-Description: Displacement Tracking Matrix provides the R package allowing the humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by DTM. It provides non-sensitive Internally Displaced Person figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller administrative areas) levels.
+Description: Displacement Tracking Matrix provides the R package allowing the humanitarian community, academia, media, government, and non-governmental organizations to utilize the collected data. It provides non-sensitive Internally Displaced Person figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller administrative areas) levels.
+URL: https://github.com/Displacement-Tracking-Matrix/dtmapi-R
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -13,7 +14,7 @@ Imports: httr, jsonlite, config
 Suggests: knitr, rmarkdown, testthat (>= 3.1.0)
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2024-08-29 17:56:19 UTC; bangtranl
+Packaged: 2024-08-29 18:06:42 UTC; bangtranl
 Author: Luong Bang Tran [aut, cre]
 Maintainer: Luong Bang Tran <lutran@iom.int>
-Built: R 4.4.1; ; 2024-08-29 17:56:21 UTC; unix
+Built: R 4.4.1; ; 2024-08-29 18:06:43 UTC; unix
