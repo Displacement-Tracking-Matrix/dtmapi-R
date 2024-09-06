@@ -82,7 +82,7 @@ No file Rd2.toc.
 ocal/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/20
 24/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}] [2]
 (/usr/local/texlive/2024/texmf-dist/tex/latex/inconsolata/ts1zi4.fd)
-Overfull \hbox (35.26862pt too wide) in paragraph at lines 134--134
+Overfull \hbox (35.26862pt too wide) in paragraph at lines 128--128
  []\T1/zi4/m/n/9 idp_admin0_df <- get_idp_admin0_data(CountryName=\TS1/zi4/m/n/
 9 '\T1/zi4/m/n/9 Ethiopia\TS1/zi4/m/n/9 '\T1/zi4/m/n/9 , FromRoundNumber=1, ToR
 oundNumber=10)[] 
@@ -90,8 +90,8 @@ oundNumber=10)[]
 [4]
 No file Rd2.ind.
 [5]
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.aux)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.aux)
 
 Package rerunfilecheck Warning: File `Rd2.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -104,7 +104,7 @@ e/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fo
 nts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/
 urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (5 pages, 78410 bytes).
+Output written on Rd2.pdf (5 pages, 78276 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.17 [TeX Live 2024] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (5 entries accepted, 0 rejected).
@@ -180,34 +180,34 @@ ty (/usr/local/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
 Writing index file Rd2.idx
 (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.aux)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.aux)
 (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 )
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.out)
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.out)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.out)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.out)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/jknapltx/ursfs.fd)
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.toc) [1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/
-pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}{/us
-r/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.toc) [1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap
+/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}{/u
+sr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
 [2] (/usr/local/texlive/2024/texmf-dist/tex/latex/inconsolata/ts1zi4.fd)
-Overfull \hbox (35.26862pt too wide) in paragraph at lines 134--134
+Overfull \hbox (35.26862pt too wide) in paragraph at lines 128--128
  []\T1/zi4/m/n/9 idp_admin0_df <- get_idp_admin0_data(CountryName=\TS1/zi4/m/n/
 9 '\T1/zi4/m/n/9 Ethiopia\TS1/zi4/m/n/9 '\T1/zi4/m/n/9 , FromRoundNumber=1, ToR
 oundNumber=10)[] 
 [3{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}]
-[4] [5]
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.ind [6] [7])
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.aux)
+[4]
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.ind [5] [6])
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.aux)
 
 Package rerunfilecheck Warning: File `Rd2.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
@@ -220,7 +220,7 @@ e/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fo
 nts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/
 urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (7 pages, 80580 bytes).
+Output written on Rd2.pdf (6 pages, 80081 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.17 [TeX Live 2024] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (5 entries accepted, 0 rejected).
@@ -296,42 +296,42 @@ ty (/usr/local/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
 Writing index file Rd2.idx
 (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.aux)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.aux)
 (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 )
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.out)
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.out)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.out)
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.out)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/jknapltx/ursfs.fd)
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.toc) [1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/
-pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}{/us
-r/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.toc) [1{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap
+/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}{/u
+sr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
 [2] (/usr/local/texlive/2024/texmf-dist/tex/latex/inconsolata/ts1zi4.fd)
-Overfull \hbox (35.26862pt too wide) in paragraph at lines 134--134
+Overfull \hbox (35.26862pt too wide) in paragraph at lines 128--128
  []\T1/zi4/m/n/9 idp_admin0_df <- get_idp_admin0_data(CountryName=\TS1/zi4/m/n/
 9 '\T1/zi4/m/n/9 Ethiopia\TS1/zi4/m/n/9 '\T1/zi4/m/n/9 , FromRoundNumber=1, ToR
 oundNumber=10)[] 
 [3{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}]
-[4] [5]
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.ind [6] [7])
-(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpAkBpPM/Rd2pdfa1ae
-16ae1136/Rd2.aux) )
+[4]
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.ind [5] [6])
+(/private/var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T/RtmpD3APR0/Rd2pdf10fc
+a44e9823a/Rd2.aux) )
 (see the transcript file for additional information)</usr/local/texlive/2024/te
 xmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texliv
 e/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fo
 nts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/
 urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (7 pages, 80902 bytes).
+Output written on Rd2.pdf (6 pages, 80432 bytes).
 Transcript written on Rd2.log.
 Saving output to ‘dtmapi-manual.pdf’ ...
 Done
-You may want to clean up by 'rm -Rf /var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T//RtmpAkBpPM/Rd2pdfa1ae16ae1136'
+You may want to clean up by 'rm -Rf /var/folders/4n/6q7qr5q50zv7_b7z07lrqk2h0000gn/T//RtmpD3APR0/Rd2pdf10fca44e9823a'

@@ -18,11 +18,9 @@ library(jsonlite)
 #' @return A data frame containing the IDP Admin1 data matching the specified criteria.
 #' @export
 #' @examples
-#' \dontrun{
 #' # Fetch IDP data at Admin Level 1
 #' admin1_data_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
 #' head(admin1_data_df)
-#' }
 #' @importFrom httr GET status_code content
 #' @importFrom jsonlite fromJSON
 #' @importFrom config get

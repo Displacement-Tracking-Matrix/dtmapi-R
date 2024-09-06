@@ -7,11 +7,9 @@ library(jsonlite)
 #' @return A data frame containing the list of all countries.
 #' @export
 #' @examples
-#' \dontrun{
 #' # Fetch all countries
 #' countries_df <- get_all_countries()
 #' head(countries_df)
-#' }
 #' @importFrom httr GET status_code content
 #' @importFrom jsonlite fromJSON
 #' @importFrom config get

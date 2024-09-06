@@ -16,11 +16,9 @@ library(jsonlite)
 #' @return A data frame containing the IDP Admin0 data matching the specified criteria.
 #' @export
 #' @examples
-#' \dontrun{
 #' # Fetch IDP data at Admin Level 0
 #' idp_admin0_df <- get_idp_admin0_data(CountryName='Ethiopia', FromRoundNumber=1, ToRoundNumber=10)
 #' head(idp_admin0_df)
-#' }
 #' @importFrom httr GET status_code content
 #' @importFrom jsonlite fromJSON
 #' @importFrom config get

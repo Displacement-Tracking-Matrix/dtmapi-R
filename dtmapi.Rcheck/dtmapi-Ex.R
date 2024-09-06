@@ -17,11 +17,9 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
-## Not run: 
-##D # Fetch all countries
-##D countries_df <- get_all_countries()
-##D head(countries_df)
-## End(Not run)
+# Fetch all countries
+countries_df <- get_all_countries()
+head(countries_df)
 
 
 
@@ -37,11 +35,9 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
-## Not run: 
-##D # Fetch all operations
-##D operations_df <- get_all_operations()
-##D head(operations_df)
-## End(Not run)
+# Fetch all operations
+operations_df <- get_all_operations()
+head(operations_df)
 
 
 
@@ -57,11 +53,9 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
-## Not run: 
-##D # Fetch IDP data at Admin Level 0
-##D idp_admin0_df <- get_idp_admin0_data(CountryName='Ethiopia', FromRoundNumber=1, ToRoundNumber=10)
-##D head(idp_admin0_df)
-## End(Not run)
+# Fetch IDP data at Admin Level 0
+idp_admin0_df <- get_idp_admin0_data(CountryName='Ethiopia', FromRoundNumber=1, ToRoundNumber=10)
+head(idp_admin0_df)
 
 
 
@@ -77,11 +71,9 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
-## Not run: 
-##D # Fetch IDP data at Admin Level 1
-##D admin1_data_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
-##D head(admin1_data_df)
-## End(Not run)
+# Fetch IDP data at Admin Level 1
+admin1_data_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
+head(admin1_data_df)
 
 
 
@@ -97,11 +89,9 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
-## Not run: 
-##D # Fetch IDP data at Admin Level 2
-##D admin2_data_df <- get_idp_admin2_data(Operation='Yemen conflict', CountryName="Yemen")
-##D head(admin2_data_df)
-## End(Not run)
+# Fetch IDP data at Admin Level 2
+admin2_data_df <- get_idp_admin2_data(Operation='Yemen conflict', CountryName="Yemen")
+head(admin2_data_df)
 
 
 

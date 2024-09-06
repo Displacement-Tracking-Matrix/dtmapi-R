@@ -43,9 +43,7 @@ Retrieve IDP data at Admin 1 level based on specified parameters.
 At least one of the following parameters must be provided: Operation, CountryName, or Admin0Pcode.
 }
 \examples{
-\dontrun{
 # Fetch IDP data at Admin Level 1
 admin1_data_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
 head(admin1_data_df)
-}
 }

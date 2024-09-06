@@ -9,8 +9,6 @@
 ## About
 `dtmapi` is an R package developed by [Displacement Tracking Matrix (DTM)](https://dtm.iom.int/). This package allows the humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by DTM. It provides non-sensitive Internally Displaced Person (IDP) figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller subnational administrative areas) levels. Country Name and Operation can be found in this [data coverage](https://dtm.iom.int/data-and-analysis/dtm-api/data-coverage) matrix. 
 
-Please find more information about [DTM API](https://dtm.iom.int/data-and-analysis/dtm-api) here.
-
 ## Installation
 `dtmapi` can be installed as below:
 ```sh
@@ -40,12 +38,12 @@ idp_admin0_df <- get_idp_admin0_data(CountryName='Ethiopia', FromRoundNumber=1, 
 head(idp_admin0_df)
 
 # Get IDP Admin 1 Data for Sudan from reporting date 2020-01-01 to 2024-08-15
-idp_admin1_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile", FromReportingDate='2020-01-01', ToReportingDate='2024-08-15')
-head(idp_admin1_df)
+admin1_data_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile", FromReportingDate='2020-01-01', ToReportingDate='2024-08-15')
+head(admin1_data_df)
 
 # Get IDP Admin 2 Data for Lebanon
-idp_admin2_df <- get_idp_admin2_data(Operation="Displacement due to conflict", CountryName='Lebanon')
-head(idp_admin2_df)
+admin2_data_df <- get_idp_admin2_data(Operation="Displacement due to conflict", CountryName='Lebanon')
+head(admin2_data_df)
 ```
 ## Documentation
 Comprehensive documentation is available at [github.io](https://displacement-tracking-matrix.github.io/dtmapi-R/).

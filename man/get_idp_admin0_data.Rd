@@ -10,8 +10,8 @@ get_idp_admin0_data(
   Admin0Pcode = NULL,
   FromReportingDate = NULL,
   ToReportingDate = NULL,
-  FromRoundNumber = NULL,
-  ToRoundNumber = NULL
+  FromRoundNumber = 0,
+  ToRoundNumber = 0
 )
 }
 \arguments{

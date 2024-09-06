@@ -1,5 +1,5 @@
 ---
-title: "dtmapi documentation"
+title: "dtmapi"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{introduction}
@@ -28,6 +28,14 @@ The `dtmapi` package provides functions to interact with the Displacement Trac
 
 -   `get_idp_admin2_data()`
 
+
+## Install Package
+
+While waiting for the `dtmapi` package to be approved on CRAN, you can install it from GitHub :
+```{r install , eval = FALSE}
+install.packages("devtools")
+devtools::install_github("Displacement-Tracking-Matrix/dtmapi-R")
+```
 
 ## Load Package
 

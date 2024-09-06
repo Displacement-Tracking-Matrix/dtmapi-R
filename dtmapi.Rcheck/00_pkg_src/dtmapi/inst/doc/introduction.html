@@ -12,7 +12,7 @@
 
 
 
-<title>dtmapi documentation</title>
+<title>dtmapi</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -336,7 +336,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<h1 class="title toc-ignore">dtmapi documentation</h1>
+<h1 class="title toc-ignore">dtmapi</h1>
 
 
 
@@ -354,144 +354,151 @@ functions covered include:</p>
 <li><p><code>get_idp_admin2_data()</code></p></li>
 </ul>
 </div>
+<div id="install-package" class="section level2">
+<h2>Install Package</h2>
+<p>While waiting for the <code>dtmapi</code> package to be approved on
+CRAN, you can install it from GitHub :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;Displacement-Tracking-Matrix/dtmapi-R&quot;</span>)</span></code></pre></div>
+</div>
 <div id="load-package" class="section level2">
 <h2>Load Package</h2>
 <p>After installation, load the package using library():</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(dtmapi)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(dtmapi)</span></code></pre></div>
 </div>
 <div id="get-all-countries" class="section level2">
 <h2>Get All Countries</h2>
 <p>The <code>get_all_countries()</code> function retrieves a list of all
 countries from the DTM API.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Fetch all countries</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>countries_df <span class="ot">&lt;-</span> <span class="fu">get_all_countries</span>()</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">head</span>(countries_df)</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt;                         admin0Name admin0Pcode</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; 1                      Afghanistan         AFG</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; 2              Antigua and Barbuda         ATG</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; 3                    Bahamas (the)         BHS</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 4 Bolivia (Plurinational State of)         BOL</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; 5                     Burkina Faso         BFA</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; 6                          Burundi         BDI</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Fetch all countries</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>countries_df <span class="ot">&lt;-</span> <span class="fu">get_all_countries</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">head</span>(countries_df)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt;                         admin0Name admin0Pcode</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt; 1                      Afghanistan         AFG</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt; 2              Antigua and Barbuda         ATG</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt; 3                    Bahamas (the)         BHS</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt; 4 Bolivia (Plurinational State of)         BOL</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt; 5                     Burkina Faso         BFA</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt; 6                          Burundi         BDI</span></span></code></pre></div>
 </div>
 <div id="get-all-operations" class="section level2">
 <h2>Get All Operations</h2>
 <p>The <code>get_all_operations()</code> function retrieves a list of
 all operations from the DTM API.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Fetch all operations</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>operations_df <span class="ot">&lt;-</span> <span class="fu">get_all_operations</span>()</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">head</span>(operations_df)</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt;                                   operation operationStatus          admin0Name</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt; 1                           Aceh earthquake        Inactive           Indonesia</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt; 2                    Armed Clashes in Sudan          Active               Sudan</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt; 3          Armed Clashes in Sudan (Monthly)          Active               Sudan</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt; 4         Armed Clashes in Sudan (Overview)          Active               Sudan</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt; 5                       Arrivals in Armenia          Active Republic of Armenia</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt; 6 Bahamas (the) - Hurricane Dorian Response        Inactive       Bahamas (the)</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt;   admin0Pcode</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt; 1         IDN</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt; 2         SDN</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt; 3         SDN</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt; 4         SDN</span></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#&gt; 5         ARM</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="co">#&gt; 6         BHS</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Fetch all operations</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>operations_df <span class="ot">&lt;-</span> <span class="fu">get_all_operations</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">head</span>(operations_df)</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt;                                   operation operationStatus          admin0Name</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt; 1                           Aceh earthquake        Inactive           Indonesia</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; 2                    Armed Clashes in Sudan          Active               Sudan</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt; 3          Armed Clashes in Sudan (Monthly)          Active               Sudan</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt; 4         Armed Clashes in Sudan (Overview)          Active               Sudan</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; 5                       Arrivals in Armenia          Active Republic of Armenia</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt; 6 Bahamas (the) - Hurricane Dorian Response        Inactive       Bahamas (the)</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;   admin0Pcode</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; 1         IDN</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt; 2         SDN</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt; 3         SDN</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt; 4         SDN</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt; 5         ARM</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt; 6         BHS</span></span></code></pre></div>
 </div>
 <div id="get-idp-data-at-admin-level-0" class="section level2">
 <h2>Get IDP Data at Admin Level 0</h2>
 <p>The <code>get_idp_admin0_data()</code> function retrieves Internally
 Displaced Persons (IDP) data aggregated at the country level.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Fetch IDP data at Admin Level 0</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>idp_admin0_df <span class="ot">&lt;-</span> <span class="fu">get_idp_admin0_data</span>(<span class="at">CountryName=</span><span class="st">&#39;Ethiopia&#39;</span>, <span class="at">FromRoundNumber=</span><span class="dv">1</span>, <span class="at">ToRoundNumber=</span><span class="dv">10</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">head</span>(idp_admin0_df)</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt;    id                                     operation admin0Name admin0Pcode</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt; 1 824                        Countrywide monitoring   Ethiopia         ETH</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; 2 148                        Countrywide monitoring   Ethiopia         ETH</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt; 3 834                        Countrywide monitoring   Ethiopia         ETH</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt; 4 869 Ethiopia - Gedeo and West Guji Rapid Response   Ethiopia         ETH</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; 5 293                      Northern Ethiopia Crisis   Ethiopia         ETH</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt; 6 300                      Northern Ethiopia Crisis   Ethiopia         ETH</span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; 1          1696145 2017-12-31T00:00:00              2017                 12</span></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt; 2          1742461 2018-02-28T00:00:00              2018                  2</span></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt; 3          1613436 2018-04-30T00:00:00              2018                  4</span></span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt; 4           359113 2018-07-30T00:00:00              2018                  7</span></span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt; 5           131590 2021-01-31T00:00:00              2021                  1</span></span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt; 6           378392 2021-02-28T00:00:00              2021                  2</span></span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co">#&gt;   roundNumber assessmentType</span></span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co">#&gt; 1           8             SA</span></span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co">#&gt; 2           9             SA</span></span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co">#&gt; 3          10             SA</span></span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co">#&gt; 4           1             SA</span></span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="co">#&gt; 5           2             SA</span></span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co">#&gt; 6           3             SA</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Fetch IDP data at Admin Level 0</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>idp_admin0_df <span class="ot">&lt;-</span> <span class="fu">get_idp_admin0_data</span>(<span class="at">CountryName=</span><span class="st">&#39;Ethiopia&#39;</span>, <span class="at">FromRoundNumber=</span><span class="dv">1</span>, <span class="at">ToRoundNumber=</span><span class="dv">10</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">head</span>(idp_admin0_df)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt;    id                                     operation admin0Name admin0Pcode</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; 1 824                        Countrywide monitoring   Ethiopia         ETH</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 2 148                        Countrywide monitoring   Ethiopia         ETH</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 3 834                        Countrywide monitoring   Ethiopia         ETH</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 4 869 Ethiopia - Gedeo and West Guji Rapid Response   Ethiopia         ETH</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt; 5 293                      Northern Ethiopia Crisis   Ethiopia         ETH</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt; 6 300                      Northern Ethiopia Crisis   Ethiopia         ETH</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; 1          1696145 2017-12-31T00:00:00              2017                 12</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; 2          1742461 2018-02-28T00:00:00              2018                  2</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt; 3          1613436 2018-04-30T00:00:00              2018                  4</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; 4           359113 2018-07-30T00:00:00              2018                  7</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt; 5           131590 2021-01-31T00:00:00              2021                  1</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt; 6           378392 2021-02-28T00:00:00              2021                  2</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt;   roundNumber assessmentType</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt; 1           8             SA</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt; 2           9             SA</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt; 3          10             SA</span></span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co">#&gt; 4           1             SA</span></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="co">#&gt; 5           2             SA</span></span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="co">#&gt; 6           3             SA</span></span></code></pre></div>
 </div>
 <div id="get-idp-data-at-admin-level-1" class="section level2">
 <h2>Get IDP Data at Admin Level 1</h2>
 <p>The get_idp_admin1_data() function retrieves IDP data aggregated at
 Admin Level 1.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Fetch IDP data at Admin Level 1</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>admin1_data_df <span class="ot">&lt;-</span> <span class="fu">get_idp_admin1_data</span>(<span class="at">CountryName=</span><span class="st">&#39;Sudan&#39;</span>, <span class="at">Admin1Name=</span><span class="st">&quot;Blue Nile&quot;</span>, <span class="at">FromReportingDate=</span><span class="st">&#39;2020-01-01&#39;</span>, <span class="at">ToReportingDate=</span><span class="st">&#39;2024-08-15&#39;</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">head</span>(admin1_data_df)</span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt;     id              operation admin0Name admin0Pcode admin1Name admin1Pcode</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; 1 1663        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 2 1664        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 3 1665        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 4 1666        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt; 5 6290 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt; 6 6291 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate</span></span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; 1            81693 2021-03-30T00:00:00              2021                  3</span></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; 2           130958 2021-12-31T00:00:00              2021                 12</span></span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt; 3           151156 2022-01-31T00:00:00              2022                  1</span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; 4           152656 2022-03-30T00:00:00              2022                  3</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt; 5              260 2023-04-28T00:00:00              2023                  4</span></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt; 6              715 2023-05-07T00:00:00              2023                  5</span></span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt;   roundNumber assessmentType</span></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt; 1           2             BA</span></span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt; 2           3             BA</span></span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt; 3           4             BA</span></span>
-<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co">#&gt; 4           5             BA</span></span>
-<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="co">#&gt; 5           2             BA</span></span>
-<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="co">#&gt; 6           3             BA</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Fetch IDP data at Admin Level 1</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>admin1_data_df <span class="ot">&lt;-</span> <span class="fu">get_idp_admin1_data</span>(<span class="at">CountryName=</span><span class="st">&#39;Sudan&#39;</span>, <span class="at">Admin1Name=</span><span class="st">&quot;Blue Nile&quot;</span>, <span class="at">FromReportingDate=</span><span class="st">&#39;2020-01-01&#39;</span>, <span class="at">ToReportingDate=</span><span class="st">&#39;2024-08-15&#39;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">head</span>(admin1_data_df)</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;     id              operation admin0Name admin0Pcode admin1Name admin1Pcode</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; 1 1663        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 2 1664        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 3 1665        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 4 1666        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 5 6290 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 6 6291 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt;   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; 1            81693 2021-03-30T00:00:00              2021                  3</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; 2           130958 2021-12-31T00:00:00              2021                 12</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt; 3           151156 2022-01-31T00:00:00              2022                  1</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt; 4           152656 2022-03-30T00:00:00              2022                  3</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt; 5              260 2023-04-28T00:00:00              2023                  4</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt; 6              715 2023-05-07T00:00:00              2023                  5</span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt;   roundNumber assessmentType</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">#&gt; 1           2             BA</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">#&gt; 2           3             BA</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">#&gt; 3           4             BA</span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">#&gt; 4           5             BA</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co">#&gt; 5           2             BA</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt; 6           3             BA</span></span></code></pre></div>
 </div>
 <div id="get-idp-data-at-admin-level-2" class="section level2">
 <h2>Get IDP Data at Admin Level 2</h2>
 <p>The get_idp_admin2_data() function retrieves IDP data aggregated at
 Admin Level 2</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Fetch IDP data at Admin Level 2</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>admin2_data_df <span class="ot">&lt;-</span> <span class="fu">get_idp_admin2_data</span>(<span class="at">Operation=</span><span class="st">&quot;Displacement due to conflict&quot;</span>, <span class="at">CountryName=</span><span class="st">&#39;Lebanon&#39;</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">head</span>(admin2_data_df)</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;      id                    operation admin0Name admin0Pcode        admin1Name</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; 1 48424 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 2 48425 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 3 48486 Displacement due to conflict    Lebanon         LBN            Beirut</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 4 48487 Displacement due to conflict    Lebanon         LBN            Beirut</span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 5 48488 Displacement due to conflict    Lebanon         LBN            Beirut</span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 6 48455 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt;   admin1Pcode admin2Name admin2Pcode numPresentIdpInd       reportingDate</span></span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; 1         LB8    Baalbek        LB21               18 2023-10-15T00:00:00</span></span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; 2         LB8    Baalbek        LB21              903 2023-10-15T00:00:00</span></span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt; 3         LB1     Baabda        LB32               10 2023-10-15T00:00:00</span></span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt; 4         LB1     Beirut        LB11             1854 2023-10-15T00:00:00</span></span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt; 5         LB1     Beirut        LB11             1758 2023-10-15T00:00:00</span></span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt; 6         LB8  El Hermel        LB22               45 2023-10-15T00:00:00</span></span>
-<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt;   yearReportingDate monthReportingDate roundNumber assessmentType</span></span>
-<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">#&gt; 1              2023                 10           1             BA</span></span>
-<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">#&gt; 2              2023                 10           2             BA</span></span>
-<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">#&gt; 3              2023                 10           1             BA</span></span>
-<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">#&gt; 4              2023                 10           1             BA</span></span>
-<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co">#&gt; 5              2023                 10           2             BA</span></span>
-<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt; 6              2023                 10           1             BA</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Fetch IDP data at Admin Level 2</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>admin2_data_df <span class="ot">&lt;-</span> <span class="fu">get_idp_admin2_data</span>(<span class="at">Operation=</span><span class="st">&quot;Displacement due to conflict&quot;</span>, <span class="at">CountryName=</span><span class="st">&#39;Lebanon&#39;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">head</span>(admin2_data_df)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt;      id                    operation admin0Name admin0Pcode        admin1Name</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; 1 48424 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; 2 48425 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; 3 48486 Displacement due to conflict    Lebanon         LBN            Beirut</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; 4 48487 Displacement due to conflict    Lebanon         LBN            Beirut</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; 5 48488 Displacement due to conflict    Lebanon         LBN            Beirut</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt; 6 48455 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt;   admin1Pcode admin2Name admin2Pcode numPresentIdpInd       reportingDate</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; 1         LB8    Baalbek        LB21               18 2023-10-15T00:00:00</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt; 2         LB8    Baalbek        LB21              903 2023-10-15T00:00:00</span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt; 3         LB1     Baabda        LB32               10 2023-10-15T00:00:00</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; 4         LB1     Beirut        LB11             1854 2023-10-15T00:00:00</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt; 5         LB1     Beirut        LB11             1758 2023-10-15T00:00:00</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt; 6         LB8  El Hermel        LB22               45 2023-10-15T00:00:00</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">#&gt;   yearReportingDate monthReportingDate roundNumber assessmentType</span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="co">#&gt; 1              2023                 10           1             BA</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="co">#&gt; 2              2023                 10           2             BA</span></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="co">#&gt; 3              2023                 10           1             BA</span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="co">#&gt; 4              2023                 10           1             BA</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co">#&gt; 5              2023                 10           2             BA</span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="co">#&gt; 6              2023                 10           1             BA</span></span></code></pre></div>
 </div>
 <div id="function-arguments" class="section level2">
 <h2>Function Arguments</h2>

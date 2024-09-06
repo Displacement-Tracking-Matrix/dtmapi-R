@@ -36,11 +36,16 @@ Type 'q()' to quit R.
 > 
 > ### ** Examples
 > 
-> ## Not run: 
-> ##D # Fetch all countries
-> ##D countries_df <- get_all_countries()
-> ##D head(countries_df)
-> ## End(Not run)
+> # Fetch all countries
+> countries_df <- get_all_countries()
+> head(countries_df)
+                        admin0Name admin0Pcode
+1                      Afghanistan         AFG
+2              Antigua and Barbuda         ATG
+3                    Bahamas (the)         BHS
+4 Bolivia (Plurinational State of)         BOL
+5                     Burkina Faso         BFA
+6                          Burundi         BDI
 > 
 > 
 > 
@@ -56,11 +61,23 @@ Type 'q()' to quit R.
 > 
 > ### ** Examples
 > 
-> ## Not run: 
-> ##D # Fetch all operations
-> ##D operations_df <- get_all_operations()
-> ##D head(operations_df)
-> ## End(Not run)
+> # Fetch all operations
+> operations_df <- get_all_operations()
+> head(operations_df)
+                                  operation operationStatus          admin0Name
+1                           Aceh earthquake        Inactive           Indonesia
+2                    Armed Clashes in Sudan          Active               Sudan
+3          Armed Clashes in Sudan (Monthly)          Active               Sudan
+4         Armed Clashes in Sudan (Overview)          Active               Sudan
+5                       Arrivals in Armenia          Active Republic of Armenia
+6 Bahamas (the) - Hurricane Dorian Response        Inactive       Bahamas (the)
+  admin0Pcode
+1         IDN
+2         SDN
+3         SDN
+4         SDN
+5         ARM
+6         BHS
 > 
 > 
 > 
@@ -76,11 +93,30 @@ Type 'q()' to quit R.
 > 
 > ### ** Examples
 > 
-> ## Not run: 
-> ##D # Fetch IDP data at Admin Level 0
-> ##D idp_admin0_df <- get_idp_admin0_data(CountryName='Ethiopia', FromRoundNumber=1, ToRoundNumber=10)
-> ##D head(idp_admin0_df)
-> ## End(Not run)
+> # Fetch IDP data at Admin Level 0
+> idp_admin0_df <- get_idp_admin0_data(CountryName='Ethiopia', FromRoundNumber=1, ToRoundNumber=10)
+> head(idp_admin0_df)
+   id                                     operation admin0Name admin0Pcode
+1 824                        Countrywide monitoring   Ethiopia         ETH
+2 148                        Countrywide monitoring   Ethiopia         ETH
+3 834                        Countrywide monitoring   Ethiopia         ETH
+4 869 Ethiopia - Gedeo and West Guji Rapid Response   Ethiopia         ETH
+5 293                      Northern Ethiopia Crisis   Ethiopia         ETH
+6 300                      Northern Ethiopia Crisis   Ethiopia         ETH
+  numPresentIdpInd       reportingDate yearReportingDate monthReportingDate
+1          1696145 2017-12-31T00:00:00              2017                 12
+2          1742461 2018-02-28T00:00:00              2018                  2
+3          1613436 2018-04-30T00:00:00              2018                  4
+4           359113 2018-07-30T00:00:00              2018                  7
+5           131590 2021-01-31T00:00:00              2021                  1
+6           378392 2021-02-28T00:00:00              2021                  2
+  roundNumber assessmentType
+1           8             SA
+2           9             SA
+3          10             SA
+4           1             SA
+5           2             SA
+6           3             SA
 > 
 > 
 > 
@@ -96,11 +132,30 @@ Type 'q()' to quit R.
 > 
 > ### ** Examples
 > 
-> ## Not run: 
-> ##D # Fetch IDP data at Admin Level 1
-> ##D admin1_data_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
-> ##D head(admin1_data_df)
-> ## End(Not run)
+> # Fetch IDP data at Admin Level 1
+> admin1_data_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
+> head(admin1_data_df)
+    id              operation admin0Name admin0Pcode admin1Name admin1Pcode
+1 1663        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+2 1664        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+3 1665        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+4 1666        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+5 6290 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
+6 6291 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
+  numPresentIdpInd       reportingDate yearReportingDate monthReportingDate
+1            81693 2021-03-30T00:00:00              2021                  3
+2           130958 2021-12-31T00:00:00              2021                 12
+3           151156 2022-01-31T00:00:00              2022                  1
+4           152656 2022-03-30T00:00:00              2022                  3
+5              260 2023-04-28T00:00:00              2023                  4
+6              715 2023-05-07T00:00:00              2023                  5
+  roundNumber assessmentType
+1           2             BA
+2           3             BA
+3           4             BA
+4           5             BA
+5           2             BA
+6           3             BA
 > 
 > 
 > 
@@ -116,11 +171,30 @@ Type 'q()' to quit R.
 > 
 > ### ** Examples
 > 
-> ## Not run: 
-> ##D # Fetch IDP data at Admin Level 2
-> ##D admin2_data_df <- get_idp_admin2_data(Operation='Yemen conflict', CountryName="Yemen")
-> ##D head(admin2_data_df)
-> ## End(Not run)
+> # Fetch IDP data at Admin Level 2
+> admin2_data_df <- get_idp_admin2_data(Operation='Yemen conflict', CountryName="Yemen")
+> head(admin2_data_df)
+     id      operation admin0Name admin0Pcode admin1Name admin1Pcode
+1 33900 Yemen conflict      Yemen         YEM      Abyan        YE12
+2 33939 Yemen conflict      Yemen         YEM      Abyan        YE12
+3 33978 Yemen conflict      Yemen         YEM      Abyan        YE12
+4 34093 Yemen conflict      Yemen         YEM      Abyan        YE12
+5 34113 Yemen conflict      Yemen         YEM       Aden        YE24
+6 34133 Yemen conflict      Yemen         YEM       Aden        YE24
+   admin2Name admin2Pcode numPresentIdpInd       reportingDate
+1       Ahwar      YE1209            27908 2015-07-30T00:00:00
+2   Al Wade'A      YE1208             6897 2015-07-30T00:00:00
+3     Khanfir      YE1211            12196 2015-07-30T00:00:00
+4    Zingibar      YE1210             5540 2015-07-30T00:00:00
+5 Al Buraiqeh      YE2404            76643 2015-07-30T00:00:00
+6  Al Mansura      YE2403            33376 2015-07-30T00:00:00
+  yearReportingDate monthReportingDate roundNumber assessmentType
+1              2015                  7           3             BA
+2              2015                  7           3             BA
+3              2015                  7           3             BA
+4              2015                  7           3             BA
+5              2015                  7           3             BA
+6              2015                  7           3             BA
 > 
 > 
 > 
@@ -129,7 +203,7 @@ Type 'q()' to quit R.
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.036 0.003 0.04 0 0 
+Time elapsed:  0.203 0.016 1.145 0 0 
 > grDevices::dev.off()
 null device 
           1 
