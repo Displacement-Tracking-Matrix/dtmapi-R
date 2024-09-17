@@ -17,12 +17,6 @@ The `dtmapi` package is available on CRAN and can be installed using the followi
 ```
 install.packages("dtmapi")
 ```
-Alternatively, you can install the development version from GitHub by running:
-
-```sh
-install.packages("devtools")
-devtools::install_github("Displacement-Tracking-Matrix/dtmapi-R")
-```
 
 ## Load Package
 After installation, load the package using library():
