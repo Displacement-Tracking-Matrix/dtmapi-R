@@ -1,5 +1,6 @@
-library(httr)
+library(httr2)
 library(jsonlite)
+library(magrittr)  # For the `%>%` operator
 
 #' Fetch IDP Admin1 Data
 #'
@@ -21,9 +22,9 @@ library(jsonlite)
 #' # Fetch IDP data at Admin Level 1
 #' idp_admin1_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
 #' head(idp_admin1_df)
-#' @importFrom httr GET status_code content
+#' @importFrom httr2 request req_perform req_url_query resp_status resp_body_string
+#' @importFrom magrittr %>%
 #' @importFrom jsonlite fromJSON
-#' @importFrom config get
 get_idp_admin1_data <- function(
     Operation = NULL,
     CountryName = NULL,
@@ -35,8 +36,7 @@ get_idp_admin1_data <- function(
     FromRoundNumber = 0,
     ToRoundNumber = 0
 ) {
-  # Retrieve the API URL from the configuration file
-  # Load configuration
+  # Retrieve the API URL
   api_url <- "https://dtmapi.iom.int/api/idpAdmin1Data/GetAdmin1Datav2"
 
   # Set up query parameters
@@ -53,16 +53,18 @@ get_idp_admin1_data <- function(
   )
 
   tryCatch({
-    # Send GET request to the API with parameters
-    response <- GET(api_url, query = params)
+    # Send GET request to the API with parameters using httr2
+    response <- request(api_url) %>%
+      req_url_query(!!!params) %>%
+      req_perform()
 
     # Check if the request was successful
-    if (status_code(response) != 200) {
-      stop("Failed to fetch data. Status code: ", status_code(response))
+    if (resp_status(response) != 200) {
+      stop("Failed to fetch data. Status code: ", resp_status(response))
     }
 
     # Parse the JSON content
-    data <- content(response, "text", encoding = "UTF-8")
+    data <- resp_body_string(response, encoding = "UTF-8")
     json_data <- fromJSON(data, flatten = TRUE)
 
     # Check if the request was successful and extract the result

@@ -45,7 +45,7 @@ get_idp_admin2_data(
 A data frame containing the IDP Admin2 data matching the specified criteria.
 }
 \description{
-Retrieve IDP data at Admin 0 level based on specified parameters.
+Retrieve IDP data at Admin 2 level based on specified parameters.
 At least one of the following parameters must be provided: Operation, CountryName, or Admin0Pcode.
 }
 \examples{

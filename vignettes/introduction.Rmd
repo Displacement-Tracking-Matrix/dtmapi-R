@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(httr2)
 ```
 
 ## Introduction
@@ -31,7 +32,7 @@ The `dtmapi` package provides functions to interact with the Displacement Trac
 
 ## Install Package
 
-The `dtmapi` package is available on CRAN and can be installed using the following command :
+The `dtmapi` package is available on CRAN and can be installed using the following command: :
 ```{r install , eval = FALSE}
 install.packages("dtmapi")
 ```

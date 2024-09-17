@@ -12,10 +12,10 @@
 Please find more information about [DTM API](https://dtm.iom.int/data-and-analysis/dtm-api) here.
 
 ## Installation
-`dtmapi` can be installed as below:
+The `dtmapi` package is available on CRAN and can be installed using the following command:
+
 ```sh
-install.packages("devtools")
-devtools::install_github("Displacement-Tracking-Matrix/dtmapi-R")
+install.packages("dtmapi")
 ```
 
 ## Load Package

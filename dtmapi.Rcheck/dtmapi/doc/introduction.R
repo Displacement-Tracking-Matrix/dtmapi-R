@@ -3,10 +3,10 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(httr2)
 
 ## ----install , eval = FALSE---------------------------------------------------
-#  install.packages("devtools")
-#  devtools::install_github("Displacement-Tracking-Matrix/dtmapi-R")
+#  install.packages("dtmapi")
 
 ## ----setup--------------------------------------------------------------------
 library(dtmapi)

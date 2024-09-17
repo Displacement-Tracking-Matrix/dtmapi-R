@@ -1,5 +1,7 @@
-library(httr)
+library(httr2)
 library(jsonlite)
+library(magrittr)  # For the `%>%` operator
+
 #' Fetch All Countries
 #'
 #' Retrieve all countries for which DTM data is publicly available through the API.
@@ -10,25 +12,25 @@ library(jsonlite)
 #' # Fetch all countries
 #' countries_df <- get_all_countries()
 #' head(countries_df)
-#' @importFrom httr GET status_code content
+#' @importFrom httr2 request req_perform resp_status resp_body_string
+#' @importFrom magrittr %>%
 #' @importFrom jsonlite fromJSON
-#' @importFrom config get
 get_all_countries <- function() {
 
   tryCatch({
-    # Retrieve the API URL from the configuration file
+    # Retrieve the API URL
     api_url <- "https://dtmapi.iom.int/api/Common/GetAllCountryList"
 
-    # Send GET request to the API
-    response <- GET(api_url)
+    # Send GET request to the API using httr2
+    response <- request(api_url) %>% req_perform()
 
     # Check if the request was successful
-    if (status_code(response) != 200) {
-      stop("Failed to fetch data. Status code: ", status_code(response))
+    if (resp_status(response) != 200) {
+      stop("Failed to fetch data. Status code: ", resp_status(response))
     }
 
     # Parse the JSON content and extract the result as a data frame
-    data <- content(response, "text")
+    data <- resp_body_string(response)
     df <- fromJSON(data, flatten = TRUE)$result
 
     # Return the data frame
