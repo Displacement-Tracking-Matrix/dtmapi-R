@@ -3,7 +3,7 @@ pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   introduction: introduction.html
-last_built: 2024-09-17T20:29Z
+last_built: 2024-09-17T22:09Z
 urls:
   reference: https://displacement-tracking-matrix.github.io/dtmapi-R/reference
   article: https://displacement-tracking-matrix.github.io/dtmapi-R/articles
