@@ -34,15 +34,15 @@ head(idp_admin0_df)
 
 ## ----get_idp_admin1-----------------------------------------------------------
 # Fetch IDP data at Admin Level 1
-admin1_data_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile", FromReportingDate='2020-01-01', ToReportingDate='2024-08-15')
+idp_admin1_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile", FromReportingDate='2020-01-01', ToReportingDate='2024-08-15')
 
 # Display the first few rows of the data frame
-head(admin1_data_df)
+head(idp_admin1_df)
 
 ## ----get_idp_admin2-----------------------------------------------------------
 # Fetch IDP data at Admin Level 2
-admin2_data_df <- get_idp_admin2_data(Operation="Displacement due to conflict", CountryName='Lebanon')
+idp_admin2_df <- get_idp_admin2_data(Operation="Displacement due to conflict", CountryName='Lebanon')
 
 # Display the first few rows of the data frame
-head(admin2_data_df)
+head(idp_admin2_df)
 

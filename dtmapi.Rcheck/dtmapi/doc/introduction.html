@@ -443,10 +443,10 @@ Displaced Persons (IDP) data aggregated at the country level.</p>
 <p>The get_idp_admin1_data() function retrieves IDP data aggregated at
 Admin Level 1.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Fetch IDP data at Admin Level 1</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>admin1_data_df <span class="ot">&lt;-</span> <span class="fu">get_idp_admin1_data</span>(<span class="at">CountryName=</span><span class="st">&#39;Sudan&#39;</span>, <span class="at">Admin1Name=</span><span class="st">&quot;Blue Nile&quot;</span>, <span class="at">FromReportingDate=</span><span class="st">&#39;2020-01-01&#39;</span>, <span class="at">ToReportingDate=</span><span class="st">&#39;2024-08-15&#39;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>idp_admin1_df <span class="ot">&lt;-</span> <span class="fu">get_idp_admin1_data</span>(<span class="at">CountryName=</span><span class="st">&#39;Sudan&#39;</span>, <span class="at">Admin1Name=</span><span class="st">&quot;Blue Nile&quot;</span>, <span class="at">FromReportingDate=</span><span class="st">&#39;2020-01-01&#39;</span>, <span class="at">ToReportingDate=</span><span class="st">&#39;2024-08-15&#39;</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">head</span>(admin1_data_df)</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">head</span>(idp_admin1_df)</span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;     id              operation admin0Name admin0Pcode admin1Name admin1Pcode</span></span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; 1 1663        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
 <span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 2 1664        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
@@ -474,10 +474,10 @@ Admin Level 1.</p>
 <p>The get_idp_admin2_data() function retrieves IDP data aggregated at
 Admin Level 2</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Fetch IDP data at Admin Level 2</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>admin2_data_df <span class="ot">&lt;-</span> <span class="fu">get_idp_admin2_data</span>(<span class="at">Operation=</span><span class="st">&quot;Displacement due to conflict&quot;</span>, <span class="at">CountryName=</span><span class="st">&#39;Lebanon&#39;</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>idp_admin2_df <span class="ot">&lt;-</span> <span class="fu">get_idp_admin2_data</span>(<span class="at">Operation=</span><span class="st">&quot;Displacement due to conflict&quot;</span>, <span class="at">CountryName=</span><span class="st">&#39;Lebanon&#39;</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># Display the first few rows of the data frame</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">head</span>(admin2_data_df)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">head</span>(idp_admin2_df)</span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt;      id                    operation admin0Name admin0Pcode        admin1Name</span></span>
 <span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; 1 48424 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
 <span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; 2 48425 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>

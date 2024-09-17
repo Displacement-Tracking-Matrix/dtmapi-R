@@ -133,8 +133,8 @@ Type 'q()' to quit R.
 > ### ** Examples
 > 
 > # Fetch IDP data at Admin Level 1
-> admin1_data_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
-> head(admin1_data_df)
+> idp_admin1_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
+> head(idp_admin1_df)
     id              operation admin0Name admin0Pcode admin1Name admin1Pcode
 1 1663        Darfur conflict      Sudan         SDN  Blue Nile        SD08
 2 1664        Darfur conflict      Sudan         SDN  Blue Nile        SD08
@@ -172,8 +172,8 @@ Type 'q()' to quit R.
 > ### ** Examples
 > 
 > # Fetch IDP data at Admin Level 2
-> admin2_data_df <- get_idp_admin2_data(Operation='Yemen conflict', CountryName="Yemen")
-> head(admin2_data_df)
+> idp_admin2_df <- get_idp_admin2_data(Operation='Yemen conflict', CountryName="Yemen")
+> head(idp_admin2_df)
      id      operation admin0Name admin0Pcode admin1Name admin1Pcode
 1 33900 Yemen conflict      Yemen         YEM      Abyan        YE12
 2 33939 Yemen conflict      Yemen         YEM      Abyan        YE12
@@ -203,7 +203,7 @@ Type 'q()' to quit R.
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.203 0.016 1.145 0 0 
+Time elapsed:  0.172 0.013 1.045 0 0 
 > grDevices::dev.off()
 null device 
           1 

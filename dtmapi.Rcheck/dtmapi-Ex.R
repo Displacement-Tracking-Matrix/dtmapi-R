@@ -72,8 +72,8 @@ flush(stderr()); flush(stdout())
 ### ** Examples
 
 # Fetch IDP data at Admin Level 1
-admin1_data_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
-head(admin1_data_df)
+idp_admin1_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
+head(idp_admin1_df)
 
 
 
@@ -90,8 +90,8 @@ flush(stderr()); flush(stdout())
 ### ** Examples
 
 # Fetch IDP data at Admin Level 2
-admin2_data_df <- get_idp_admin2_data(Operation='Yemen conflict', CountryName="Yemen")
-head(admin2_data_df)
+idp_admin2_df <- get_idp_admin2_data(Operation='Yemen conflict', CountryName="Yemen")
+head(idp_admin2_df)
 
 
 

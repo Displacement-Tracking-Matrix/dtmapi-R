@@ -12,8 +12,8 @@ get_idp_admin1_data(
   Admin1Pcode = NULL,
   FromReportingDate = NULL,
   ToReportingDate = NULL,
-  FromRoundNumber = NULL,
-  ToRoundNumber = NULL
+  FromRoundNumber = 0,
+  ToRoundNumber = 0
 )
 }
 \arguments{
@@ -44,6 +44,6 @@ At least one of the following parameters must be provided: Operation, CountryNam
 }
 \examples{
 # Fetch IDP data at Admin Level 1
-admin1_data_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
-head(admin1_data_df)
+idp_admin1_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile")
+head(idp_admin1_df)
 }

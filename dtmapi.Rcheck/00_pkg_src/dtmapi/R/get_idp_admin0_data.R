@@ -28,8 +28,8 @@ get_idp_admin0_data <- function(
     Admin0Pcode = NULL,
     FromReportingDate = NULL,
     ToReportingDate = NULL,
-    FromRoundNumber = NULL,
-    ToRoundNumber = NULL
+    FromRoundNumber = 0,
+    ToRoundNumber = 0
 ) {
   # Retrieve the API URL from the configuration file
   # Load configuration

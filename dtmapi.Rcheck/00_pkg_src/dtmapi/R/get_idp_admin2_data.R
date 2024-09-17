@@ -21,8 +21,8 @@ library(jsonlite)
 #' @export
 #' @examples
 #' # Fetch IDP data at Admin Level 2
-#' admin2_data_df <- get_idp_admin2_data(Operation='Yemen conflict', CountryName="Yemen")
-#' head(admin2_data_df)
+#' idp_admin2_df <- get_idp_admin2_data(Operation='Yemen conflict', CountryName="Yemen")
+#' head(idp_admin2_df)
 #' @importFrom httr GET status_code content
 #' @importFrom jsonlite fromJSON
 #' @importFrom config get
@@ -36,8 +36,8 @@ get_idp_admin2_data <- function(
     Admin2Pcode = NULL,
     FromReportingDate = NULL,
     ToReportingDate = NULL,
-    FromRoundNumber = NULL,
-    ToRoundNumber = NULL
+    FromRoundNumber = 0,
+    ToRoundNumber = 0
 ) {
   # Retrieve the API URL from the configuration file
   # Load configuration

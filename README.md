@@ -14,7 +14,7 @@ Please find more information about [DTM API](https://dtm.iom.int/data-and-analys
 ## Installation
 The `dtmapi` package is available on CRAN and can be installed using the following command:
 
-```
+```sh
 install.packages("dtmapi")
 ```
 
