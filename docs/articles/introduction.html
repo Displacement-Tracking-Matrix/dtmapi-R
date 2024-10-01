@@ -145,27 +145,27 @@ Displaced Persons (IDP) data aggregated at the country level.</p>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin0_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    id                                     operation admin0Name admin0Pcode</span></span>
-<span><span class="co">#&gt; 1 824                        Countrywide monitoring   Ethiopia         ETH</span></span>
-<span><span class="co">#&gt; 2 148                        Countrywide monitoring   Ethiopia         ETH</span></span>
-<span><span class="co">#&gt; 3 834                        Countrywide monitoring   Ethiopia         ETH</span></span>
-<span><span class="co">#&gt; 4 869 Ethiopia - Gedeo and West Guji Rapid Response   Ethiopia         ETH</span></span>
-<span><span class="co">#&gt; 5 293                      Northern Ethiopia Crisis   Ethiopia         ETH</span></span>
-<span><span class="co">#&gt; 6 300                      Northern Ethiopia Crisis   Ethiopia         ETH</span></span>
-<span><span class="co">#&gt;   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate</span></span>
-<span><span class="co">#&gt; 1          1696145 2017-12-31T00:00:00              2017                 12</span></span>
-<span><span class="co">#&gt; 2          1742461 2018-02-28T00:00:00              2018                  2</span></span>
-<span><span class="co">#&gt; 3          1613436 2018-04-30T00:00:00              2018                  4</span></span>
-<span><span class="co">#&gt; 4           359113 2018-07-30T00:00:00              2018                  7</span></span>
-<span><span class="co">#&gt; 5           131590 2021-01-31T00:00:00              2021                  1</span></span>
-<span><span class="co">#&gt; 6           378392 2021-02-28T00:00:00              2021                  2</span></span>
-<span><span class="co">#&gt;   roundNumber assessmentType</span></span>
-<span><span class="co">#&gt; 1           8             SA</span></span>
-<span><span class="co">#&gt; 2           9             SA</span></span>
-<span><span class="co">#&gt; 3          10             SA</span></span>
-<span><span class="co">#&gt; 4           1             SA</span></span>
-<span><span class="co">#&gt; 5           2             SA</span></span>
-<span><span class="co">#&gt; 6           3             SA</span></span></code></pre></div>
+<span><span class="co">#&gt;     id                operation admin0Name admin0Pcode numPresentIdpInd</span></span>
+<span><span class="co">#&gt; 1 9217   Countrywide monitoring   Ethiopia         ETH          1696145</span></span>
+<span><span class="co">#&gt; 2 9218   Countrywide monitoring   Ethiopia         ETH          1742461</span></span>
+<span><span class="co">#&gt; 3 9219   Countrywide monitoring   Ethiopia         ETH          1613436</span></span>
+<span><span class="co">#&gt; 4 8427 Northern Ethiopia Crisis   Ethiopia         ETH           131590</span></span>
+<span><span class="co">#&gt; 5 8428 Northern Ethiopia Crisis   Ethiopia         ETH           378392</span></span>
+<span><span class="co">#&gt; 6 8429 Northern Ethiopia Crisis   Ethiopia         ETH          1025676</span></span>
+<span><span class="co">#&gt;         reportingDate yearReportingDate monthReportingDate roundNumber</span></span>
+<span><span class="co">#&gt; 1 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt; 2 2018-02-28T00:00:00              2018                  2           9</span></span>
+<span><span class="co">#&gt; 3 2018-04-30T00:00:00              2018                  4          10</span></span>
+<span><span class="co">#&gt; 4 2021-01-31T00:00:00              2021                  1           2</span></span>
+<span><span class="co">#&gt; 5 2021-02-28T00:00:00              2021                  2           3</span></span>
+<span><span class="co">#&gt; 6 2021-03-31T00:00:00              2021                  3           4</span></span>
+<span><span class="co">#&gt;   assessmentType</span></span>
+<span><span class="co">#&gt; 1             SA</span></span>
+<span><span class="co">#&gt; 2             SA</span></span>
+<span><span class="co">#&gt; 3             SA</span></span>
+<span><span class="co">#&gt; 4             SA</span></span>
+<span><span class="co">#&gt; 5             SA</span></span>
+<span><span class="co">#&gt; 6             SA</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-idp-data-at-admin-level-1">Get IDP Data at Admin Level 1<a class="anchor" aria-label="anchor" href="#get-idp-data-at-admin-level-1"></a>
@@ -178,13 +178,13 @@ Admin Level 1.</p>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin1_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     id              operation admin0Name admin0Pcode admin1Name admin1Pcode</span></span>
-<span><span class="co">#&gt; 1 1663        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
-<span><span class="co">#&gt; 2 1664        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
-<span><span class="co">#&gt; 3 1665        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
-<span><span class="co">#&gt; 4 1666        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
-<span><span class="co">#&gt; 5 6290 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
-<span><span class="co">#&gt; 6 6291 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt;      id              operation admin0Name admin0Pcode admin1Name admin1Pcode</span></span>
+<span><span class="co">#&gt; 1 58149        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 2 58150        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 3 58151        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 4 58152        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 5 66550 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 6 66551 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
 <span><span class="co">#&gt;   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate</span></span>
 <span><span class="co">#&gt; 1            81693 2021-03-30T00:00:00              2021                  3</span></span>
 <span><span class="co">#&gt; 2           130958 2021-12-31T00:00:00              2021                 12</span></span>
@@ -211,26 +211,26 @@ Admin Level 2</p>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin2_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      id                    operation admin0Name admin0Pcode        admin1Name</span></span>
-<span><span class="co">#&gt; 1 48424 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
-<span><span class="co">#&gt; 2 48425 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
-<span><span class="co">#&gt; 3 48486 Displacement due to conflict    Lebanon         LBN            Beirut</span></span>
-<span><span class="co">#&gt; 4 48487 Displacement due to conflict    Lebanon         LBN            Beirut</span></span>
-<span><span class="co">#&gt; 5 48488 Displacement due to conflict    Lebanon         LBN            Beirut</span></span>
-<span><span class="co">#&gt; 6 48455 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
+<span><span class="co">#&gt;       id                    operation admin0Name admin0Pcode        admin1Name</span></span>
+<span><span class="co">#&gt; 1 401077 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
+<span><span class="co">#&gt; 2 401078 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
+<span><span class="co">#&gt; 3 401118 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
+<span><span class="co">#&gt; 4 401119 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
+<span><span class="co">#&gt; 5 409095 Displacement due to conflict    Lebanon         LBN            Beirut</span></span>
+<span><span class="co">#&gt; 6 409096 Displacement due to conflict    Lebanon         LBN            Beirut</span></span>
 <span><span class="co">#&gt;   admin1Pcode admin2Name admin2Pcode numPresentIdpInd       reportingDate</span></span>
 <span><span class="co">#&gt; 1         LB8    Baalbek        LB21               18 2023-10-15T00:00:00</span></span>
 <span><span class="co">#&gt; 2         LB8    Baalbek        LB21              903 2023-10-15T00:00:00</span></span>
-<span><span class="co">#&gt; 3         LB1     Baabda        LB32               10 2023-10-15T00:00:00</span></span>
-<span><span class="co">#&gt; 4         LB1     Beirut        LB11             1854 2023-10-15T00:00:00</span></span>
-<span><span class="co">#&gt; 5         LB1     Beirut        LB11             1758 2023-10-15T00:00:00</span></span>
-<span><span class="co">#&gt; 6         LB8  El Hermel        LB22               45 2023-10-15T00:00:00</span></span>
+<span><span class="co">#&gt; 3         LB8  El Hermel        LB22               45 2023-10-15T00:00:00</span></span>
+<span><span class="co">#&gt; 4         LB8  El Hermel        LB22              100 2023-10-15T00:00:00</span></span>
+<span><span class="co">#&gt; 5         LB1     Baabda        LB32               10 2023-10-15T00:00:00</span></span>
+<span><span class="co">#&gt; 6         LB1     Beirut        LB11             1854 2023-10-15T00:00:00</span></span>
 <span><span class="co">#&gt;   yearReportingDate monthReportingDate roundNumber assessmentType</span></span>
 <span><span class="co">#&gt; 1              2023                 10           1             BA</span></span>
 <span><span class="co">#&gt; 2              2023                 10           2             BA</span></span>
 <span><span class="co">#&gt; 3              2023                 10           1             BA</span></span>
-<span><span class="co">#&gt; 4              2023                 10           1             BA</span></span>
-<span><span class="co">#&gt; 5              2023                 10           2             BA</span></span>
+<span><span class="co">#&gt; 4              2023                 10           2             BA</span></span>
+<span><span class="co">#&gt; 5              2023                 10           1             BA</span></span>
 <span><span class="co">#&gt; 6              2023                 10           1             BA</span></span></code></pre></div>
 </div>
 <div class="section level2">
