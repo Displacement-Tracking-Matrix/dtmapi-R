@@ -95,27 +95,27 @@ At least one of the following parameters must be provided: Operation, CountryNam
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Fetch IDP data at Admin Level 0</span></span></span>
 <span class="r-in"><span><span class="va">idp_admin0_df</span> <span class="op">&lt;-</span> <span class="fu">get_idp_admin0_data</span><span class="op">(</span>CountryName<span class="op">=</span><span class="st">'Ethiopia'</span>, FromRoundNumber<span class="op">=</span><span class="fl">1</span>, ToRoundNumber<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin0_df</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    id                                     operation admin0Name admin0Pcode</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 824                        Countrywide monitoring   Ethiopia         ETH</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 148                        Countrywide monitoring   Ethiopia         ETH</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 834                        Countrywide monitoring   Ethiopia         ETH</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 869 Ethiopia - Gedeo and West Guji Rapid Response   Ethiopia         ETH</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 293                      Northern Ethiopia Crisis   Ethiopia         ETH</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 300                      Northern Ethiopia Crisis   Ethiopia         ETH</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1696145 2017-12-31T00:00:00              2017                 12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          1742461 2018-02-28T00:00:00              2018                  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          1613436 2018-04-30T00:00:00              2018                  4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4           359113 2018-07-30T00:00:00              2018                  7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5           131590 2021-01-31T00:00:00              2021                  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6           378392 2021-02-28T00:00:00              2021                  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   roundNumber assessmentType</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           8             SA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           9             SA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          10             SA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4           1             SA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5           2             SA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6           3             SA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     id                operation admin0Name admin0Pcode numPresentIdpInd</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 9217   Countrywide monitoring   Ethiopia         ETH          1696145</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 9218   Countrywide monitoring   Ethiopia         ETH          1742461</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 9219   Countrywide monitoring   Ethiopia         ETH          1613436</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 8427 Northern Ethiopia Crisis   Ethiopia         ETH           131590</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 8428 Northern Ethiopia Crisis   Ethiopia         ETH           378392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 8429 Northern Ethiopia Crisis   Ethiopia         ETH          1025676</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         reportingDate yearReportingDate monthReportingDate roundNumber</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2017-12-31T00:00:00              2017                 12           8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2018-02-28T00:00:00              2018                  2           9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2018-04-30T00:00:00              2018                  4          10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2021-01-31T00:00:00              2021                  1           2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 2021-02-28T00:00:00              2021                  2           3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 2021-03-31T00:00:00              2021                  3           4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   assessmentType</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             SA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             SA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3             SA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4             SA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5             SA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6             SA</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -127,7 +127,7 @@ At least one of the following parameters must be provided: Operation, CountryNam
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer></div>
