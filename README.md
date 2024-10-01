@@ -12,7 +12,7 @@
 Please find more information about [DTM API](https://dtm.iom.int/data-and-analysis/dtm-api) here.
 
 ## Installation
-The `dtmapi` package is available on CRAN and can be installed using the following command:
+The `dtmapi` package is available on [CRAN](https://cran.r-project.org/web/packages/dtmapi/index.html) and can be installed using the following command:
 
 ```sh
 install.packages("dtmapi")
