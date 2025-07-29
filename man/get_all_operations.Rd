@@ -13,7 +13,9 @@ A data frame containing the list of all operations.
 Retrieve all operations for which DTM data is publicly available through the API.
 }
 \examples{
+\dontrun{
 # Fetch all operations
 operations_df <- get_all_operations()
 head(operations_df)
+}
 }
