@@ -101,7 +101,10 @@ The `get_idp_admin0_data()` function retrieves Internally Displaced Persons (IDP
 
 ```{r get_idp_admin0, eval = FALSE}
 # Fetch IDP data at Admin Level 0
-idp_admin0_df <- get_idp_admin0_data(CountryName='Ethiopia', FromRoundNumber=1, ToRoundNumber=10)
+idp_admin0_df <-
+  get_idp_admin0_data(CountryName = "Ethiopia",
+                      FromRoundNumber = 0,
+                      ToRoundNumber = 10)
 
 # Display the first few rows of the data frame
 head(idp_admin0_df)
@@ -113,7 +116,11 @@ The get_idp_admin1_data() function retrieves IDP data aggregated at Admin Level 
 
 ```{r get_idp_admin1, eval = FALSE}
 # Fetch IDP data at Admin Level 1
-idp_admin1_df <- get_idp_admin1_data(CountryName='Sudan', Admin1Name="Blue Nile", FromReportingDate='2020-01-01', ToReportingDate='2024-08-15')
+idp_admin1_df <-
+  get_idp_admin1_data(CountryName = "Sudan",
+                      Admin1Name = "Blue Nile",
+                      FromReportingDate = "2020-01-01",
+                      ToReportingDate = "2024-08-15")
 
 # Display the first few rows of the data frame
 head(idp_admin1_df)
@@ -124,7 +131,9 @@ head(idp_admin1_df)
 The get_idp_admin2_data() function retrieves IDP data aggregated at Admin Level 2
 ```{r get_idp_admin2, eval = FALSE}
 # Fetch IDP data at Admin Level 2
-idp_admin2_df <- get_idp_admin2_data(Operation="Displacement due to conflict", CountryName='Lebanon')
+idp_admin2_df <-
+  get_idp_admin2_data(Operation = "Displacement due to conflict",
+                      CountryName = "Lebanon")
 
 # Display the first few rows of the data frame
 head(idp_admin2_df)
