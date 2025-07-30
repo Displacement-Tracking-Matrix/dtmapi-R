@@ -5,48 +5,63 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Allows humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by the Displacement Tracking Matrix (&lt;https://dtm.iom.int&gt;), a unit in the International Organization for Migration. This also provides non-sensitive Internally Displaced Person figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller administrative areas) levels.">
 <title>Fetching Data from the Displacement Tracking Matrix • dtmapi</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Fetching Data from the Displacement Tracking Matrix">
-<meta name="description" content="Allows humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by the Displacement Tracking Matrix (&lt;https://dtm.iom.int&gt;), a unit in the International Organization for Migration. This also provides non-sensitive Internally Displaced Person figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller administrative areas) levels.">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Fetching Data from the Displacement Tracking Matrix">
 <meta property="og:description" content="Allows humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by the Displacement Tracking Matrix (&lt;https://dtm.iom.int&gt;), a unit in the International Organization for Migration. This also provides non-sensitive Internally Displaced Person figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller administrative areas) levels.">
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-
-    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
-
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
+    
     <a class="navbar-brand me-2" href="index.html">dtmapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
-
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="articles/introduction.html">Quick Start</a></li>
-<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item">
+  <a class="nav-link" href="articles/user_guide.html">User Guide</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="reference/index.html">Reference</a>
+</li>
       </ul>
-<ul class="navbar-nav">
-<li class="nav-item"><form class="form-inline" role="search">
- <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
-</form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Displacement-Tracking-Matrix/dtmapi-R/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/Displacement-Tracking-Matrix/dtmapi-R/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
 </div>
 
-
+    
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><p><br></p>
+  <main id="main" class="col-md-9">
+<p><br></p>
 <p align="center">
 <img alt="DTM Logo" src="https://dtm.iom.int/themes/custom/dtm_global/logo.svg" width="400"></p>
 <hr>
@@ -59,44 +74,13 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The <code>dtmapi</code> package is available on <a href="https://cran.r-project.org/web/packages/dtmapi/index.html" class="external-link">CRAN</a> and can be installed using the following command:</p>
+<p>The <code>dtmapi</code> package is available on <a href="https://CRAN.R-project.org/package=dtmapi" class="external-link">CRAN</a> and can be installed using the following command:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">install.packages</span><span class="er">(</span><span class="st">"dtmapi"</span><span class="kw">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="load-package">Load Package<a class="anchor" aria-label="anchor" href="#load-package"></a>
+<h2 id="user-guide">User Guide<a class="anchor" aria-label="anchor" href="#user-guide"></a>
 </h2>
-<p>After installation, load the package using library():</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">library</span><span class="er">(</span><span class="ex">dtmapi</span><span class="kw">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
-</h2>
-<p>Here’s a quick example to get you started:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Get all countries for which DTM data is publicly available through the API.</span></span>
-<span><span class="va">countries_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_all_countries.html">get_all_countries</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">countries_df</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Get all operations for which DTM data is publicly available through the API.</span></span>
-<span><span class="va">operations_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_all_operations.html">get_all_operations</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">operations_df</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Get IDP Admin 0 Data for Ethiopia from Round 1 to Round 10</span></span>
-<span><span class="va">idp_admin0_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_idp_admin0_data.html">get_idp_admin0_data</a></span><span class="op">(</span>CountryName<span class="op">=</span><span class="st">'Ethiopia'</span>, FromRoundNumber<span class="op">=</span><span class="fl">1</span>, ToRoundNumber<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin0_df</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Get IDP Admin 1 Data for Sudan from reporting date 2020-01-01 to 2024-08-15</span></span>
-<span><span class="va">idp_admin1_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_idp_admin1_data.html">get_idp_admin1_data</a></span><span class="op">(</span>CountryName<span class="op">=</span><span class="st">'Sudan'</span>, Admin1Name<span class="op">=</span><span class="st">"Blue Nile"</span>, FromReportingDate<span class="op">=</span><span class="st">'2020-01-01'</span>, ToReportingDate<span class="op">=</span><span class="st">'2024-08-15'</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin1_df</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Get IDP Admin 2 Data for Lebanon</span></span>
-<span><span class="va">idp_admin2_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_idp_admin2_data.html">get_idp_admin2_data</a></span><span class="op">(</span>Operation<span class="op">=</span><span class="st">"Displacement due to conflict"</span>, CountryName<span class="op">=</span><span class="st">'Lebanon'</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin2_df</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
-</h2>
-<p>Comprehensive documentation is available at <a href="https://displacement-tracking-matrix.github.io/dtmapi-R/">github.io</a>.</p>
+<p>A user guide to getting started with <code>dtmapi</code> is available <a href="https://displacement-tracking-matrix.github.io/dtmapi-R/">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="source-code">Source Code<a class="anchor" aria-label="anchor" href="#source-code"></a>
@@ -139,29 +123,35 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Luong Bang Tran <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Assad Asil Companioni <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/a-asil-companioni/dtmapi-R/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/a-asil-companioni/dtmapi-R/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Luong Bang Tran.</p>
+  <p>Developed by Luong Bang Tran, Assad Asil Companioni.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
     </footer>
 </div>
 
+  
 
-
-
+  
 
   </body>
 </html>

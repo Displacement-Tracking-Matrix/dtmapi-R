@@ -1,9 +1,10 @@
-pandoc: 3.1.11
-pkgdown: 2.1.0
+pandoc: 3.6.3
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
-  introduction: introduction.html
-last_built: 2024-10-01T20:14Z
+  user_guide: user_guide.html
+last_built: 2025-07-30T10:22Z
 urls:
   reference: https://displacement-tracking-matrix.github.io/dtmapi-R/reference
   article: https://displacement-tracking-matrix.github.io/dtmapi-R/articles
+

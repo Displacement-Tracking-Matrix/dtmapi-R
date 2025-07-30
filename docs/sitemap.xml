@@ -1,15 +1,45 @@
-<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/404.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/LICENSE-text.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/articles/index.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/articles/introduction.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/authors.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/index.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_all_countries.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_all_operations.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_idp_admin0_data.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_idp_admin1_data.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_idp_admin2_data.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html</loc></url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/404.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/articles/user_guide.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/index.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_all_countries.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_all_operations.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_idp_admin0_data.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_idp_admin1_data.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_idp_admin2_data.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_subscription_key.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/set_subscription_key.html</loc>
+  </url>
 </urlset>
-
