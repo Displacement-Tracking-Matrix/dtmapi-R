@@ -11,8 +11,8 @@ navbar:
     - Reference
   components:
     home:
-      text: Quick Start
-      href: articles/introduction.html
+      text: User Guide
+      href: articles/user_guide.html
     Reference:
       text: Reference
       href: reference/index.html
