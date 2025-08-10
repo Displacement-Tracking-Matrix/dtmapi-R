@@ -14,7 +14,7 @@
 get_all_countries <- function() {
 
   tryCatch({
-    api_url <- "https://dtm-apim.iom.int/v3/CountryList"
+    api_url <- "https://dtmapi.iom.int/v3/displacement/country-list"
 
     response <- 
       request(api_url) |>

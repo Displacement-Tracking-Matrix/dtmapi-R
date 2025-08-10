@@ -35,7 +35,7 @@ get_subscription_key <- function() {
   }
 }
 
-testing_key_encrypted <- "gs-XVH-qdoewh5zjCEMPXrrrKDHqs5L-3X43yAPEY0rqBcwEGa2p_mTo89Ki5HqZ"
+testing_key_encrypted <- "ABlJntCNw5CXFlQEWd9NcuyOB05Agzn7RI4Ua6YMe9kXxqZUpVwHMRpEtnreEFK4"
 
 testing_key <- function() {
   secret_decrypt(encrypted = testing_key_encrypted, 

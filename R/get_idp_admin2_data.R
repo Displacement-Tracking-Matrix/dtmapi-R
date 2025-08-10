@@ -37,7 +37,7 @@ get_idp_admin2_data <- function(
     FromRoundNumber = 0,
     ToRoundNumber = 0
 ) {
-  api_url <- "https://dtm-apim.iom.int/v3/IdpAdmin2Data"
+  api_url <- "https://dtmapi.iom.int/v3/displacement/admin2"
 
   query_params <- list(
     Operation = Operation,
