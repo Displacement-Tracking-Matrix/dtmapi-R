@@ -77,7 +77,7 @@ Certain parameters have to be specified to any of these, the most
 important of which are either the `CountryName` or the `OperationName`.
 For information on the other parameters and indeed all functions in the
 `dtmapi`, [see the documentation for any of the functions
-here.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/)
+here.](reference/index.html)
 
 As a representative example of the earlier mentioned functions, see the
 following use of `get_idp_admin_1_data()`:
@@ -117,7 +117,7 @@ head(operations_df)
 
 The information given here is further elaborated on in the user guide to
 getting started with `dtmapi`, which is available
-[here](https://displacement-tracking-matrix.github.io/dtmapi-R/).
+[here](articles/user_guide.html)
 
 ## Source Code
 
