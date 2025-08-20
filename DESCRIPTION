@@ -1,6 +1,6 @@
 Package: dtmapi
 Title: Fetching Data from the 'Displacement Tracking Matrix'
-Version: 0.1.0
+Version: 0.0.3
 Authors@R: c( 
   person("Luong Bang", "Tran", email = "lutran@iom.int", role = c("aut", "cre")),
   person("Assad", "Asil Companioni", email = "aasil@iom.int", role = c("aut"))
