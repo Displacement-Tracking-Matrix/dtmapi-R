@@ -3,15 +3,20 @@ output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, include = FALSE}
+key_available <- !identical(dtmapi::get_subscription_key(), "")
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%",
-  eval = FALSE
+  eval = key_available
 )
+```
+
+```{r eval = !key_available, echo = FALSE, comment = NA}
+message("No token available. Code chunks will not be evaluated.")
 ```
 
 <br>
@@ -76,7 +81,9 @@ For information on the other parameters and indeed all functions in the `dtmapi`
 As a representative example of the earlier mentioned functions, see the following use of `get_idp_admin_1_data()`:
 
 ```{r}
-# Fetch IDP data at Admin Level 1
+# Load the package
+library(dtmapi)
+
 idp_admin1_df <- get_idp_admin1_data(CountryName = "Sudan",
                                      Admin1Name = "Blue Nile",
                                      FromReportingDate = "2020-01-01",
@@ -91,7 +98,8 @@ of, they can be obtained by using the `get_all_countries()` and
 `get_all_operations()` functions, which do not take any arguments.
 
 ```{r}
-# Fetch all countries
+# Load the package
+library(dtmapi)
 countries_df <- get_all_countries()
 
 # Display the first few rows of the data frame
@@ -99,7 +107,9 @@ head(countries_df)
 ```
 
 ```{r}
-# Fetch all operations
+# Load the package
+library(dtmapi)
+
 operations_df <- get_all_operations()
 
 # Display the first few rows of the data frame

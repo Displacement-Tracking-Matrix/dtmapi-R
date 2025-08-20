@@ -83,7 +83,9 @@ As a representative example of the earlier mentioned functions, see the
 following use of `get_idp_admin_1_data()`:
 
 ``` r
-# Fetch IDP data at Admin Level 1
+# Load the package
+library(dtmapi)
+
 idp_admin1_df <- get_idp_admin1_data(CountryName = "Sudan",
                                      Admin1Name = "Blue Nile",
                                      FromReportingDate = "2020-01-01",
@@ -91,6 +93,34 @@ idp_admin1_df <- get_idp_admin1_data(CountryName = "Sudan",
 
 # Display the first few rows of the data frame
 head(idp_admin1_df)
+#>        id              operation admin0Name admin0Pcode admin1Name admin1Pcode
+#> 1 3989697        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 2 3989698        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 3 3989699        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 4 3989700        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 5 3968566 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
+#> 6 3968567 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
+#>   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate
+#> 1            81693 2021-03-30T00:00:00              2021                  3
+#> 2           130958 2021-12-31T00:00:00              2021                 12
+#> 3           151156 2022-01-31T00:00:00              2022                  1
+#> 4           152656 2022-03-30T00:00:00              2022                  3
+#> 5              260 2023-04-28T00:00:00              2023                  4
+#> 6              715 2023-05-07T00:00:00              2023                  5
+#>   roundNumber         displacementReason numberMales numberFemales
+#> 1           2                   Conflict          NA            NA
+#> 2           3 Conflict; Natural disaster          NA            NA
+#> 3           4                   Conflict          NA            NA
+#> 4           5                   Conflict          NA            NA
+#> 5           2                   Conflict          NA            NA
+#> 6           3                   Conflict          NA            NA
+#>   idpOriginAdmin1Name idpOriginAdmin1Pcode assessmentType
+#> 1           Blue Nile                 SD08             BA
+#> 2           Blue Nile                 SD08             BA
+#> 3       Not available        Not available             BA
+#> 4           Blue Nile                 SD08             BA
+#> 5         West Darfur                 SD04             BA
+#> 6            Khartoum                 SD01             BA
 ```
 
 Since the available country names or operation names are often necessary
@@ -98,19 +128,43 @@ to know of, they can be obtained by using the `get_all_countries()` and
 `get_all_operations()` functions, which do not take any arguments.
 
 ``` r
-# Fetch all countries
+# Load the package
+library(dtmapi)
 countries_df <- get_all_countries()
 
 # Display the first few rows of the data frame
 head(countries_df)
+#>                         admin0Name admin0Pcode
+#> 1                      Afghanistan         AFG
+#> 2              Antigua and Barbuda         ATG
+#> 3                    Bahamas (the)         BHS
+#> 4                            Benin         BEN
+#> 5 Bolivia (Plurinational State of)         BOL
+#> 6                     Burkina Faso         BFA
 ```
 
 ``` r
-# Fetch all operations
+# Load the package
+library(dtmapi)
+
 operations_df <- get_all_operations()
 
 # Display the first few rows of the data frame
 head(operations_df)
+#>                                   operation operationStatus          admin0Name
+#> 1                           Aceh earthquake        Inactive           Indonesia
+#> 2                    Armed Clashes in Sudan          Active               Sudan
+#> 3          Armed Clashes in Sudan (Monthly)          Active               Sudan
+#> 4         Armed Clashes in Sudan (Overview)          Active               Sudan
+#> 5                       Arrivals in Armenia        Inactive Republic of Armenia
+#> 6 Bahamas (the) - Hurricane Dorian Response        Inactive       Bahamas (the)
+#>   admin0Pcode
+#> 1         IDN
+#> 2         SDN
+#> 3         SDN
+#> 4         SDN
+#> 5         ARM
+#> 6         BHS
 ```
 
 ## User Guide
