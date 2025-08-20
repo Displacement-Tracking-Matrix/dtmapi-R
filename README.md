@@ -1,33 +1,133 @@
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/a-asil-companioni/dtmapi-R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/a-asil-companioni/dtmapi-R/actions/workflows/R-CMD-check.yaml)
-<!-- badges: end -->
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <br>
 
 <p align="center">
-  <img alt="DTM Logo" src="https://dtm.iom.int/themes/custom/dtm_global/logo.svg" width="400">
+
+<img alt="DTM Logo" src="https://dtm.iom.int/themes/custom/dtm_global/logo.svg" width="400">
 </p>
------------------
+
+------------------------------------------------------------------------
+
+# dtmapi
+
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/a-asil-companioni/dtmapi-R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/a-asil-companioni/dtmapi-R/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 ## About
-`dtmapi` is an R package developed by [Displacement Tracking Matrix (DTM)](https://dtm.iom.int/). This package allows the humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by DTM. It provides non-sensitive Internally Displaced Person (IDP) figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller subnational administrative areas) levels. Country Name and Operation can be found in this [data coverage](https://dtm.iom.int/data-and-analysis/dtm-api/data-coverage) matrix. 
 
-Please find more information about [DTM API](https://dtm.iom.int/data-and-analysis/dtm-api) here.
+`dtmapi` is an R package developed by [Displacement Tracking Matrix
+(DTM)](https://dtm.iom.int/). This package allows the humanitarian
+community, academia, media, government, and non-governmental
+organizations to utilize the data collected by DTM. It provides
+non-sensitive Internally Displaced Person (IDP) figures, aggregated at
+the country, Admin 1 (states, provinces, or equivalent), and Admin 2
+(smaller subnational administrative areas) levels. Country Names and
+Operations can be found in this [data
+coverage](https://dtm.iom.int/data-and-analysis/dtm-api/data-coverage)
+matrix.
+
+Please find more information about [DTM API
+here.](https://dtm.iom.int/data-and-analysis/dtm-api)
 
 ## Installation
-The `dtmapi` package is available on [CRAN](https://CRAN.R-project.org/package=dtmapi) and can be installed using the following command:
 
-```sh
+The `dtmapi` package is available on
+[CRAN](https://CRAN.R-project.org/package=dtmapi) and can be installed
+as follows:
+
+``` sh
 install.packages("dtmapi")
 ```
 
+## Pre-Requisites
+
+Using `dtmapi` requires a subscription key. To obtain one, register with
+the [DTM API Portal](https://dtm-apim-portal.iom.int/signin) and follow
+the instructions there.
+
+The subscription key is secret and should not be exposed. Once it is
+obtained, the subscription key should be set for your current R session,
+assuming that the `dtmapi` package is installed. To do this, use run the
+following in R:
+
+``` r
+dtmapi::set_subscription_key()
+```
+
+At this point, the user will be prompted to input the key (hidden) into
+a pop-up field.
+
+## Usage
+
+When the subscription key is set, data on internal displacement may be
+retrieved through any of the following functions:
+
+- `get_idp_admin_0_data()`
+- `get_idp_admin_1_data()`
+- `get_idp_admin_2_data()`
+
+These all retrieve data from the DTM API and return said data in the
+form of data frames.
+
+Certain parameters have to be specified to any of these, the most
+important of which are either the `CountryName` or the `OperationName`.
+For information on the other parameters and indeed all functions in the
+`dtmapi`, [see the documentation for any of the functions
+here.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/)
+
+As a representative example of the earlier mentioned functions, see the
+following use of `get_idp_admin_1_data()`:
+
+``` r
+# Fetch IDP data at Admin Level 1
+idp_admin1_df <- get_idp_admin1_data(CountryName = "Sudan",
+                                     Admin1Name = "Blue Nile",
+                                     FromReportingDate = "2020-01-01",
+                                     ToReportingDate = "2024-08-15")
+
+# Display the first few rows of the data frame
+head(idp_admin1_df)
+```
+
+Since the available country names or operation names are often necessary
+to know of, they can be obtained by using the `get_all_countries()` and
+`get_all_operations()` functions, which do not take any arguments.
+
+``` r
+# Fetch all countries
+countries_df <- get_all_countries()
+
+# Display the first few rows of the data frame
+head(countries_df)
+```
+
+``` r
+# Fetch all operations
+operations_df <- get_all_operations()
+
+# Display the first few rows of the data frame
+head(operations_df)
+```
+
 ## User Guide
-A user guide to getting started with `dtmapi` is available [here](https://displacement-tracking-matrix.github.io/dtmapi-R/).
+
+The information given here is further elaborated on in the user guide to
+getting started with `dtmapi`, which is available
+[here](https://displacement-tracking-matrix.github.io/dtmapi-R/).
 
 ## Source Code
-The source code for `dtmapi` is available on [GitHub](https://github.com/Displacement-tracking-Matrix/dtmapi-R).
 
-Feel free to explore the repository, contribute, or raise any issues you may encounter.
+The source code for `dtmapi` is available on
+[GitHub](https://github.com/Displacement-tracking-Matrix/dtmapi-R).
+
+Feel free to explore the repository, contribute, or raise any issues you
+may encounter.
 
 ## Contact
-For any questions or feedback, please reach out to us at [dtmdataconsolidation@iom.int](mailto:dtmdataconsolidation@iom.int).
+
+For any questions or feedback, please reach out to us at
+<dtmdataconsolidation@iom.int>.
