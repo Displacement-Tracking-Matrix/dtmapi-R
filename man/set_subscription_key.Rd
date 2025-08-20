@@ -4,9 +4,18 @@
 \alias{set_subscription_key}
 \title{Set the user's API subscription key in order to make the API calls.}
 \usage{
-set_subscription_key(key = NULL)
+set_subscription_key(..., key = NULL)
 }
 \arguments{
+\item{...}{Any argument here is ignored. It exists solely to discourage typing in the
+subscription key directly,
+e.g. \code{set_subscription_key("mysubscriptionkeyhere")}, since doing so will
+only result in the user being prompted to type the subscription key in a
+graphical user interface. Rather, if the user wishes to set the subscription key
+through the console / by programmatic means, then the user must explicitly
+pass the argument to the \code{key} parameter as a named parameter.
+E.g. \code{set_subscription_key(key = "mysubscriptionkeyhere")}.}
+
 \item{key}{Either NULL or a string representing the key. NULL is preferable: using it
 will prompt the user to type the subscription key in a graphical user
 interface that masks it.}

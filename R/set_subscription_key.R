@@ -14,9 +14,19 @@
 #' # into the console, making it more secure and less likely to exposed.
 #' set_subscription_key()
 #' }
+#' @param ...
+#' Any argument here is ignored. It exists solely to discourage typing in the
+#' subscription key directly, 
+#' e.g. `set_subscription_key("mysubscriptionkeyhere")`, since doing so will 
+#' only result in the user being prompted to type the subscription key in a 
+#' graphical user interface. Rather, if the user wishes to set the subscription key 
+#' through the console / by programmatic means, then the user must explicitly 
+#' pass the argument to the `key` parameter as a named parameter.
+#' E.g. `set_subscription_key(key = "mysubscriptionkeyhere")`.
+#' 
 #' @importFrom askpass askpass
 
-set_subscription_key <- function(key = NULL) {
+set_subscription_key <- function(..., key = NULL) {
   if (is.null(key)) {
     Sys.setenv("DTM_SUBSCRIPTION_KEY" = askpass("Please enter your subscription key."))
   } else {
