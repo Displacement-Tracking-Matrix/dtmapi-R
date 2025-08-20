@@ -39,7 +39,7 @@ The `dtmapi` package is available on
 [CRAN](https://CRAN.R-project.org/package=dtmapi) and can be installed
 as follows:
 
-``` sh
+``` r
 install.packages("dtmapi")
 ```
 
