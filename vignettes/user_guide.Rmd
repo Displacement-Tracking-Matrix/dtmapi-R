@@ -6,12 +6,19 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+```{r setup, include = FALSE}
+key_available <- !identical(dtmapi::get_subscription_key(), "")
 
-```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  error = TRUE,
+  eval = key_available
 )
+```
+
+```{r eval = !key_available, echo = FALSE, comment = NA}
+message("No token available. Code chunks will not be evaluated.")
 ```
 
 ## Introduction
@@ -38,7 +45,7 @@ install.packages("dtmapi")
 ## Load Package
 
 After installation, load the package using library():
-```{r setup, eval = FALSE}
+```{r import}
 library(dtmapi)
 ```
 
@@ -75,7 +82,7 @@ usethis::edit_r_environ("user")
 
 The `get_all_countries()` function retrieves a list of all countries from the DTM API.
 
-```{r get_country, eval = FALSE}
+```{r get_country}
 # Fetch all countries
 countries_df <- get_all_countries()
 
@@ -87,7 +94,7 @@ head(countries_df)
 
 The `get_all_operations()` function retrieves a list of all operations from the DTM API.
 
-```{r get_operations, eval = FALSE}
+```{r get_operations}
 # Fetch all operations
 operations_df <- get_all_operations()
 
@@ -99,7 +106,7 @@ head(operations_df)
 
 The `get_idp_admin0_data()` function retrieves Internally Displaced Persons (IDP) data aggregated at the country level.
 
-```{r get_idp_admin0, eval = FALSE}
+```{r get_idp_admin0}
 # Fetch IDP data at Admin Level 0
 idp_admin0_df <-
   get_idp_admin0_data(CountryName = "Ethiopia",
@@ -114,7 +121,7 @@ head(idp_admin0_df)
 
 The get_idp_admin1_data() function retrieves IDP data aggregated at Admin Level 1.
 
-```{r get_idp_admin1, eval = FALSE}
+```{r get_idp_admin1}
 # Fetch IDP data at Admin Level 1
 idp_admin1_df <-
   get_idp_admin1_data(CountryName = "Sudan",
@@ -129,7 +136,7 @@ head(idp_admin1_df)
 ## Get IDP Data at Admin Level 2
 
 The get_idp_admin2_data() function retrieves IDP data aggregated at Admin Level 2
-```{r get_idp_admin2, eval = FALSE}
+```{r get_idp_admin2}
 # Fetch IDP data at Admin Level 2
 idp_admin2_df <-
   get_idp_admin2_data(Operation = "Displacement due to conflict",
