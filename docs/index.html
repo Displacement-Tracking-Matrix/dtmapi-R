@@ -60,27 +60,130 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9">
-<p><br></p>
+  <main id="main" class="col-md-9"><p><br></p>
 <p align="center">
 <img alt="DTM Logo" src="https://dtm.iom.int/themes/custom/dtm_global/logo.svg" width="400"></p>
 <hr>
+<div class="section level1">
+<div class="page-header"><h1 id="dtmapi">dtmapi<a class="anchor" aria-label="anchor" href="#dtmapi"></a>
+</h1></div>
+<!-- badges: start -->
+
 <div class="section level2">
 <h2 id="about">About<a class="anchor" aria-label="anchor" href="#about"></a>
 </h2>
-<p><code>dtmapi</code> is an R package developed by <a href="https://dtm.iom.int/" class="external-link">Displacement Tracking Matrix (DTM)</a>. This package allows the humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by DTM. It provides non-sensitive Internally Displaced Person (IDP) figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller subnational administrative areas) levels. Country Name and Operation can be found in this <a href="https://dtm.iom.int/data-and-analysis/dtm-api/data-coverage" class="external-link">data coverage</a> matrix.</p>
-<p>Please find more information about <a href="https://dtm.iom.int/data-and-analysis/dtm-api" class="external-link">DTM API</a> here.</p>
+<p><code>dtmapi</code> is an R package developed by <a href="https://dtm.iom.int/" class="external-link">Displacement Tracking Matrix (DTM)</a>. This package allows the humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by DTM. It provides non-sensitive Internally Displaced Person (IDP) figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller subnational administrative areas) levels. Country Names and Operations can be found in this <a href="https://dtm.iom.int/data-and-analysis/dtm-api/data-coverage" class="external-link">data coverage</a> matrix.</p>
+<p>Please find more information about <a href="https://dtm.iom.int/data-and-analysis/dtm-api" class="external-link">DTM API here.</a></p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The <code>dtmapi</code> package is available on <a href="https://CRAN.R-project.org/package=dtmapi" class="external-link">CRAN</a> and can be installed using the following command:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">install.packages</span><span class="er">(</span><span class="st">"dtmapi"</span><span class="kw">)</span></span></code></pre></div>
+<p>The <code>dtmapi</code> package is available on <a href="https://CRAN.R-project.org/package=dtmapi" class="external-link">CRAN</a> and can be installed as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"dtmapi"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="pre-requisites">Pre-Requisites<a class="anchor" aria-label="anchor" href="#pre-requisites"></a>
+</h2>
+<p>Using <code>dtmapi</code> requires a subscription key. To obtain one, register with the <a href="https://dtm-apim-portal.iom.int/signin" class="external-link">DTM API Portal</a> and follow the instructions there.</p>
+<p>The subscription key is secret and should not be exposed. Once it is obtained, the subscription key should be set for your current R session, assuming that the <code>dtmapi</code> package is installed. To do this, use run the following in R:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">dtmapi</span><span class="fu">::</span><span class="fu"><a href="reference/set_subscription_key.html">set_subscription_key</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>At this point, the user will be prompted to input the key (hidden) into a pop-up field.</p>
+</div>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<p>When the subscription key is set, data on internal displacement may be retrieved through any of the following functions:</p>
+<ul>
+<li><code>get_idp_admin_0_data()</code></li>
+<li><code>get_idp_admin_1_data()</code></li>
+<li><code>get_idp_admin_2_data()</code></li>
+</ul>
+<p>These all retrieve data from the DTM API and return said data in the form of data frames.</p>
+<p>Certain parameters have to be specified to any of these, the most important of which are either the <code>CountryName</code> or the <code>OperationName</code>. For information on the other parameters and indeed all functions in the <code>dtmapi</code>, <a href="reference/index.html">see the documentation for any of the functions here.</a></p>
+<p>As a representative example of the earlier mentioned functions, see the following use of <code>get_idp_admin_1_data()</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Load the package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Displacement-Tracking-Matrix/dtmapi-R" class="external-link">dtmapi</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">idp_admin1_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_idp_admin1_data.html">get_idp_admin1_data</a></span><span class="op">(</span>CountryName <span class="op">=</span> <span class="st">"Sudan"</span>,</span>
+<span>                                     Admin1Name <span class="op">=</span> <span class="st">"Blue Nile"</span>,</span>
+<span>                                     FromReportingDate <span class="op">=</span> <span class="st">"2020-01-01"</span>,</span>
+<span>                                     ToReportingDate <span class="op">=</span> <span class="st">"2024-08-15"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Display the first few rows of the data frame</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin1_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        id              operation admin0Name admin0Pcode admin1Name admin1Pcode</span></span>
+<span><span class="co">#&gt; 1 3989697        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 2 3989698        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 3 3989699        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 4 3989700        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 5 3968566 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 6 3968567 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt;   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate</span></span>
+<span><span class="co">#&gt; 1            81693 2021-03-30T00:00:00              2021                  3</span></span>
+<span><span class="co">#&gt; 2           130958 2021-12-31T00:00:00              2021                 12</span></span>
+<span><span class="co">#&gt; 3           151156 2022-01-31T00:00:00              2022                  1</span></span>
+<span><span class="co">#&gt; 4           152656 2022-03-30T00:00:00              2022                  3</span></span>
+<span><span class="co">#&gt; 5              260 2023-04-28T00:00:00              2023                  4</span></span>
+<span><span class="co">#&gt; 6              715 2023-05-07T00:00:00              2023                  5</span></span>
+<span><span class="co">#&gt;   roundNumber         displacementReason numberMales numberFemales</span></span>
+<span><span class="co">#&gt; 1           2                   Conflict          NA            NA</span></span>
+<span><span class="co">#&gt; 2           3 Conflict; Natural disaster          NA            NA</span></span>
+<span><span class="co">#&gt; 3           4                   Conflict          NA            NA</span></span>
+<span><span class="co">#&gt; 4           5                   Conflict          NA            NA</span></span>
+<span><span class="co">#&gt; 5           2                   Conflict          NA            NA</span></span>
+<span><span class="co">#&gt; 6           3                   Conflict          NA            NA</span></span>
+<span><span class="co">#&gt;   idpOriginAdmin1Name idpOriginAdmin1Pcode assessmentType</span></span>
+<span><span class="co">#&gt; 1           Blue Nile                 SD08             BA</span></span>
+<span><span class="co">#&gt; 2           Blue Nile                 SD08             BA</span></span>
+<span><span class="co">#&gt; 3       Not available        Not available             BA</span></span>
+<span><span class="co">#&gt; 4           Blue Nile                 SD08             BA</span></span>
+<span><span class="co">#&gt; 5         West Darfur                 SD04             BA</span></span>
+<span><span class="co">#&gt; 6            Khartoum                 SD01             BA</span></span></code></pre></div>
+<p>Since the available country names or operation names are often necessary to know of, they can be obtained by using the <code><a href="reference/get_all_countries.html">get_all_countries()</a></code> and <code><a href="reference/get_all_operations.html">get_all_operations()</a></code> functions, which do not take any arguments.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Load the package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Displacement-Tracking-Matrix/dtmapi-R" class="external-link">dtmapi</a></span><span class="op">)</span></span>
+<span><span class="va">countries_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_all_countries.html">get_all_countries</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Display the first few rows of the data frame</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">countries_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                         admin0Name admin0Pcode</span></span>
+<span><span class="co">#&gt; 1                      Afghanistan         AFG</span></span>
+<span><span class="co">#&gt; 2              Antigua and Barbuda         ATG</span></span>
+<span><span class="co">#&gt; 3                    Bahamas (the)         BHS</span></span>
+<span><span class="co">#&gt; 4                            Benin         BEN</span></span>
+<span><span class="co">#&gt; 5 Bolivia (Plurinational State of)         BOL</span></span>
+<span><span class="co">#&gt; 6                     Burkina Faso         BFA</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Load the package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Displacement-Tracking-Matrix/dtmapi-R" class="external-link">dtmapi</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">operations_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_all_operations.html">get_all_operations</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Display the first few rows of the data frame</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">operations_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                   operation operationStatus          admin0Name</span></span>
+<span><span class="co">#&gt; 1                           Aceh earthquake        Inactive           Indonesia</span></span>
+<span><span class="co">#&gt; 2                    Armed Clashes in Sudan          Active               Sudan</span></span>
+<span><span class="co">#&gt; 3          Armed Clashes in Sudan (Monthly)          Active               Sudan</span></span>
+<span><span class="co">#&gt; 4         Armed Clashes in Sudan (Overview)          Active               Sudan</span></span>
+<span><span class="co">#&gt; 5                       Arrivals in Armenia        Inactive Republic of Armenia</span></span>
+<span><span class="co">#&gt; 6 Bahamas (the) - Hurricane Dorian Response        Inactive       Bahamas (the)</span></span>
+<span><span class="co">#&gt;   admin0Pcode</span></span>
+<span><span class="co">#&gt; 1         IDN</span></span>
+<span><span class="co">#&gt; 2         SDN</span></span>
+<span><span class="co">#&gt; 3         SDN</span></span>
+<span><span class="co">#&gt; 4         SDN</span></span>
+<span><span class="co">#&gt; 5         ARM</span></span>
+<span><span class="co">#&gt; 6         BHS</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="user-guide">User Guide<a class="anchor" aria-label="anchor" href="#user-guide"></a>
 </h2>
-<p>A user guide to getting started with <code>dtmapi</code> is available <a href="https://displacement-tracking-matrix.github.io/dtmapi-R/">here</a>.</p>
+<p>The information given here is further elaborated on in the user guide to getting started with <code>dtmapi</code>, which is available <a href="articles/user_guide.html">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="source-code">Source Code<a class="anchor" aria-label="anchor" href="#source-code"></a>
@@ -91,7 +194,8 @@
 <div class="section level2">
 <h2 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
 </h2>
-<p>For any questions or feedback, please reach out to us at <a href="mailto:dtmdataconsolidation@iom.int">dtmdataconsolidation@iom.int</a>.</p>
+<p>For any questions or feedback, please reach out to us at <a href="mailto:dtmdataconsolidation@iom.int" class="email">dtmdataconsolidation@iom.int</a>.</p>
+</div>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
@@ -105,9 +209,8 @@
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li>
-<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
-</li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
 
@@ -130,7 +233,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/a-asil-companioni/dtmapi-R/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/a-asil-companioni/dtmapi-R/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/Displacement-Tracking-Matrix/dtmapi-R/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/Displacement-Tracking-Matrix/dtmapi-R/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 

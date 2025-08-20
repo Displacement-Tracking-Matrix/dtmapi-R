@@ -51,12 +51,23 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">set_subscription_key</span><span class="op">(</span>key <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">set_subscription_key</span><span class="op">(</span><span class="va">...</span>, key <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>key</dt>
+    <dl><dt>...</dt>
+<dd><p>Any argument here is ignored. It exists solely to discourage typing in the
+subscription key directly,
+e.g. <code>set_subscription_key("mysubscriptionkeyhere")</code>, since doing so will
+only result in the user being prompted to type the subscription key in a
+graphical user interface. Rather, if the user wishes to set the subscription key
+through the console / by programmatic means, then the user must explicitly
+pass the argument to the <code>key</code> parameter as a named parameter.
+E.g. <code>set_subscription_key(key = "mysubscriptionkeyhere")</code>.</p></dd>
+
+
+<dt>key</dt>
 <dd><p>Either NULL or a string representing the key. NULL is preferable: using it
 will prompt the user to type the subscription key in a graphical user
 interface that masks it.</p></dd>

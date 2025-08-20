@@ -144,7 +144,14 @@ countries from the DTM API.</p>
 <span><span class="va">countries_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_all_countries.html">get_all_countries</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">countries_df</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">countries_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                         admin0Name admin0Pcode</span></span>
+<span><span class="co">#&gt; 1                      Afghanistan         AFG</span></span>
+<span><span class="co">#&gt; 2              Antigua and Barbuda         ATG</span></span>
+<span><span class="co">#&gt; 3                    Bahamas (the)         BHS</span></span>
+<span><span class="co">#&gt; 4                            Benin         BEN</span></span>
+<span><span class="co">#&gt; 5 Bolivia (Plurinational State of)         BOL</span></span>
+<span><span class="co">#&gt; 6                     Burkina Faso         BFA</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-all-operations">Get All Operations<a class="anchor" aria-label="anchor" href="#get-all-operations"></a>
@@ -156,7 +163,21 @@ all operations from the DTM API.</p>
 <span><span class="va">operations_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_all_operations.html">get_all_operations</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">operations_df</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">operations_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                   operation operationStatus          admin0Name</span></span>
+<span><span class="co">#&gt; 1                           Aceh earthquake        Inactive           Indonesia</span></span>
+<span><span class="co">#&gt; 2                    Armed Clashes in Sudan          Active               Sudan</span></span>
+<span><span class="co">#&gt; 3          Armed Clashes in Sudan (Monthly)          Active               Sudan</span></span>
+<span><span class="co">#&gt; 4         Armed Clashes in Sudan (Overview)          Active               Sudan</span></span>
+<span><span class="co">#&gt; 5                       Arrivals in Armenia        Inactive Republic of Armenia</span></span>
+<span><span class="co">#&gt; 6 Bahamas (the) - Hurricane Dorian Response        Inactive       Bahamas (the)</span></span>
+<span><span class="co">#&gt;   admin0Pcode</span></span>
+<span><span class="co">#&gt; 1         IDN</span></span>
+<span><span class="co">#&gt; 2         SDN</span></span>
+<span><span class="co">#&gt; 3         SDN</span></span>
+<span><span class="co">#&gt; 4         SDN</span></span>
+<span><span class="co">#&gt; 5         ARM</span></span>
+<span><span class="co">#&gt; 6         BHS</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-idp-data-at-admin-level-0">Get IDP Data at Admin Level 0<a class="anchor" aria-label="anchor" href="#get-idp-data-at-admin-level-0"></a>
@@ -165,10 +186,41 @@ all operations from the DTM API.</p>
 Displaced Persons (IDP) data aggregated at the country level.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch IDP data at Admin Level 0</span></span>
-<span><span class="va">idp_admin0_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_idp_admin0_data.html">get_idp_admin0_data</a></span><span class="op">(</span>CountryName<span class="op">=</span><span class="st">'Ethiopia'</span>, FromRoundNumber<span class="op">=</span><span class="fl">1</span>, ToRoundNumber<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">idp_admin0_df</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="../reference/get_idp_admin0_data.html">get_idp_admin0_data</a></span><span class="op">(</span>CountryName <span class="op">=</span> <span class="st">"Ethiopia"</span>,</span>
+<span>                      FromRoundNumber <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>                      ToRoundNumber <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin0_df</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin0_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                operation admin0Name admin0Pcode numPresentIdpInd</span></span>
+<span><span class="co">#&gt; 1 Countrywide monitoring   Ethiopia         ETH             7823</span></span>
+<span><span class="co">#&gt; 2 Countrywide monitoring   Ethiopia         ETH            21668</span></span>
+<span><span class="co">#&gt; 3 Countrywide monitoring   Ethiopia         ETH            15420</span></span>
+<span><span class="co">#&gt; 4 Countrywide monitoring   Ethiopia         ETH           772924</span></span>
+<span><span class="co">#&gt; 5 Countrywide monitoring   Ethiopia         ETH           308300</span></span>
+<span><span class="co">#&gt; 6 Countrywide monitoring   Ethiopia         ETH             6984</span></span>
+<span><span class="co">#&gt;         reportingDate yearReportingDate monthReportingDate roundNumber</span></span>
+<span><span class="co">#&gt; 1 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt; 2 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt; 3 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt; 4 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt; 5 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt; 6 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt;   displacementReason numberMales numberFemales idpOriginAdmin1Name</span></span>
+<span><span class="co">#&gt; 1           Conflict        4088          3735                Afar</span></span>
+<span><span class="co">#&gt; 2           Conflict       11490         10178              Amhara</span></span>
+<span><span class="co">#&gt; 3           Conflict        7046          8374             Gambela</span></span>
+<span><span class="co">#&gt; 4           Conflict      375655        397269              Oromia</span></span>
+<span><span class="co">#&gt; 5           Conflict      152469        155831              Somali</span></span>
+<span><span class="co">#&gt; 6           Conflict        3170          3814              Tigray</span></span>
+<span><span class="co">#&gt;   idpOriginAdmin1Pcode assessmentType</span></span>
+<span><span class="co">#&gt; 1                 ET02             SA</span></span>
+<span><span class="co">#&gt; 2                 ET03             SA</span></span>
+<span><span class="co">#&gt; 3                 ET12             SA</span></span>
+<span><span class="co">#&gt; 4                 ET04             SA</span></span>
+<span><span class="co">#&gt; 5                 ET05             SA</span></span>
+<span><span class="co">#&gt; 6                 ET01             SA</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-idp-data-at-admin-level-1">Get IDP Data at Admin Level 1<a class="anchor" aria-label="anchor" href="#get-idp-data-at-admin-level-1"></a>
@@ -177,10 +229,42 @@ Displaced Persons (IDP) data aggregated at the country level.</p>
 Admin Level 1.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch IDP data at Admin Level 1</span></span>
-<span><span class="va">idp_admin1_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_idp_admin1_data.html">get_idp_admin1_data</a></span><span class="op">(</span>CountryName<span class="op">=</span><span class="st">'Sudan'</span>, Admin1Name<span class="op">=</span><span class="st">"Blue Nile"</span>, FromReportingDate<span class="op">=</span><span class="st">'2020-01-01'</span>, ToReportingDate<span class="op">=</span><span class="st">'2024-08-15'</span><span class="op">)</span></span>
+<span><span class="va">idp_admin1_df</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="../reference/get_idp_admin1_data.html">get_idp_admin1_data</a></span><span class="op">(</span>CountryName <span class="op">=</span> <span class="st">"Sudan"</span>,</span>
+<span>                      Admin1Name <span class="op">=</span> <span class="st">"Blue Nile"</span>,</span>
+<span>                      FromReportingDate <span class="op">=</span> <span class="st">"2020-01-01"</span>,</span>
+<span>                      ToReportingDate <span class="op">=</span> <span class="st">"2024-08-15"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin1_df</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin1_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        id              operation admin0Name admin0Pcode admin1Name admin1Pcode</span></span>
+<span><span class="co">#&gt; 1 3989697        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 2 3989698        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 3 3989699        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 4 3989700        Darfur conflict      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 5 3968566 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt; 6 3968567 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08</span></span>
+<span><span class="co">#&gt;   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate</span></span>
+<span><span class="co">#&gt; 1            81693 2021-03-30T00:00:00              2021                  3</span></span>
+<span><span class="co">#&gt; 2           130958 2021-12-31T00:00:00              2021                 12</span></span>
+<span><span class="co">#&gt; 3           151156 2022-01-31T00:00:00              2022                  1</span></span>
+<span><span class="co">#&gt; 4           152656 2022-03-30T00:00:00              2022                  3</span></span>
+<span><span class="co">#&gt; 5              260 2023-04-28T00:00:00              2023                  4</span></span>
+<span><span class="co">#&gt; 6              715 2023-05-07T00:00:00              2023                  5</span></span>
+<span><span class="co">#&gt;   roundNumber         displacementReason numberMales numberFemales</span></span>
+<span><span class="co">#&gt; 1           2                   Conflict          NA            NA</span></span>
+<span><span class="co">#&gt; 2           3 Conflict; Natural disaster          NA            NA</span></span>
+<span><span class="co">#&gt; 3           4                   Conflict          NA            NA</span></span>
+<span><span class="co">#&gt; 4           5                   Conflict          NA            NA</span></span>
+<span><span class="co">#&gt; 5           2                   Conflict          NA            NA</span></span>
+<span><span class="co">#&gt; 6           3                   Conflict          NA            NA</span></span>
+<span><span class="co">#&gt;   idpOriginAdmin1Name idpOriginAdmin1Pcode assessmentType</span></span>
+<span><span class="co">#&gt; 1           Blue Nile                 SD08             BA</span></span>
+<span><span class="co">#&gt; 2           Blue Nile                 SD08             BA</span></span>
+<span><span class="co">#&gt; 3       Not available        Not available             BA</span></span>
+<span><span class="co">#&gt; 4           Blue Nile                 SD08             BA</span></span>
+<span><span class="co">#&gt; 5         West Darfur                 SD04             BA</span></span>
+<span><span class="co">#&gt; 6            Khartoum                 SD01             BA</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-idp-data-at-admin-level-2">Get IDP Data at Admin Level 2<a class="anchor" aria-label="anchor" href="#get-idp-data-at-admin-level-2"></a>
@@ -189,10 +273,47 @@ Admin Level 1.</p>
 Admin Level 2</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch IDP data at Admin Level 2</span></span>
-<span><span class="va">idp_admin2_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_idp_admin2_data.html">get_idp_admin2_data</a></span><span class="op">(</span>Operation<span class="op">=</span><span class="st">"Displacement due to conflict"</span>, CountryName<span class="op">=</span><span class="st">'Lebanon'</span><span class="op">)</span></span>
+<span><span class="va">idp_admin2_df</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="../reference/get_idp_admin2_data.html">get_idp_admin2_data</a></span><span class="op">(</span>Operation <span class="op">=</span> <span class="st">"Displacement due to conflict"</span>,</span>
+<span>                      CountryName <span class="op">=</span> <span class="st">"Lebanon"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin2_df</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin2_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         id                    operation admin0Name admin0Pcode</span></span>
+<span><span class="co">#&gt; 1 16339498 Displacement due to conflict    Lebanon         LBN</span></span>
+<span><span class="co">#&gt; 2 16341000 Displacement due to conflict    Lebanon         LBN</span></span>
+<span><span class="co">#&gt; 3 16345231 Displacement due to conflict    Lebanon         LBN</span></span>
+<span><span class="co">#&gt; 4 16348696 Displacement due to conflict    Lebanon         LBN</span></span>
+<span><span class="co">#&gt; 5 16349274 Displacement due to conflict    Lebanon         LBN</span></span>
+<span><span class="co">#&gt; 6 16351777 Displacement due to conflict    Lebanon         LBN</span></span>
+<span><span class="co">#&gt;          admin1Name admin1Pcode admin2Name admin2Pcode numPresentIdpInd</span></span>
+<span><span class="co">#&gt; 1     Mount Lebanon         LB3     Baabda        LB32               10</span></span>
+<span><span class="co">#&gt; 2     Mount Lebanon         LB3       Aley        LB31              364</span></span>
+<span><span class="co">#&gt; 3            Beirut         LB1     Beirut        LB11               25</span></span>
+<span><span class="co">#&gt; 4     Mount Lebanon         LB3      Chouf        LB33               41</span></span>
+<span><span class="co">#&gt; 5 Baalbek-El Hermel         LB8    Baalbek        LB21                9</span></span>
+<span><span class="co">#&gt; 6     Mount Lebanon         LB3     Baabda        LB32              591</span></span>
+<span><span class="co">#&gt;         reportingDate yearReportingDate monthReportingDate roundNumber</span></span>
+<span><span class="co">#&gt; 1 2023-10-15T00:00:00              2023                 10           2</span></span>
+<span><span class="co">#&gt; 2 2023-10-15T00:00:00              2023                 10           2</span></span>
+<span><span class="co">#&gt; 3 2023-10-15T00:00:00              2023                 10           1</span></span>
+<span><span class="co">#&gt; 4 2023-10-15T00:00:00              2023                 10           2</span></span>
+<span><span class="co">#&gt; 5 2023-10-15T00:00:00              2023                 10           1</span></span>
+<span><span class="co">#&gt; 6 2023-10-15T00:00:00              2023                 10           1</span></span>
+<span><span class="co">#&gt;   displacementReason numberMales numberFemales idpOriginAdmin1Name</span></span>
+<span><span class="co">#&gt; 1           Conflict          NA            NA       Mount Lebanon</span></span>
+<span><span class="co">#&gt; 2           Conflict          NA            NA         El Nabatieh</span></span>
+<span><span class="co">#&gt; 3           Conflict          NA            NA       Mount Lebanon</span></span>
+<span><span class="co">#&gt; 4           Conflict          NA            NA       Mount Lebanon</span></span>
+<span><span class="co">#&gt; 5           Conflict          NA            NA         El Nabatieh</span></span>
+<span><span class="co">#&gt; 6           Conflict          NA            NA         El Nabatieh</span></span>
+<span><span class="co">#&gt;   idpOriginAdmin1Pcode assessmentType</span></span>
+<span><span class="co">#&gt; 1                  LB3             BA</span></span>
+<span><span class="co">#&gt; 2                  LB4             BA</span></span>
+<span><span class="co">#&gt; 3                  LB3             BA</span></span>
+<span><span class="co">#&gt; 4                  LB3             BA</span></span>
+<span><span class="co">#&gt; 5                  LB4             BA</span></span>
+<span><span class="co">#&gt; 6                  LB4             BA</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="function-arguments">Function Arguments<a class="anchor" aria-label="anchor" href="#function-arguments"></a>
