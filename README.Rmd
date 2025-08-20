@@ -119,7 +119,7 @@ head(operations_df)
 ## User Guide
 The information given here is further elaborated on in the user guide to
 getting started with `dtmapi`, which is 
-available [here](articles/user_guide.html)
+available [here](articles/user_guide.html).
 
 ## Source Code
 The source code for `dtmapi` is available on [GitHub](https://github.com/Displacement-tracking-Matrix/dtmapi-R).

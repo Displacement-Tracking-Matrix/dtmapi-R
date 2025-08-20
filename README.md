@@ -171,7 +171,7 @@ head(operations_df)
 
 The information given here is further elaborated on in the user guide to
 getting started with `dtmapi`, which is available
-[here](articles/user_guide.html)
+[here](articles/user_guide.html).
 
 ## Source Code
 
