@@ -4,7 +4,8 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 ```{r, include = FALSE}
-key_available <- !identical(dtmapi::get_subscription_key(), "")
+subscription_key_available <- !identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")
+key_available <- subscription_key_available
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -13,10 +14,6 @@ knitr::opts_chunk$set(
   out.width = "100%",
   eval = key_available
 )
-```
-
-```{r eval = !key_available, echo = FALSE, comment = NA}
-message("No token available. Code chunks will not be evaluated.")
 ```
 
 <br>

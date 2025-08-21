@@ -7,7 +7,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 ```{r setup, include = FALSE}
-key_available <- !identical(dtmapi::get_subscription_key(), "")
+subscription_key_available <- !identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")
+key_available <- subscription_key_available
 
 knitr::opts_chunk$set(
   collapse = TRUE,
