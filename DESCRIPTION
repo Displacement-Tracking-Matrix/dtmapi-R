@@ -2,8 +2,8 @@ Package: dtmapi
 Title: Fetching Data from the 'Displacement Tracking Matrix'
 Version: 0.0.3
 Authors@R: c( 
-  person("Luong Bang", "Tran", email = "lutran@iom.int", role = c("aut", "cre")),
-  person("Assad", "Asil Companioni", email = "aasil@iom.int", role = c("aut")),
+  person("Luong Bang", "Tran", email = "lutran@iom.int", role = c("aut")),
+  person("Assad", "Asil Companioni", email = "aasil@iom.int", role = c("aut", "cre")),
   person("Displacement Tracking Matrix", role = c("cph"))
   )
 Description: Allows humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by the 'Displacement Tracking Matrix' (<https://dtm.iom.int>), a unit in the International Organization for Migration. This also provides non-sensitive Internally Displaced Person figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller administrative areas) levels.
