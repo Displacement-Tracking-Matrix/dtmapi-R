@@ -5,7 +5,7 @@
 
 <p align="center">
 
-<img alt="DTM Logo" src="https://dtm.iom.int/themes/custom/dtm_global/logo.svg" width="400">
+<img alt="DTM Logo" src="man/figures/dtm_global_logo.svg" width="400">
 </p>
 
 ------------------------------------------------------------------------
