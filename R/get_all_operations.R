@@ -4,12 +4,10 @@
 #'
 #' @return A data frame containing the list of all operations.
 #' @export
-#' @examples
-#' \dontrun{
+#' @examplesIf !identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")
 #' # Fetch all operations
 #' operations_df <- get_all_operations()
 #' head(operations_df)
-#' }
 #' @importFrom httr2 request req_perform resp_status resp_body_json req_headers_redacted
 
 get_all_operations <- function() {

@@ -13,9 +13,9 @@ A data frame containing the list of all operations.
 Retrieve all operations for which DTM data is publicly available through the API.
 }
 \examples{
-\dontrun{
+\dontshow{if (!identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Fetch all operations
 operations_df <- get_all_operations()
 head(operations_df)
-}
+\dontshow{\}) # examplesIf}
 }

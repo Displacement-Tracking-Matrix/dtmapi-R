@@ -12,14 +12,12 @@
 #' @param ToRoundNumber Optional; Ending round number for the data collection range.
 #' @return A data frame containing the IDP Admin0 data matching the specified criteria.
 #' @export
-#' @examples
-#' \dontrun{
+#' @examplesIf !identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")
 #' # Fetch IDP data at Admin Level 0
 #' idp_admin0_df <- get_idp_admin0_data(CountryName = "Ethiopia",
 #'                                      FromRoundNumber = 1, 
 #'                                      ToRoundNumber = 10)
 #' head(idp_admin0_df)
-#' }
 #' @importFrom httr2 request req_perform req_url_query resp_status resp_body_json req_headers_redacted
 
 get_idp_admin0_data <- function(

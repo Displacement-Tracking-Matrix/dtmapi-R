@@ -37,11 +37,11 @@ Retrieve IDP data at Admin 0 level based on specified parameters.
 At least one of the following parameters must be provided: Operation, CountryName, or Admin0Pcode.
 }
 \examples{
-\dontrun{
+\dontshow{if (!identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Fetch IDP data at Admin Level 0
 idp_admin0_df <- get_idp_admin0_data(CountryName = "Ethiopia",
                                      FromRoundNumber = 1, 
                                      ToRoundNumber = 10)
 head(idp_admin0_df)
-}
+\dontshow{\}) # examplesIf}
 }

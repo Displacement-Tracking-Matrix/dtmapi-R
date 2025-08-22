@@ -4,11 +4,9 @@
 #'
 #' @return A data frame containing the list of all countries.
 #' @export
-#' @examples
-#' \dontrun{
+#' @examplesIf !identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")
 #' countries_df <- get_all_countries()
 #' head(countries_df)
-#' }
 #' @importFrom httr2 request req_perform resp_status resp_body_json req_headers_redacted
 
 get_all_countries <- function() {
