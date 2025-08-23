@@ -21,3 +21,4 @@ Suggests:
     rmarkdown,
     withr
 VignetteBuilder: knitr
+BugReports: https://github.com/Displacement-Tracking-Matrix/dtmapi-R/issues
