@@ -12,7 +12,7 @@ At least one of the following parameters must be provided: Operation, CountryNam
     
     <a class="navbar-brand me-2" href="../index.html">dtmapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,13 +104,39 @@ At least one of the following parameters must be provided: Operation, CountryNam
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="co"># Fetch IDP data at Admin Level 0</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Fetch IDP data at Admin Level 0</span></span></span>
 <span class="r-in"><span><span class="va">idp_admin0_df</span> <span class="op">&lt;-</span> <span class="fu">get_idp_admin0_data</span><span class="op">(</span>CountryName <span class="op">=</span> <span class="st">"Ethiopia"</span>,</span></span>
 <span class="r-in"><span>                                     FromRoundNumber <span class="op">=</span> <span class="fl">1</span>, </span></span>
 <span class="r-in"><span>                                     ToRoundNumber <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin0_df</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                operation admin0Name admin0Pcode numPresentIdpInd</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Countrywide monitoring   Ethiopia         ETH             7823</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Countrywide monitoring   Ethiopia         ETH            21668</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Countrywide monitoring   Ethiopia         ETH            15420</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 Countrywide monitoring   Ethiopia         ETH           772924</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 Countrywide monitoring   Ethiopia         ETH           308300</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 Countrywide monitoring   Ethiopia         ETH             6984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         reportingDate yearReportingDate monthReportingDate roundNumber</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2017-12-31T00:00:00              2017                 12           8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2017-12-31T00:00:00              2017                 12           8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2017-12-31T00:00:00              2017                 12           8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2017-12-31T00:00:00              2017                 12           8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 2017-12-31T00:00:00              2017                 12           8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 2017-12-31T00:00:00              2017                 12           8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   displacementReason numberMales numberFemales idpOriginAdmin1Name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           Conflict        4088          3735                Afar</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2           Conflict       11490         10178              Amhara</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3           Conflict        7046          8374             Gambela</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4           Conflict      375655        397269              Oromia</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5           Conflict      152469        155831              Somali</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6           Conflict        3170          3814              Tigray</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   idpOriginAdmin1Pcode assessmentType</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 ET02             SA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 ET03             SA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                 ET12             SA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                 ET04             SA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                 ET05             SA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                 ET01             SA</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

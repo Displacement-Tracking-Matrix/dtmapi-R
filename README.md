@@ -93,12 +93,12 @@ idp_admin1_df <- get_idp_admin1_data(CountryName = "Sudan",
 # Display the first few rows of the data frame
 head(idp_admin1_df)
 #>        id              operation admin0Name admin0Pcode admin1Name admin1Pcode
-#> 1 3989697        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 2 3989698        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 3 3989699        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 4 3989700        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 5 3968566 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
-#> 6 3968567 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
+#> 1 4226592        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 2 4226593        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 3 4226594        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 4 4226595        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 5 4205464 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
+#> 6 4205465 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
 #>   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate
 #> 1            81693 2021-03-30T00:00:00              2021                  3
 #> 2           130958 2021-12-31T00:00:00              2021                 12
