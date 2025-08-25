@@ -13,7 +13,7 @@
 get_all_operations <- function() {
 
   tryCatch({
-    api_url <- "https://dtmapi.iom.int/v3/displacement/operation-List"
+    api_url <- "https://dtmapi.iom.int/v3/displacement/operation-list"
 
     response <- 
       request(api_url) |>
