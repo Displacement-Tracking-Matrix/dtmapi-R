@@ -17,3 +17,5 @@ navbar:
       text: Reference
       href: reference/index.html
 
+development:
+  mode: auto
