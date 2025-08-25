@@ -29,11 +29,11 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/Displacement-Tracking-Matrix/dtmapi-R/blob/features/update_apiv3/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/Displacement-Tracking-Matrix/dtmapi-R/blob/v0.1.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0" id="dtmapi-010">dtmapi 0.1.0<a class="anchor" aria-label="anchor" href="#dtmapi-010"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.1.0" id="dtmapi-010">dtmapi 0.1.0<a class="anchor" aria-label="anchor" href="#dtmapi-010"></a></h2><p class="text-muted">CRAN release: 2025-08-23</p>
 <ul><li>Version 3 of the DTM API requires the use of a valid subscription key in order to make requests and retrieve data from it. A subscription key may be obtained through the <a href="https://dtm-apim-portal.iom.int/" class="external-link">DTM API Portal</a>.</li>
 </ul><p>To manage this requirement in the <code>dtmapi</code> package, a new function, <code><a href="../reference/set_subscription_key.html">set_subscription_key()</a></code>, is introduced. Calling it without arguments prompts the user to enter their subscription key, which will make the key available for a given R session through the environment variable <code>DTM_SUBSCRIPTION_KEY</code>.</p>
 <p>The functions which make API calls (such as <code><a href="../reference/get_idp_admin1_data.html">get_idp_admin1_data()</a></code>) have been changed to make the subscription key that is assigned to the environment variable part of the API request, since a valid key is a requirement for the API.</p>
