@@ -117,13 +117,15 @@ head(operations_df)
 
 ## User Guide
 The information given here is further elaborated on in the user guide to
-getting started with `dtmapi`, which is available through the panel at 
-the top of this page.
+getting started with `dtmapi`, which is 
+accessible through `vignette("user_guide")`.
 
 ## Source Code
-The source code for `dtmapi` is available on [GitHub](https://github.com/Displacement-tracking-Matrix/dtmapi-R).
+The source code for `dtmapi` is available on 
+[GitHub](https://github.com/Displacement-tracking-Matrix/dtmapi-R).
 
 Feel free to explore the repository, contribute, or raise any issues you may encounter.
 
 ## Contact
-For any questions or feedback, please reach out to us at [dtmdataconsolidation@iom.int](mailto:dtmdataconsolidation@iom.int).
+For any questions or feedback, please reach out to us at 
+[dtmdataconsolidation@iom.int](mailto:dtmdataconsolidation@iom.int).
