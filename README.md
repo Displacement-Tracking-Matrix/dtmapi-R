@@ -15,6 +15,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/Displacement-Tracking-Matrix/dtmapi-R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Displacement-Tracking-Matrix/dtmapi-R/actions/workflows/R-CMD-check.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/dtmapi)](https://CRAN.R-project.org/package=dtmapi)
 <!-- badges: end -->
 
 ## About
@@ -76,6 +78,8 @@ form of data frames.
 Certain parameters have to be specified to any of these, the most
 important of which are either the `CountryName` or the `OperationName`.
 For information on the other parameters and indeed all functions in
+`dtmapi`, [see the documentation
+here.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html)
 `dtmapi`, [see the documentation
 here.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html)
 
