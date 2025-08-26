@@ -13,9 +13,8 @@ A data frame containing the list of all countries.
 Retrieve all countries for which DTM data is publicly available through the API.
 }
 \examples{
-\dontrun{
-# Fetch all countries
+\dontshow{if (!identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 countries_df <- get_all_countries()
 head(countries_df)
-}
+\dontshow{\}) # examplesIf}
 }

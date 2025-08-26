@@ -2,3 +2,7 @@
 inst/doc
 /doc/
 /Meta/
+.Renviron
+.Rhistory
+/.quarto/
+docs

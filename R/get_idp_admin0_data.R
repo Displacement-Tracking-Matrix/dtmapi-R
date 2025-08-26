@@ -1,7 +1,3 @@
-library(httr2)
-library(jsonlite)
-library(magrittr)  # For the `%>%` operator
-
 #' Fetch IDP Admin0 Data
 #'
 #' Retrieve IDP data at Admin 0 level based on specified parameters.
@@ -16,13 +12,14 @@ library(magrittr)  # For the `%>%` operator
 #' @param ToRoundNumber Optional; Ending round number for the data collection range.
 #' @return A data frame containing the IDP Admin0 data matching the specified criteria.
 #' @export
-#' @examples
+#' @examplesIf !identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")
 #' # Fetch IDP data at Admin Level 0
-#' idp_admin0_df <- get_idp_admin0_data(CountryName='Ethiopia', FromRoundNumber=1, ToRoundNumber=10)
+#' idp_admin0_df <- get_idp_admin0_data(CountryName = "Ethiopia",
+#'                                      FromRoundNumber = 1, 
+#'                                      ToRoundNumber = 10)
 #' head(idp_admin0_df)
-#' @importFrom httr2 request req_perform req_url_query resp_status resp_body_string
-#' @importFrom magrittr %>%
-#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 request req_perform req_url_query resp_status resp_body_json req_headers_redacted
+
 get_idp_admin0_data <- function(
     Operation = NULL,
     CountryName = NULL,
@@ -32,11 +29,9 @@ get_idp_admin0_data <- function(
     FromRoundNumber = 0,
     ToRoundNumber = 0
 ) {
-  # Retrieve the API URL
-  api_url <- "https://dtmapi.iom.int/api/idpAdmin0Data/GetAdmin0Datav2"
+  api_url <- "https://dtmapi.iom.int/v3/displacement/admin0"
 
-  # Set up query parameters
-  params <- list(
+  query_params <- list(
     Operation = Operation,
     CountryName = CountryName,
     Admin0Pcode = Admin0Pcode,
@@ -47,23 +42,22 @@ get_idp_admin0_data <- function(
   )
 
   tryCatch({
-    # Send GET request to the API with parameters using httr2
-    response <- request(api_url) %>%
-      req_url_query(!!!params) %>%
+    response <- 
+      request(api_url) |>
+      req_headers_redacted("Cache-Control" = "no-cache",
+                           "Ocp-Apim-Subscription-Key" = get_subscription_key()
+                          ) |>
+      req_url_query(!!!query_params) |>
       req_perform()
 
-    # Check if the request was successful
     if (resp_status(response) != 200) {
       stop("Failed to fetch data. Status code: ", resp_status(response))
     }
 
-    # Parse the JSON content
-    data <- resp_body_string(response, encoding = "UTF-8")
-    json_data <- fromJSON(data, flatten = TRUE)
+    # Retrieve content as parsed JSON: simplifyVector helps to later return a dataframe.
+    json_data <- resp_body_json(response, simplifyVector = TRUE)
 
-    # Check if the request was successful and extract the result
     if (json_data$isSuccess) {
-      # Return the result as a data frame
       return(as.data.frame(json_data$result))
     } else {
       # Handle API-specific errors

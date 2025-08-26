@@ -1,6 +1,3 @@
-library(testthat)
-library(dtmapi)
-
 test_that("get_idp_admin2_data works", {
   skip_on_cran()  # Skip test on CRAN
 

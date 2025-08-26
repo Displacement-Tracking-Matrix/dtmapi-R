@@ -49,9 +49,9 @@ Retrieve IDP data at Admin 2 level based on specified parameters.
 At least one of the following parameters must be provided: Operation, CountryName, or Admin0Pcode.
 }
 \examples{
-\dontrun{
+\dontshow{if (!identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Fetch IDP data at Admin Level 2
-idp_admin2_df <- get_idp_admin2_data(Operation='Yemen conflict', CountryName="Yemen")
+idp_admin2_df <- get_idp_admin2_data(Operation = "Yemen conflict", CountryName = "Yemen")
 head(idp_admin2_df)
-}
+\dontshow{\}) # examplesIf}
 }
