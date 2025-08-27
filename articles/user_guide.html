@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">dtmapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,38 +94,117 @@ installed using the following command:</p>
 <h2 id="setting-the-subscription-key">Setting the Subscription Key<a class="anchor" aria-label="anchor" href="#setting-the-subscription-key"></a>
 </h2>
 <p>After creating a subscription key on <a href="https://dtm-apim-portal.iom.int" class="external-link uri">https://dtm-apim-portal.iom.int</a>, that key needs to be
-given to R. There are two main ways to do this.</p>
-<ol style="list-style-type: decimal">
-<li>By calling <code><a href="../reference/set_subscription_key.html">set_subscription_key()</a></code> and then typing in
-the key.</li>
-</ol>
-<p>The user will be prompted to input the key into a pop-up field.</p>
+given to R. To do this, the <code>DTM_SUBSCRIPTION_KEY</code>
+environment variable needs to be defined as the subscription key. There
+are three main ways to do this, as described below.</p>
+<div class="section level3">
+<h3 id="using-set_subscription_key-interactive-safe-option">1. Using <code>set_subscription_key()</code>: interactive, safe
+option<a class="anchor" aria-label="anchor" href="#using-set_subscription_key-interactive-safe-option"></a>
+</h3>
+<p>By calling <code><a href="../reference/set_subscription_key.html">set_subscription_key()</a></code>, after which the user
+is prompted to input the key into a pop-up field.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/set_subscription_key.html">set_subscription_key</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>By setting up the environment variable directly.</li>
-</ol>
-<p>If one would like to avoid re-inputting the subscription key for each
-R session, an alternative approach is to create the environment variable
-<code>DTM_SUBSCRIPTION_KEY</code>, with the subscription key as its
-value. Ideally, this should be (a) done in a <em>.Renviron</em> file,
-and (b) through the use of <em>R projects</em> or other means of
-organising files (e.g. if one is using VS Code:
-<em>workspaces</em>).</p>
-<p>One quick way to get started is by calling the following line of
-code, if one is using an R project or equivalent:</p>
+<p>Note that if the environment is not interactive, it is likely for the
+user to receive an error message instead, such as in the case of using
+Google Colab. In such cases see the other options described further
+below.</p>
+</div>
+<div class="section level3">
+<h3 id="using-set_subscription_key-the-non-interactive-discouraged-option">2. Using <code>set_subscription_key()</code>: the non-interactive,
+discouraged option<a class="anchor" aria-label="anchor" href="#using-set_subscription_key-the-non-interactive-discouraged-option"></a>
+</h3>
+<p>If the interactive option above fails for the user, such that there
+is an error instead of a pop-up, the user may rely on passing their key
+directly into <code><a href="../reference/set_subscription_key.html">set_subscription_key()</a></code> by naming the
+<code>key</code> parameter.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">edit_r_environ</span><span class="op">(</span><span class="st">"project"</span><span class="op">)</span></span></code></pre></div>
-<p>Or, if one is not using an R project or equivalent:</p>
+<code class="sourceCode R"><span><span class="co"># Specifying `key` is required for non-interactive use.</span></span>
+<span><span class="fu"><a href="../reference/set_subscription_key.html">set_subscription_key</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"mysubscriptionkey"</span><span class="op">)</span></span></code></pre></div>
+<p>This is basically using <code><a href="../reference/set_subscription_key.html">set_subscription_key()</a></code> as a
+wrapper for setting up the environment variable
+<code>DTM_SUBSCRIPTION_KEY</code> using base R’s
+<code><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv()</a></code>, as shown below:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span><span class="st">"DTM_SUBSCRIPTION_KEY"</span> <span class="op">=</span> <span class="st">"mysubscriptionkey"</span><span class="op">)</span></span></code></pre></div>
+<p>Please note that by doing this in, say, a Google Colab script, .R
+script, or Jupyter notebook, you are leaving a secret (your subscription
+key) exposed and available for anyone to read with ease. This is why
+this option is not recommended, but it will allow you to get things
+working faster if you are not familiar with managing secrets in a
+non-interactive context.</p>
+</div>
+<div class="section level3">
+<h3 id="setting-up-the-environment-variable-with-good-secrets-management">3. Setting up the environment variable with good secrets
+management<a class="anchor" aria-label="anchor" href="#setting-up-the-environment-variable-with-good-secrets-management"></a>
+</h3>
+<p>If one would like to avoid re-inputting the subscription key for each
+R session, and they would like to set the subscription in a way that is
+both non-interactive and safer, then this becomes a matter of knowing
+the right secrets management practices depending on where R is being
+used (e.g. whether that is in a local desktop, a cloud-based programming
+environment, a server, etc.).</p>
+<p>In the vast majority of cases, the approach is the fundamentally the
+same: anything that directly stores your key should be <strong>separate
+from the rest of your code</strong>, and your code accesses the key
+through an <strong>environment variable</strong>. That is the main
+principle to the most common way to manage your secrets. What differs by
+where R is being used is <em>how</em> this principle is applied. Below,
+the user guide will mostly focus on how this is handled when using a
+code editor such as VSCode, RStudio, or Positron, as this is the most
+common case. If these do not reflect your circumstance or use-case, then
+researching how to manage secrets generally for that circumstance should
+suffice, as the only thing specific about doing so for the
+<code>dtmapi</code> package is just the name of the environment
+variable, <code>DTM_SUBSCRIPTION_KEY</code>.</p>
+<p><strong>Using a code editor such as VSCode or RStudio on a
+desktop:</strong></p>
+<p>Use a <code>.Renviron</code> file to set the key. You can create it
+from scratch, and its contents should look something like this:</p>
+<pre><code><span><span class="va">DTM_SUBSCRIPTION_KEY</span> <span class="op">=</span> <span class="st">"mysubscriptionkey"</span></span>
+<span><span class="va">Some_Other_Env_Var</span> <span class="op">=</span> <span class="st">"something else if desired"</span></span></code></pre>
+<p>For this to work robustly, your <code>.Renviron</code> should be in
+the same <em>working directory</em> that you would like to use for your
+R sessions (i.e. it should be in the same location or folder that you
+would like your R sessions to use as a default). You can see which
+folder that currently is by running:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>This is important to know because, if your R session can start in the
+same working directory that the <code>.Renviron</code> file is located
+in, then the environment variables specified there are automatically
+loaded for your R session!</p>
+<p>Usually, your choice of working directory is best managed by creating
+an <em>R project</em> or equivalent (such as <em>VS Code
+workspaces</em>). That is to say, one should have a dedicated folder for
+their specific project, the R sessions they run should make that folder
+the working directory, and <code>.Renviron</code> should be placed there
+as well. For more information, depending on whether you use RStudio,
+VSCode, or Positron, see: <a href="https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects" class="external-link">Using
+RStudio Projects</a>, <a href="https://code.visualstudio.com/docs/editing/workspaces" class="external-link">What is a
+VS Code Workspace?</a>, or <a href="https://positron.posit.co/migrate-rstudio-rproj.html#launching-positron-in-a-workspace" class="external-link">Launching
+Positron in a workspace</a>.</p>
+<p>If one is unfamiliar and struggling to create the .Renviron file,
+then one quick way to proceed with editing the <code>.Renviron</code>
+file or placing it in their project directory (if they have one) is by
+calling the following line of code (make sure the <code>usethis</code>
+package is installed):</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">edit_r_environ</span><span class="op">(</span><span class="st">"project"</span><span class="op">)</span></span></code></pre></div>
+<p>Or, if one is not using an R project or equivalent, then this is an
+option as well, though using the general user directory is not
+recommended as it is likely to get lost:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">edit_r_environ</span><span class="op">(</span><span class="st">"user"</span><span class="op">)</span></span></code></pre></div>
+<p>Remember: NEVER SHARE THE <code>.RENVIRON</code> FILE.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="get-all-countries">Get All Countries<a class="anchor" aria-label="anchor" href="#get-all-countries"></a>
 </h2>
 <p>The <code><a href="../reference/get_all_countries.html">get_all_countries()</a></code> function retrieves a list of all
 countries from the DTM API.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch all countries</span></span>
 <span><span class="va">countries_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_all_countries.html">get_all_countries</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -137,7 +216,7 @@ countries from the DTM API.</p>
 </h2>
 <p>The <code><a href="../reference/get_all_operations.html">get_all_operations()</a></code> function retrieves a list of
 all operations from the DTM API.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch all operations</span></span>
 <span><span class="va">operations_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_all_operations.html">get_all_operations</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -149,7 +228,7 @@ all operations from the DTM API.</p>
 </h2>
 <p>The <code><a href="../reference/get_idp_admin0_data.html">get_idp_admin0_data()</a></code> function retrieves Internally
 Displaced Persons (IDP) data aggregated at the country level.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch IDP data at Admin Level 0</span></span>
 <span><span class="va">idp_admin0_df</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="../reference/get_idp_admin0_data.html">get_idp_admin0_data</a></span><span class="op">(</span>CountryName <span class="op">=</span> <span class="st">"Ethiopia"</span>,</span>
@@ -164,7 +243,7 @@ Displaced Persons (IDP) data aggregated at the country level.</p>
 </h2>
 <p>The get_idp_admin1_data() function retrieves IDP data aggregated at
 Admin Level 1.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch IDP data at Admin Level 1</span></span>
 <span><span class="va">idp_admin1_df</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="../reference/get_idp_admin1_data.html">get_idp_admin1_data</a></span><span class="op">(</span>CountryName <span class="op">=</span> <span class="st">"Sudan"</span>,</span>
@@ -180,7 +259,7 @@ Admin Level 1.</p>
 </h2>
 <p>The get_idp_admin2_data() function retrieves IDP data aggregated at
 Admin Level 2</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch IDP data at Admin Level 2</span></span>
 <span><span class="va">idp_admin2_df</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="../reference/get_idp_admin2_data.html">get_idp_admin2_data</a></span><span class="op">(</span>Operation <span class="op">=</span> <span class="st">"Displacement due to conflict"</span>,</span>

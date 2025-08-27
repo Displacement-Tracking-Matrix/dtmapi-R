@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">dtmapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,13 +33,21 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="development version" id="dtmapi-development-version">dtmapi (development version)<a class="anchor" aria-label="anchor" href="#dtmapi-development-version"></a></h2>
+<ul><li><p>Stylistic and stylistic-adjacent corrections to documentation.</p></li>
+<li><p>More elaborate explanation on how to set the subscription key, including options for non-interactive environments and explicitly introducing the concept of secrets management.</p></li>
+<li><p>Substantial corrections to documentation, including clarification of the environment variable being used (it is <code>DTM_SUBSCRIPTION_KEY</code>, not <code>DTM_API_KEY</code>).</p></li>
+<li><p>Apparently inconsequential change in API endpoint URL used by <code><a href="../reference/get_all_operations.html">get_all_operations()</a></code>: from “<a href="https://dtmapi.iom.int/v3/displacement/operation-List" class="external-link uri">https://dtmapi.iom.int/v3/displacement/operation-List</a>” to <a href="https://dtmapi.iom.int/v3/displacement/operation-list" class="external-link uri">https://dtmapi.iom.int/v3/displacement/operation-list</a>“, but worth implementing to be safe and exact.</p></li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="dtmapi-010">dtmapi 0.1.0<a class="anchor" aria-label="anchor" href="#dtmapi-010"></a></h2><p class="text-muted">CRAN release: 2025-08-23</p>
 <ul><li>Version 3 of the DTM API requires the use of a valid subscription key in order to make requests and retrieve data from it. A subscription key may be obtained through the <a href="https://dtm-apim-portal.iom.int/" class="external-link">DTM API Portal</a>.</li>
 </ul><p>To manage this requirement in the <code>dtmapi</code> package, a new function, <code><a href="../reference/set_subscription_key.html">set_subscription_key()</a></code>, is introduced. Calling it without arguments prompts the user to enter their subscription key, which will make the key available for a given R session through the environment variable <code>DTM_SUBSCRIPTION_KEY</code>.</p>
 <p>The functions which make API calls (such as <code><a href="../reference/get_idp_admin1_data.html">get_idp_admin1_data()</a></code>) have been changed to make the subscription key that is assigned to the environment variable part of the API request, since a valid key is a requirement for the API.</p>
 <ul><li>Introduces get_subscription_key(), which is mostly used to develop and test the <code>dtmapi</code> package, but it may technically be used by users to conveniently return the currently available subscription key. HOWEVER, beware that the string it returns is plain text and is more easily exposed, e.g. exposed to anyone visually observing your machine.</li>
 </ul></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
