@@ -12,8 +12,8 @@ A string representing a given subscription key for the DTM API.
 \description{
 The DTM API subscription key is returned, provided that it is available in
 the R session as an environment variable. Users will usually need to set
-the DTM_SUBSCRIPTION_KEY environment variable through a .Renviron file or
-by calling \code{set_subscription_key()}.
+the DTM_SUBSCRIPTION_KEY environment variable through a .Renviron file (or
+other means) or by calling \code{set_subscription_key()}.
 }
 \details{
 On the other hand, if the TESTTHAT environment variable is true, indicating
