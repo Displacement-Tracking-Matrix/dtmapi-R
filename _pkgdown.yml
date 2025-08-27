@@ -18,4 +18,4 @@ navbar:
       href: reference/index.html
 
 development:
-  mode: auto
+  mode: release
