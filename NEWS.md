@@ -1,3 +1,14 @@
+# dtmapi (development version)
+* Stylistic and stylistic-adjacent corrections to documentation.
+
+* More elaborate explanation on how to set the subscription key, including
+options for non-interactive environments and explicitly introducing the concept
+of secrets management.
+
+* Substantial corrections to documentation, including clarification of the environment variable being used (it is `DTM_SUBSCRIPTION_KEY`, not `DTM_API_KEY`).
+
+* Apparently inconsequential change in API endpoint URL used by `get_all_operations()`: from "https://dtmapi.iom.int/v3/displacement/operation-List" to https://dtmapi.iom.int/v3/displacement/operation-list", but worth implementing to be safe and exact.
+
 # dtmapi 0.1.0
 
 * Version 3 of the DTM API requires the use of a valid subscription key in order

@@ -52,32 +52,66 @@ library(dtmapi)
 
 ## Setting the Subscription Key
 After creating a subscription key on https://dtm-apim-portal.iom.int, that key
-needs to be given to R. There are two main ways to do this.
+needs to be given to R. To do this, the `DTM_SUBSCRIPTION_KEY` environment variable needs to be defined as the subscription key. There are three main ways to do this, as described below.
 
-1. By calling `set_subscription_key()` and then typing in the key.
+### 1. Using `set_subscription_key()`: interactive, safe option
 
-The user will be prompted to input the key into a pop-up field.
+By calling `set_subscription_key()`, after which the user is prompted to input the key into a pop-up field. 
 ```{r set_subscription_key_demo, eval = FALSE}
 set_subscription_key()
 ```
 
-2. By setting up the environment variable directly.
+Note that if the environment is not interactive, it is likely for the user to receive an error message instead, such as in the case of using Google Colab. In such cases see the other options described further below.
 
-If one would like to avoid re-inputting the subscription key for each R session,
-an alternative approach is to create the environment variable 
-`DTM_SUBSCRIPTION_KEY`, with the subscription key as its value. Ideally, this
-should be (a) done in a *.Renviron* file, and (b) through the use of *R projects*
-or other means of organising files (e.g. if one is using VS Code: *workspaces*).
+### 2. Using `set_subscription_key()`: the non-interactive, discouraged option
 
-One quick way to get started is by calling the following line of code, if one is
-using an R project or equivalent:
+If the interactive option above fails for the user, such that there is an error instead of a pop-up, the user may rely on passing their key directly into `set_subscription_key()` by naming the `key` parameter. 
+```{r, eval = FALSE}
+# Specifying `key` is required for non-interactive use.
+set_subscription_key(key = "mysubscriptionkey")
+```
+
+This is basically using `set_subscription_key()` as a wrapper for setting up the environment variable `DTM_SUBSCRIPTION_KEY` using base R's `Sys.setenv()`, as shown below:
+```{r, eval = FALSE}
+Sys.setenv("DTM_SUBSCRIPTION_KEY" = "mysubscriptionkey")
+```
+
+Please note that by doing this in, say, a Google Colab script, .R script, or Jupyter notebook, you are leaving a secret (your subscription key) exposed and available for anyone to read with ease. This is why this option is not recommended, but it will allow you to get things working faster if you are not familiar with managing secrets in a non-interactive context.
+
+### 3. Setting up the environment variable with good secrets management
+
+If one would like to avoid re-inputting the subscription key for each R session, and they would like to set the subscription in a way that is both non-interactive and safer, then this becomes a matter of knowing the right secrets management practices depending on where R is being used (e.g. whether that is in a local desktop, a cloud-based programming environment, a server, etc.).
+
+In the vast majority of cases, the approach is the fundamentally the same: anything that directly stores your key should be **separate from the rest of your code**, and your code accesses the key through an **environment variable**. That is the main principle to the most common way to manage your secrets. What differs by where R is being used is _how_ this principle is applied. Below, the user guide will mostly focus on how this is handled when using a code editor such as VSCode, RStudio, or Positron, as this is the most common case. If these do not reflect your circumstance or use-case, then researching how to manage secrets generally for that circumstance should suffice, as the only thing specific about doing so for the `dtmapi` package is just the name of the environment variable, `DTM_SUBSCRIPTION_KEY`.
+
+**Using a code editor such as VSCode or RStudio on a desktop:**
+
+Use a `.Renviron` file to set the key. You can create it from scratch, and its contents should look something like this:
+```
+DTM_SUBSCRIPTION_KEY = "mysubscriptionkey"
+Some_Other_Env_Var = "something else if desired"
+```
+For this to work robustly, your `.Renviron` should be in the same *working directory* that you would like to use for your R sessions (i.e. it should be in the same location or folder that you would like your R sessions to use as a default). You can see which folder that currently is by running:
+
+```{r, eval = FALSE}
+getwd()
+```
+
+This is important to know because, if your R session can start in the same working directory that the `.Renviron` file is located in, then the environment variables specified there are automatically loaded for your R session!
+
+Usually, your choice of working directory is best managed by creating an _R project_ or equivalent (such as _VS Code workspaces_). That is to say, one should have a dedicated folder for their specific project, the R sessions they run should make that folder the working directory, and `.Renviron` should be placed there as well. For more information, depending on whether you use RStudio, VSCode, or Positron, see: [Using RStudio Projects](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects), [What is a VS Code Workspace?](https://code.visualstudio.com/docs/editing/workspaces), or [Launching Positron in a workspace](https://positron.posit.co/migrate-rstudio-rproj.html#launching-positron-in-a-workspace).
+
+If one is unfamiliar and struggling to create the .Renviron file, then one quick way to proceed with editing the `.Renviron` file or placing it in their project directory (if they have one) is by calling the following line of code (make sure the `usethis` package is installed):
 ```{r r_environ_demo_project, eval = FALSE}
 usethis::edit_r_environ("project")
 ```
-Or, if one is not using an R project or equivalent:
+
+Or, if one is not using an R project or equivalent, then this is an option as well, though using the general user directory is not recommended as it is likely to get lost:
 ```{r r_environ_demo_user, eval = FALSE}
 usethis::edit_r_environ("user")
 ```
+
+Remember: NEVER SHARE THE `.RENVIRON` FILE.
 
 ## Get All Countries
 
