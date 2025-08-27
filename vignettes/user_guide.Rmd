@@ -52,9 +52,9 @@ library(dtmapi)
 
 ## Setting the Subscription Key
 After creating a subscription key on https://dtm-apim-portal.iom.int, that key
-needs to be given to R. There are three main ways to do this described below.
+needs to be given to R. To do this, the `DTM_SUBSCRIPTION_KEY` environment variable needs to be defined as the subscription key. There are three main ways to do this, as described below.
 
-### 1. Using set_subscription_key(): the safe, interactive option
+### 1. Using `set_subscription_key()`: interactive, safe option
 
 By calling `set_subscription_key()`, after which the user is prompted to input the key into a pop-up field. 
 ```{r set_subscription_key_demo, eval = FALSE}
@@ -63,7 +63,7 @@ set_subscription_key()
 
 Note that if the environment is not interactive, it is likely for the user to receive an error message instead, such as in the case of using Google Colab. In such cases see the other options described further below.
 
-### 2. Using set_subscription_key() with `key`: a quick and dirty non-interactive option, NOT RECOMMENDED but reliable
+### 2. Using `set_subscription_key()`: the non-interactive, discouraged option
 
 If the interactive option above fails for the user, such that there is an error instead of a pop-up, the user may rely on passing their key directly into `set_subscription_key()` by naming the `key` parameter. 
 ```{r, eval = FALSE}
@@ -86,7 +86,7 @@ In the vast majority of cases, the approach is the fundamentally the same: anyth
 
 **Using a code editor such as VSCode or RStudio on a desktop:**
 
-Use a *.Renviron* file to set the key. You can create it from scratch, and its contents should look something like this:
+Use a `.Renviron` file to set the key. You can create it from scratch, and its contents should look something like this:
 ```
 DTM_SUBSCRIPTION_KEY = "mysubscriptionkey"
 Some_Other_Env_Var = "something else if desired"
@@ -97,11 +97,11 @@ For this to work robustly, your `.Renviron` should be in the same *working direc
 getwd()
 ```
 
-This is important to know because, if your R session can start in the same working directory that the .Renviron file is located in, then the environment variables specified there are automatically loaded for your R session!
+This is important to know because, if your R session can start in the same working directory that the `.Renviron` file is located in, then the environment variables specified there are automatically loaded for your R session!
 
-Usually, your choice of working directory is best managed by creating an _R project_ or equivalent (such as VS Code workspaces). That is to say, one should have a dedicated folder for their specific project, the R sessions they run should make that folder the working directory, and the .Renviron should be placed there as well. For more information, depending on whether you use RStudio, VSCode, or Positron, see: [Using RStudio Projects](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects), [What is a VS Code Workspace?](https://code.visualstudio.com/docs/editing/workspaces), or [Launching Positron in a workspace](https://positron.posit.co/migrate-rstudio-rproj.html#launching-positron-in-a-workspace).
+Usually, your choice of working directory is best managed by creating an _R project_ or equivalent (such as _VS Code workspaces_). That is to say, one should have a dedicated folder for their specific project, the R sessions they run should make that folder the working directory, and `.Renviron` should be placed there as well. For more information, depending on whether you use RStudio, VSCode, or Positron, see: [Using RStudio Projects](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects), [What is a VS Code Workspace?](https://code.visualstudio.com/docs/editing/workspaces), or [Launching Positron in a workspace](https://positron.posit.co/migrate-rstudio-rproj.html#launching-positron-in-a-workspace).
 
-If one is unfamiliar and struggling to create the .Renviron file, then one quick way to proceed with editing the .Renviron file or placing it in their project directory (if they have one) is by calling the following line of code (make sure the `usethis` package is installed):
+If one is unfamiliar and struggling to create the .Renviron file, then one quick way to proceed with editing the `.Renviron` file or placing it in their project directory (if they have one) is by calling the following line of code (make sure the `usethis` package is installed):
 ```{r r_environ_demo_project, eval = FALSE}
 usethis::edit_r_environ("project")
 ```
@@ -111,7 +111,7 @@ Or, if one is not using an R project or equivalent, then this is an option as we
 usethis::edit_r_environ("user")
 ```
 
-Remember: NEVER SHARE THE .RENVIRON FILE.
+Remember: NEVER SHARE THE `.RENVIRON` FILE.
 
 ## Get All Countries
 
