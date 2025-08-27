@@ -52,15 +52,23 @@ the [DTM API Portal](https://dtm-apim-portal.iom.int/signin) and follow the
 instructions there. 
 
 The subscription key is secret and should not be exposed. Once it is obtained,
-the subscription key should be set for your current R session, assuming that the
-`dtmapi` package is installed. To do this, use run the following in R:
+the subscription key should be set for your current R session, assuming that the `dtmapi` package is installed. To do this, the environment variable `DTM_SUBSCRIPTION_KEY` needs to be defined. This can be done either interactively or non-interactively. 
+
+The interactive option is to call `set_subscription_key()`, like so:
 
 ```{r set_subscription_key_demo, eval = FALSE}
 dtmapi::set_subscription_key()
 ```
 
-At this point, the user will be prompted to input the key (hidden) into a pop-up
-field.
+At this point, the user will be prompted to input the key (hidden) into a pop-up field.
+
+Some environments are non-interactive, and so running the above will likely result in an error. In such a case, the subscription key may be set non-interactively, by specifying the `key` parameter, like so:
+```{r, eval = FALSE}
+# Specifying `key` is required for non-interactive use.
+dtmapi::set_subscription_key(key = "mysubscriptionkey")
+```
+
+However, this option is discouraged and should be avoided as much as possible, because it blatantly exposes the subscription key. The best option would be to engage in good secrets management practices, such as by using a .Renviron file (if applicable). Basic secrets management, and the issue of setting the subscription key in general, is elaborated on in more detail in `vignette("user_guide")`.
 
 ## Usage
 When the subscription key is set, data on internal displacement may be retrieved through any of the following functions:
@@ -74,8 +82,7 @@ These all retrieve data from the DTM API and return said data in
 the form of data frames.
 
 Certain parameters have to be specified to any of these, the most important of which are either the `CountryName` or the `OperationName`. For information on the other parameters 
-and indeed all functions in `dtmapi`, 
-[see the documentation here.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html)
+and indeed all functions in `dtmapi`,  [see the documentation here.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html)
 
 As a representative example of the earlier mentioned functions, see the following use of `get_idp_admin_1_data()`:
 

@@ -53,8 +53,11 @@ the instructions there.
 
 The subscription key is secret and should not be exposed. Once it is
 obtained, the subscription key should be set for your current R session,
-assuming that the `dtmapi` package is installed. To do this, use run the
-following in R:
+assuming that the `dtmapi` package is installed. To do this, the
+environment variable `DTM_SUBSCRIPTION_KEY` needs to be defined. This
+can be done either interactively or non-interactively.
+
+The interactive option is to call `set_subscription_key()`, like so:
 
 ``` r
 dtmapi::set_subscription_key()
@@ -62,6 +65,22 @@ dtmapi::set_subscription_key()
 
 At this point, the user will be prompted to input the key (hidden) into
 a pop-up field.
+
+Some environments are non-interactive, and so running the above will
+likely result in an error. In such a case, the subscription key may be
+set non-interactively, by specifying the `key` parameter, like so:
+
+``` r
+# Specifying `key` is required for non-interactive use.
+dtmapi::set_subscription_key(key = "mysubscriptionkey")
+```
+
+However, this option is discouraged and should be avoided as much as
+possible, because it blatantly exposes the subscription key. The best
+option would be to engage in good secrets management practices, such as
+by using a .Renviron file (if applicable). Basic secrets management, and
+the issue of setting the subscription key in general, is elaborated on
+in more detail in `vignette("user_guide")`.
 
 ## Usage
 
@@ -78,7 +97,8 @@ form of data frames.
 Certain parameters have to be specified to any of these, the most
 important of which are either the `CountryName` or the `OperationName`.
 For information on the other parameters and indeed all functions in
-`dtmapi`, [refer to the function reference.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html)
+`dtmapi`, [see the documentation
+here.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html)
 
 As a representative example of the earlier mentioned functions, see the
 following use of `get_idp_admin_1_data()`:
@@ -95,12 +115,12 @@ idp_admin1_df <- get_idp_admin1_data(CountryName = "Sudan",
 # Display the first few rows of the data frame
 head(idp_admin1_df)
 #>        id              operation admin0Name admin0Pcode admin1Name admin1Pcode
-#> 1 4506972        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 2 4506973        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 3 4506974        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 4 4506975        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 5 4485841 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
-#> 6 4485842 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
+#> 1 4743857        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 2 4743858        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 3 4743859        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 4 4743860        Darfur conflict      Sudan         SDN  Blue Nile        SD08
+#> 5 4722729 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
+#> 6 4722730 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
 #>   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate
 #> 1            81693 2021-03-30T00:00:00              2021                  3
 #> 2           130958 2021-12-31T00:00:00              2021                 12
