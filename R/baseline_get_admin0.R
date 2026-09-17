@@ -14,13 +14,13 @@
 #' @export
 #' @examplesIf !identical(Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY"), "")
 #' # Fetch IDP data at Admin Level 0
-#' idp_admin0_df <- get_idp_admin0_data(CountryName = "Ethiopia",
+#' idp_admin0_df <- baseline_get_admin0(CountryName = "Ethiopia",
 #'                                      FromRoundNumber = 1, 
 #'                                      ToRoundNumber = 10)
 #' head(idp_admin0_df)
 #' @importFrom httr2 request req_perform req_url_query resp_status resp_body_json req_headers_redacted
 
-get_idp_admin0_data <- function(
+baseline_get_admin0 <- function(
     Operation = NULL,
     CountryName = NULL,
     Admin0Pcode = NULL,

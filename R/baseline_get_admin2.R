@@ -18,11 +18,11 @@
 #' @export
 #' @examplesIf !identical(Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY"), "")
 #' # Fetch IDP data at Admin Level 2
-#' idp_admin2_df <- get_idp_admin2_data(Operation = "Yemen conflict", CountryName = "Yemen")
+#' idp_admin2_df <- baseline_get_admin2(Operation = "Yemen conflict", CountryName = "Yemen")
 #' head(idp_admin2_df)
 #' @importFrom httr2 request req_perform req_url_query resp_status resp_body_string req_headers_redacted
 
-get_idp_admin2_data <- function(
+baseline_get_admin2 <- function(
     Operation = NULL,
     CountryName = NULL,
     Admin0Pcode = NULL,

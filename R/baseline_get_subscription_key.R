@@ -21,6 +21,7 @@
 #' }
 #' @importFrom httr2 secret_decrypt
 #' @importFrom testthat is_testing
+
 baseline_get_subscription_key <- function() {
   key <- Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY")
   if (!identical(key, "")) {
