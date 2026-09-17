@@ -4,7 +4,7 @@
 #'
 #' @return A data frame containing the list of all countries.
 #' @export
-#' @examplesIf !identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")
+#' @examplesIf !identical(Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY"), "")
 #' countries_df <- get_all_countries()
 #' head(countries_df)
 #' @importFrom httr2 request req_perform resp_status resp_body_json req_headers_redacted
@@ -17,7 +17,7 @@ get_all_countries <- function() {
     response <- 
       request(api_url) |>
       req_headers_redacted("Cache-Control" = "no-cache",
-                           "Ocp-Apim-Subscription-Key" = get_subscription_key()
+                           "Ocp-Apim-Subscription-Key" = baseline_get_subscription_key()
                           ) |>
       req_perform()
 

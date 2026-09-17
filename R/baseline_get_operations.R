@@ -4,7 +4,7 @@
 #'
 #' @return A data frame containing the list of all operations.
 #' @export
-#' @examplesIf !identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")
+#' @examplesIf !identical(Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY"), "")
 #' # Fetch all operations
 #' operations_df <- get_all_operations()
 #' head(operations_df)
@@ -18,7 +18,7 @@ get_all_operations <- function() {
     response <- 
       request(api_url) |>
       req_headers_redacted("Cache-Control" = "no-cache",
-                           "Ocp-Apim-Subscription-Key" = get_subscription_key()
+                           "Ocp-Apim-Subscription-Key" = baseline_get_subscription_key()
                           ) |>
       req_perform()
 

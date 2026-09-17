@@ -14,7 +14,7 @@
 #' @param ToRoundNumber Optional; Ending round number for the data collection range.
 #' @return A data frame containing the IDP Admin1 data matching the specified criteria.
 #' @export
-#' @examplesIf !identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")
+#' @examplesIf !identical(Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY"), "")
 #' # Fetch IDP data at Admin Level 1
 #' idp_admin1_df <- get_idp_admin1_data(CountryName = "Sudan", Admin1Name = "Blue Nile")
 #' head(idp_admin1_df)
@@ -49,7 +49,7 @@ get_idp_admin1_data <- function(
     response <- 
       request(api_url) |>
       req_headers_redacted("Cache-Control" = "no-cache",
-                           "Ocp-Apim-Subscription-Key" = get_subscription_key()
+                           "Ocp-Apim-Subscription-Key" = baseline_get_subscription_key()
                           ) |>
       req_url_query(!!!query_params) |>
       req_perform()
