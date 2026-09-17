@@ -42,7 +42,7 @@ baseline_get_subscription_key <- function() {
 }
 
 testing_key_encrypted <-
-  "ABlJntCNw5CXFlQEWd9NcuyOB05Agzn7RI4Ua6YMe9kXxqZUpVwHMRpEtnreEFK4"
+  "a6Duw21vazOwY2uvRjZKcNhsCrqkFKNKZLjpveBU55Ya6pmbPIwjRfYD6QM30aoy"
 
 testing_key <- function() {
   secret_decrypt(
