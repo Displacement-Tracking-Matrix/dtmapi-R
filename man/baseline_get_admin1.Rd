@@ -5,47 +5,47 @@
 \title{Fetch IDP Admin1 Data}
 \usage{
 baseline_get_admin1(
-  Operation = NULL,
-  CountryName = NULL,
-  Admin0Pcode = NULL,
-  Admin1Name = NULL,
-  Admin1Pcode = NULL,
-  FromReportingDate = NULL,
-  ToReportingDate = NULL,
-  FromRoundNumber = 0,
-  ToRoundNumber = 0
+  operation = NULL,
+  admin0_name = NULL,
+  admin0_pcode = NULL,
+  admin1_name = NULL,
+  admin1_pcode = NULL,
+  from_reporting_date = NULL,
+  to_reporting_date = NULL,
+  from_round_number = NULL,
+  to_round_number = NULL
 )
 }
 \arguments{
-\item{Operation}{Optional; Name of the DTM operation for which the data was collected.}
+\item{operation}{Optional; Name of the DTM operation for which the data was collected.}
 
-\item{CountryName}{Optional; Name of the country where the data was collected.}
+\item{admin0_name}{Optional; Name of the country where the data was collected.}
 
-\item{Admin0Pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
+\item{admin0_pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
 
-\item{Admin1Name}{Optional; Name of level 1 administrative boundaries.}
+\item{admin1_name}{Optional; Name of level 1 administrative boundaries.}
 
-\item{Admin1Pcode}{Optional; Place code of level 1 administrative boundaries.}
+\item{admin1_pcode}{Optional; Place code of level 1 administrative boundaries.}
 
-\item{FromReportingDate}{Optional; Start date for the reporting period (format: 'YYYY-MM-DD').}
+\item{from_reporting_date}{Optional; Start date for the reporting period (format: 'YYYY-MM-DD').}
 
-\item{ToReportingDate}{Optional; End date for the reporting period (format: 'YYYY-MM-DD').}
+\item{to_reporting_date}{Optional; End date for the reporting period (format: 'YYYY-MM-DD').}
 
-\item{FromRoundNumber}{Optional; Starting round number for the data collection range.}
+\item{from_round_number}{Optional; Starting round number for the data collection range.}
 
-\item{ToRoundNumber}{Optional; Ending round number for the data collection range.}
+\item{to_round_number}{Optional; Ending round number for the data collection range.}
 }
 \value{
 A data frame containing the IDP Admin1 data matching the specified criteria.
 }
 \description{
 Retrieve IDP data at Admin 1 level based on specified parameters.
-At least one of the following parameters must be provided: Operation, CountryName, or Admin0Pcode.
+At least one of the following parameters must be provided: operation, admin0_name, or admin0_pcode.
 }
 \examples{
 \dontshow{if (!identical(Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY"), "")) withAutoprint(\{ # examplesIf}
 # Fetch IDP data at Admin Level 1
-idp_admin1_df <- baseline_get_admin1(CountryName = "Sudan", Admin1Name = "Blue Nile")
+idp_admin1_df <- baseline_get_admin1(admin0_name = "Sudan", admin1_name = "Blue Nile")
 head(idp_admin1_df)
 \dontshow{\}) # examplesIf}
 }
