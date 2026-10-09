@@ -111,7 +111,7 @@ These all retrieve data from the DTM API and return said data in the
 form of data frames.
 
 Certain parameters have to be specified to any of these, the most
-important of which are either the `country_name` or the `operation`. For
+important of which are either the `admin0_name` or the `operation`. For
 information on the other parameters and indeed all functions in
 `dtmapi`, [see the documentation
 here.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html)
@@ -123,7 +123,7 @@ following use of `baseline_get_admin1()`:
 # Load the package
 library(dtmapi)
 
-idp_admin1_df <- baseline_get_admin1(country_name = "Sudan",
+idp_admin1_df <- baseline_get_admin1(admin0_name = "Sudan",
                                      from_reporting_date = "2020-01-01",
                                      to_reporting_date = "2024-08-15")
 
@@ -214,7 +214,7 @@ pagination.
 # Load the package
 library(dtmapi)
 
-hna_admin2 <- hna_get_admin2(admin0name = "Nigeria",
+hna_admin2 <- hna_get_admin2(admin0_name = "Nigeria",
                              year = 2025)
 
 # Display the first few rows of the data

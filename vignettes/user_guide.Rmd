@@ -61,17 +61,7 @@ The functions covered include:
 
 -   `hna_get_admin2()`
 
-As well as these functions which are concern your API subscription keys.
-
-- `baseline_set_subscription_key()`
-
-- `baseline_get_subscription_key()`
-
-- `hna_set_subscription_key()`
-
-- `hna_get_subscription_key()`
-
-Notice that as a consequence of there being two distinct APIs, each API has its own pair of subscription key-related functions. Their usage is covered in this guide.
+Notice that as a consequence of there being two distinct APIs, there are also two distinct subscription key-related function pairs. This will become clear in their respective technical documentations.
 
 ## Install Package
 
@@ -182,7 +172,7 @@ The `baseline_get_admin0()` function retrieves Internally Displaced Persons (IDP
 ```{r get_idp_admin0}
 # Fetch IDP data at Admin Level 0
 idp_admin0_df <-
-  baseline_get_admin0(country_name = "Ethiopia",
+  baseline_get_admin0(admin0_name = "Ethiopia",
                       from_round_number = 0,
                       to_round_number = 10)
 
@@ -197,8 +187,8 @@ The `baseline_get_admin1()` function retrieves IDP data aggregated at Admin Leve
 ```{r get_idp_admin1}
 # Fetch IDP data at Admin Level 1
 idp_admin1_df <-
-  baseline_get_admin1(country_name = "Sudan",
-                      admin1name = "Blue Nile",
+  baseline_get_admin1(admin0_name = "Sudan",
+                      admin1_name = "Blue Nile",
                       from_reporting_date = "2020-01-01",
                       to_reporting_date = "2024-08-15")
 
@@ -213,7 +203,7 @@ The `baseline_get_admin2()` function retrieves IDP data aggregated at Admin Leve
 # Fetch IDP data at Admin Level 2
 idp_admin2_df <-
   baseline_get_admin2(operation = "Displacement due to conflict",
-                      country_name = "Lebanon")
+                      admin0_name = "Lebanon")
 
 # Display the first few rows of the data frame
 head(idp_admin2_df)
@@ -250,7 +240,7 @@ The `hna_get_admin2()` function retrieves HNA data at Admin Level 2. Unlike the 
 ```{r hna_get_admin2}
 # Fetch HNA data at Admin Level 2
 hna_admin2 <-
-  hna_get_admin2(admin0name = "Nigeria",
+  hna_get_admin2(admin0_name = "Nigeria",
                  year = 2025)
 
 # Display the first few rows of the data
@@ -266,21 +256,21 @@ Here are the descriptions for the arguments used in the functions of the `dtmapi
 
 ### Baseline Arguments
 
-For the `baseline_` functions that get IDP data, at least one of the following parameters must be provided: operation, country_name, or admin0pcode.
+For the `baseline_` functions that get IDP data, at least one of the following parameters must be provided: operation, admin0_name, or admin0_pcode.
 
 - **operation**: Optional; Name of the DTM operation for which the data was collected.
 
-- **country_name**: Optional; Name of the country where the data was collected.
+- **admin0_name**: Optional; Name of the country where the data was collected.
 
-- **admin0pcode**: Optional; Country code (ISO 3166-1 alpha-3).
+- **admin0_pcode**: Optional; Country code (ISO 3166-1 alpha-3).
 
-- **admin1name**: Optional; Name of level 1 administrative boundaries.
+- **admin1_name**: Optional; Name of level 1 administrative boundaries.
 
-- **admin1pcode**: Optional; Place code of level 1 administrative boundaries.
+- **admin1_pcode**: Optional; Place code of level 1 administrative boundaries.
 
-- **admin2name**: Optional; Name of level 2 administrative boundaries.
+- **admin2_name**: Optional; Name of level 2 administrative boundaries.
 
-- **admin2pcode**: Optional; Place code of level 2 administrative boundaries.
+- **admin2_pcode**: Optional; Place code of level 2 administrative boundaries.
 
 - **from_reporting_date**: Optional; Start date for the reporting period (format: 'YYYY-MM-DD').
 
@@ -292,11 +282,11 @@ For the `baseline_` functions that get IDP data, at least one of the following p
 
 ### HNA Arguments
 
-For `hna_get_admin2()`, at least one of the following parameters must be provided: admin0name or admin0pcode.
+For `hna_get_admin2()`, at least one of the following parameters must be provided: admin0_name or admin0_pcode.
 
-- **admin0name**: Optional; Name of the country where the data was collected.
+- **admin0_name**: Optional; Name of the country where the data was collected.
 
-- **admin0pcode**: Optional; Country code (ISO 3166-1 alpha-3).
+- **admin0_pcode**: Optional; Country code (ISO 3166-1 alpha-3).
 
 - **population_group**: Optional; A specific subpopulation (e.g. internally displaced persons).
 
