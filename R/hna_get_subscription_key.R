@@ -2,7 +2,7 @@
 #'
 #' The HNA DTM API subscription key is returned, provided that it is
 #' available in the R session as an environment variable. Users will usually
-#' need to set the hna_DTM_SUBSCRIPTION_KEY environment variable through a
+#' need to set the HNA_DTM_SUBSCRIPTION_KEY environment variable through a
 #' .Renviron file (or other means) or by calling
 #' `hna_set_subscription_key()`.
 #'
@@ -13,7 +13,7 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' # Generally, calling hna_set_subscription_key() without the key as an
+#' # Generally, calling `hna_set_subscription_key()` without the key as an
 #' # argument is best, as the user can then be prompted to input the key without
 #' # typing it directly into the console, making it more secure and less
 #' # likely to be exposed.
@@ -29,11 +29,11 @@ hna_get_subscription_key <- function() {
   }
 
   if (is_testing()) {
-    return(testing_key())
+    hna_testing_key()
   } else {
     stop(
       paste(
-        "No API key found, please supply with hna_set_subscription_key()",
+        "No API key found, please supply with `hna_set_subscription_key()`",
         "or otherwise specifying the HNA_DTM_SUBSCRIPTION_KEY environment",
         "variable."
       )
@@ -41,12 +41,12 @@ hna_get_subscription_key <- function() {
   }
 }
 
-testing_key_encrypted <-
-  "TKMX4KCjnmeaA8XFgpoPleguEEcBAoMBWh3Q8O3ZhDz_u-i0FvVEar6HESIb8for"
+hna_testing_key_encrypted <-
+  "7ilgaf5ZSF9sqM2A-3RQgji0kiAfkqgCx1JIwbrMZKPayEtc6979ZCAx7qPD7ghD"
 
-testing_key <- function() {
+hna_testing_key <- function() {
   secret_decrypt(
-    encrypted = testing_key_encrypted,
+    encrypted = hna_testing_key_encrypted,
     key = "DTMAPIR_KEY" # Environment variable name as a string
   )
 }

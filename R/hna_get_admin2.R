@@ -11,8 +11,9 @@
 #'   displaced persons).
 #' @param year Optional; Year of data collection.
 #' @param page Optional; Pagination, to fetch a certain chunk of the data.
-#' @return A data frame containing the HNA Admin2 data matching the specified
-#'   criteria.
+#' @return A list of one data frame and a sub-list.
+#'   The former holds the requested data, and the latter is
+#'   contains metadata on pagination.
 #' @export
 #' @examplesIf !identical(Sys.getenv("HNA_DTM_SUBSCRIPTION_KEY"), "")
 #' # Fetch HNA data at Admin Level 2
@@ -28,7 +29,7 @@ hna_get_admin2 <- function(
     year = NULL,
     page = NULL
 ) {
-  api_url <- "https://dtm-apim-dev.iom.int/HNA/v1/admin2"
+  api_url <- "https://dtmapi.iom.int/HNA/v1/admin2"
 
   query_params <- list(
     Admin0Name = admin0name,
@@ -54,8 +55,13 @@ hna_get_admin2 <- function(
     # simplifyVector = TRUE helps to later return a data frame.
     json_data <- resp_body_json(response, simplifyVector = TRUE)
 
+    print(str(json_data))
+
     if (json_data$isSuccess) {
-      return(as.data.frame(json_data$result))
+      json_data$result$data <- as.data.frame(
+        json_data$result$data
+      )
+      return(json_data$result)
     } else {
       stop("API error: ", json_data$errorMessages[1])
     }
