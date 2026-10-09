@@ -4,7 +4,6 @@
 <br>
 
 <p align="center">
-
 <img alt="DTM Logo" src="man/figures/dtm_global_logo.svg" width="400">
 </p>
 
@@ -32,17 +31,25 @@ Operations can be found in this [data
 coverage](https://dtm.iom.int/data-and-analysis/dtm-api/data-coverage)
 matrix.
 
+Please note that despite the overarching term DTM API, there are, in
+fact, two distinct APIs which are currently available. These are the
+Baseline API (which is what simply “the DTM API” *USED* to refer to) and
+the Humanitarian Needs Assessment (HNA) API. Reflecting this, the
+functions in `dtmapi` are clearly named so as to distinguish between
+these two APIs: those prefixed with `baseline_` and those prefixed with
+`hna_`.
+
 Please find more information about [DTM API
 here.](https://dtm.iom.int/data-and-analysis/dtm-api)
 
 ## Installation
 
-The `dtmapi` package is available on
-[CRAN](https://CRAN.R-project.org/package=dtmapi) and can be installed
-as follows:
+The latest version of the `dtmapi` package can be installed directly
+from [GitHub](https://github.com/Displacement-Tracking-Matrix/dtmapi-R)
+as follows (make sure the `remotes` package is installed):
 
 ``` r
-install.packages("dtmapi")
+remotes::install_github("Displacement-Tracking-Matrix/dtmapi-R")
 ```
 
 ## Pre-Requisites
@@ -51,16 +58,25 @@ Using `dtmapi` requires a subscription key. To obtain one, register with
 the [DTM API Portal](https://dtm-apim-portal.iom.int/signin) and follow
 the instructions there.
 
+As a consequence of there being two distinct APIs, there are also two
+distinct subscription keys: the `baseline_` functions use the
+`BASELINE_DTM_SUBSCRIPTION_KEY` environment variable, and the `hna_`
+functions use the `HNA_DTM_SUBSCRIPTION_KEY` environment variable.
+
 The subscription key is secret and should not be exposed. Once it is
 obtained, the subscription key should be set for your current R session,
 assuming that the `dtmapi` package is installed. To do this, the
-environment variable `DTM_SUBSCRIPTION_KEY` needs to be defined. This
-can be done either interactively or non-interactively.
+relevant environment variable needs to be defined. This can be done
+either interactively or non-interactively. The examples below use the
+Baseline key; the HNA key works the same way, with
+`hna_set_subscription_key()` in place of
+`baseline_set_subscription_key()`.
 
-The interactive option is to call `set_subscription_key()`, like so:
+The interactive option is to call `baseline_set_subscription_key()`,
+like so:
 
 ``` r
-dtmapi::set_subscription_key()
+dtmapi::baseline_set_subscription_key()
 ```
 
 At this point, the user will be prompted to input the key (hidden) into
@@ -72,7 +88,7 @@ set non-interactively, by specifying the `key` parameter, like so:
 
 ``` r
 # Specifying `key` is required for non-interactive use.
-dtmapi::set_subscription_key(key = "mysubscriptionkey")
+dtmapi::baseline_set_subscription_key(key = "mysubscriptionkey")
 ```
 
 However, this option is discouraged and should be avoided as much as
@@ -84,74 +100,74 @@ in more detail in `vignette("user_guide")`.
 
 ## Usage
 
-When the subscription key is set, data on internal displacement may be
-retrieved through any of the following functions:
+When the Baseline subscription key is set, data on internal displacement
+may be retrieved through any of the following functions:
 
-- `get_idp_admin_0_data()`
-- `get_idp_admin_1_data()`
-- `get_idp_admin_2_data()`
+- `baseline_get_admin0()`
+- `baseline_get_admin1()`
+- `baseline_get_admin2()`
 
 These all retrieve data from the DTM API and return said data in the
 form of data frames.
 
 Certain parameters have to be specified to any of these, the most
-important of which are either the `CountryName` or the `OperationName`.
-For information on the other parameters and indeed all functions in
+important of which are either the `admin0_name` or the `operation`. For
+information on the other parameters and indeed all functions in
 `dtmapi`, [see the documentation
 here.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html)
 
 As a representative example of the earlier mentioned functions, see the
-following use of `get_idp_admin_1_data()`:
+following use of `baseline_get_admin1()`:
 
 ``` r
 # Load the package
 library(dtmapi)
 
-idp_admin1_df <- get_idp_admin1_data(CountryName = "Sudan",
-                                     Admin1Name = "Blue Nile",
-                                     FromReportingDate = "2020-01-01",
-                                     ToReportingDate = "2024-08-15")
+idp_admin1_df <- baseline_get_admin1(admin0_name = "Sudan",
+                                     from_reporting_date = "2020-01-01",
+                                     to_reporting_date = "2024-08-15")
 
 # Display the first few rows of the data frame
 head(idp_admin1_df)
-#>        id              operation admin0Name admin0Pcode admin1Name admin1Pcode
-#> 1 4743857        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 2 4743858        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 3 4743859        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 4 4743860        Darfur conflict      Sudan         SDN  Blue Nile        SD08
-#> 5 4722729 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
-#> 6 4722730 Armed Clashes in Sudan      Sudan         SDN  Blue Nile        SD08
+#>      id       operation admin0Name admin0Pcode     admin1Name admin1Pcode
+#> 1 20177 Darfur conflict      Sudan         SDN Central Darfur        SD06
+#> 2 20178 Darfur conflict      Sudan         SDN Central Darfur        SD06
+#> 3 29481 Darfur conflict      Sudan         SDN South Kordofan        SD07
+#> 4 20254 Darfur conflict      Sudan         SDN    East Darfur        SD05
+#> 5 20255 Darfur conflict      Sudan         SDN    East Darfur        SD05
+#> 6 20256 Darfur conflict      Sudan         SDN    East Darfur        SD05
 #>   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate
-#> 1            81693 2021-03-30T00:00:00              2021                  3
-#> 2           130958 2021-12-31T00:00:00              2021                 12
-#> 3           151156 2022-01-31T00:00:00              2022                  1
-#> 4           152656 2022-03-30T00:00:00              2022                  3
-#> 5              260 2023-04-28T00:00:00              2023                  4
-#> 6              715 2023-05-07T00:00:00              2023                  5
-#>   roundNumber         displacementReason numberMales numberFemales
-#> 1           2                   Conflict          NA            NA
-#> 2           3 Conflict; Natural disaster          NA            NA
-#> 3           4                   Conflict          NA            NA
-#> 4           5                   Conflict          NA            NA
-#> 5           2                   Conflict          NA            NA
-#> 6           3                   Conflict          NA            NA
-#>   idpOriginAdmin1Name idpOriginAdmin1Pcode assessmentType
-#> 1           Blue Nile                 SD08             BA
-#> 2           Blue Nile                 SD08             BA
-#> 3       Not available        Not available             BA
-#> 4           Blue Nile                 SD08             BA
-#> 5         West Darfur                 SD04             BA
-#> 6            Khartoum                 SD01             BA
+#> 1           349709 2020-01-30T00:00:00              2020                  1
+#> 2            27500 2020-01-30T00:00:00              2020                  1
+#> 3           217683 2020-01-30T00:00:00              2020                  1
+#> 4            92867 2020-01-30T00:00:00              2020                  1
+#> 5             6230 2020-01-30T00:00:00              2020                  1
+#> 6              600 2020-01-30T00:00:00              2020                  1
+#>   roundNumber displacementReason numberMales numberFemales idpOriginAdmin1Name
+#> 1           1           Conflict          NA            NA      Central Darfur
+#> 2           1           Conflict          NA            NA        North Darfur
+#> 3           1           Conflict          NA            NA      South Kordofan
+#> 4           1           Conflict          NA            NA         East Darfur
+#> 5           1           Conflict          NA            NA        North Darfur
+#> 6           1           Conflict          NA            NA        South Darfur
+#>   idpOriginAdmin1Pcode assessmentType
+#> 1                 SD06             BA
+#> 2                 SD02             BA
+#> 3                 SD07             BA
+#> 4                 SD05             BA
+#> 5                 SD02             BA
+#> 6                 SD03             BA
 ```
 
 Since the available country names or operation names are often necessary
-to know of, they can be obtained by using the `get_all_countries()` and
-`get_all_operations()` functions, which do not take any arguments.
+to know of, they can be obtained by using the `baseline_get_countries()`
+and `baseline_get_operations()` functions, which do not take any
+arguments.
 
 ``` r
 # Load the package
 library(dtmapi)
-countries_df <- get_all_countries()
+countries_df <- baseline_get_countries()
 
 # Display the first few rows of the data frame
 head(countries_df)
@@ -159,34 +175,70 @@ head(countries_df)
 #> 1                      Afghanistan         AFG
 #> 2              Antigua and Barbuda         ATG
 #> 3                    Bahamas (the)         BHS
-#> 4                            Benin         BEN
-#> 5 Bolivia (Plurinational State of)         BOL
-#> 6                     Burkina Faso         BFA
+#> 4                       Bangladesh         BGD
+#> 5                            Benin         BEN
+#> 6 Bolivia (Plurinational State of)         BOL
 ```
 
 ``` r
 # Load the package
 library(dtmapi)
 
-operations_df <- get_all_operations()
+operations_df <- baseline_get_operations()
 
 # Display the first few rows of the data frame
 head(operations_df)
-#>                                   operation operationStatus          admin0Name
-#> 1                           Aceh earthquake        Inactive           Indonesia
-#> 2                    Armed Clashes in Sudan          Active               Sudan
-#> 3          Armed Clashes in Sudan (Monthly)          Active               Sudan
-#> 4         Armed Clashes in Sudan (Overview)          Active               Sudan
-#> 5                       Arrivals in Armenia        Inactive Republic of Armenia
-#> 6 Bahamas (the) - Hurricane Dorian Response        Inactive       Bahamas (the)
+#>                           operation operationStatus           admin0Name
+#> 1                   Aceh earthquake        Inactive            Indonesia
+#> 2            Armed Clashes in Sudan          Active                Sudan
+#> 3  Armed Clashes in Sudan (Monthly)          Active                Sudan
+#> 4 Armed Clashes in Sudan (Overview)          Active                Sudan
+#> 5               Arrivals in Armenia        Inactive  Republic of Armenia
+#> 6                As-Sweida Conflict          Active Syrian Arab Republic
 #>   admin0Pcode
 #> 1         IDN
 #> 2         SDN
 #> 3         SDN
 #> 4         SDN
 #> 5         ARM
-#> 6         BHS
+#> 6         SYR
 ```
+
+When the HNA subscription key is set, HNA data at Admin Level 2 may be
+retrieved through `hna_get_admin2()`. Unlike the `baseline_` functions,
+it returns a list of two elements: `data`, a data frame holding the
+requested data, and `pagination`, a list containing metadata on
+pagination.
+
+``` r
+# Load the package
+library(dtmapi)
+
+hna_admin2 <- hna_get_admin2(admin0_name = "Nigeria",
+                             year = 2025)
+#> List of 5
+#>  $ result           :List of 2
+#>   ..$ data      : list()
+#>   ..$ pagination:List of 5
+#>   .. ..$ currentPage    : int 1
+#>   .. ..$ totalPages     : int 0
+#>   .. ..$ totalItems     : int 0
+#>   .. ..$ hasNextPage    : logi FALSE
+#>   .. ..$ hasPreviousPage: logi FALSE
+#>  $ statusCode       : int 204
+#>  $ isSuccess        : logi TRUE
+#>  $ errorMessages    : chr "No matching data found. Please verify your input and try again."
+#>  $ totalRecordsCount: int 0
+#> NULL
+
+# Display the first few rows of the data
+head(hna_admin2$data)
+#> data frame with 0 columns and 0 rows
+```
+
+The countries covered by the HNA API, and the indicators available in
+it, can be obtained by using the `hna_get_countries()` and
+`hna_get_catalog()` functions, which do not take any arguments.
 
 ## User Guide
 
