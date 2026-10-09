@@ -2,7 +2,7 @@
 #   skip_on_cran()
 #
 #   hna_admin2 <- hna_get_admin2(
-#     admin0name = "Mozambique"
+#     admin0_name = "Mozambique"
 #   )
 #   expect_s3_class(hna_admin2$data, "data.frame")
 #   expect_true(nrow(hna_admin2$data) > 0)
@@ -16,7 +16,7 @@
 #     skip_on_cran()
 #
 #     hna_admin2 <- hna_get_admin2(
-#       admin0name = "Mozambique"
+#       admin0_name = "Mozambique"
 #     )
 #     expect_s3_class(hna_admin2$data, "data.frame")
 #     expect_true(nrow(hna_admin2$data) > 0)
@@ -31,7 +31,7 @@ test_that(
     skip_on_cran()
 
     hna_admin2 <- hna_get_admin2(
-      admin0name = "Mozambique",
+      admin0_name = "Mozambique",
       year = 2025
     )
     expect_s3_class(hna_admin2$data, "data.frame")

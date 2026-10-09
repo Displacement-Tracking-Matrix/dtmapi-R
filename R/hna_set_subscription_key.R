@@ -1,10 +1,10 @@
 #' Set the user's HNA API subscription key in order to make the API calls.
 #'
 #' The API subscription key will be stored as an environment variable named
+#' "HNA_DTM_SUBSCRIPTION_KEY".
 #' @param key
 #' Either NULL or a string representing the key. NULL is preferable: using it
 #' will prompt the user to type the subscription key in a graphical user
-#' "HNA_DTM_SUBSCRIPTION_KEY".
 #' interface that masks it.
 #' @return Nothing. Creates / overwrites an environment variable
 #' as a side effect.

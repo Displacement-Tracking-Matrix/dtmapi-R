@@ -7,15 +7,14 @@
 #' @export
 #' @examplesIf !identical(Sys.getenv("HNA_DTM_SUBSCRIPTION_KEY"), "")
 #' # Retrieve the HNA data catalog
-#' operations_df <- hna_get_operations()
+#' operations_df <- hna_get_catalog()
 #' head(operations_df)
 #' @importFrom httr2 request req_perform resp_status
-#'   resp_body_json req_headers_redacted
+#' @importFrom httr2 resp_body_json req_headers_redacted
 
 hna_get_catalog <- function() {
   tryCatch({
-    api_url <- "https://dtm-apim-dev.iom.int/HNA/v1/HNADataCatalog"
-
+    api_url <- "https://dtmapi.iom.int/HNA/v1/catalog"
     response <- request(api_url) |>
       req_headers_redacted(
         "Cache-Control" = "no-cache",
@@ -29,9 +28,7 @@ hna_get_catalog <- function() {
 
     json_data <- resp_body_json(response, simplifyVector = TRUE)
 
-    print(json_data)
-
-    as.data.frame(json_data$result)
+    as.data.frame(json_data)
 
   }, error = function(e) {
     stop("API request failed: ", e$message)
