@@ -39,7 +39,7 @@ message("No token available. Code chunks will not be evaluated.")
 The `dtmapi` package provides functions to interact with the Displacement Tracking Matrix (DTM) API. This vignette demonstrates how to use the package's functions to fetch data from the API.
 
 Please note that despite the overarching term DTM API, there are,
-in fact, two distinct APIs which are currently available. These are the Baseline API (which is what simply "the DTM API" *used* to refer to) and the Humanitarian Needs Assessment (HNA) API.
+in fact, two distinct APIs which are currently available. These are the Baseline API (which is what simply "the DTM API" *USED* to refer to) and the Humanitarian Needs Assessment (HNA) API.
 
 Reflecting this, this R package comes with a set of functions that are clearly named so as to distinguish between these two APIs. Those prefixed with `baseline_` and those prefixed with `hna_`.
 
