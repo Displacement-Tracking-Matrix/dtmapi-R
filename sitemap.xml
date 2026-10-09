@@ -7,13 +7,18 @@
 <url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/authors.html</loc></url>
 <url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/index.html</loc></url>
 <url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/news/index.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_all_countries.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_all_operations.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_idp_admin0_data.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_idp_admin1_data.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_idp_admin2_data.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/get_subscription_key.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/baseline_get_admin0.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/baseline_get_admin1.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/baseline_get_admin2.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/baseline_get_countries.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/baseline_get_operations.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/baseline_get_subscription_key.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/baseline_set_subscription_key.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/hna_get_admin2.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/hna_get_catalog.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/hna_get_countries.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/hna_get_subscription_key.html</loc></url>
+<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/hna_set_subscription_key.html</loc></url>
 <url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html</loc></url>
-<url><loc>https://displacement-tracking-matrix.github.io/dtmapi-R/reference/set_subscription_key.html</loc></url>
 </urlset>
 

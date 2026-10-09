@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>User Guide • dtmapi</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="User Guide">
 </head>
@@ -59,74 +59,97 @@
 
     
     
-<pre><code>No token available. Code chunks will not be evaluated.</code></pre>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>The <code>dtmapi</code> package provides functions to interact with
+<p>The <code>dtmapi</code> package provides functions to interact with
 the Displacement Tracking Matrix (DTM) API. This vignette demonstrates
-how to use the package’s functions to fetch data from the API. The
-functions covered include:</p>
+how to use the package’s functions to fetch data from the API.</p>
+<p>Please note that despite the overarching term DTM API, there are, in
+fact, two distinct APIs which are currently available. These are the
+Baseline API (which is what simply “the DTM API” <em>USED</em> to refer
+to) and the Humanitarian Needs Assessment (HNA) API.</p>
+<p>Reflecting this, this R package comes with a set of functions that
+are clearly named so as to distinguish between these two APIs. Those
+prefixed with <code>baseline_</code> and those prefixed with
+<code>hna_</code>.</p>
+<p>The functions covered include:</p>
 <ul>
-<li><p><code><a href="../reference/get_all_countries.html">get_all_countries()</a></code></p></li>
-<li><p><code><a href="../reference/get_all_operations.html">get_all_operations()</a></code></p></li>
-<li><p><code><a href="../reference/get_idp_admin0_data.html">get_idp_admin0_data()</a></code></p></li>
-<li><p><code><a href="../reference/get_idp_admin1_data.html">get_idp_admin1_data()</a></code></p></li>
-<li><p><code><a href="../reference/get_idp_admin2_data.html">get_idp_admin2_data()</a></code></p></li>
+<li><p><code><a href="../reference/baseline_get_countries.html">baseline_get_countries()</a></code></p></li>
+<li><p><code><a href="../reference/baseline_get_operations.html">baseline_get_operations()</a></code></p></li>
+<li><p><code><a href="../reference/baseline_get_admin0.html">baseline_get_admin0()</a></code></p></li>
+<li><p><code><a href="../reference/baseline_get_admin1.html">baseline_get_admin1()</a></code></p></li>
+<li><p><code><a href="../reference/baseline_get_admin2.html">baseline_get_admin2()</a></code></p></li>
+<li><p><code><a href="../reference/hna_get_countries.html">hna_get_countries()</a></code></p></li>
+<li><p><code><a href="../reference/hna_get_catalog.html">hna_get_catalog()</a></code></p></li>
+<li><p><code><a href="../reference/hna_get_admin2.html">hna_get_admin2()</a></code></p></li>
 </ul>
+<p>Notice that as a consequence of there being two distinct APIs, there
+are also two distinct subscription key-related function pairs. This will
+become clear in their respective technical documentations.</p>
 </div>
 <div class="section level2">
 <h2 id="install-package">Install Package<a class="anchor" aria-label="anchor" href="#install-package"></a>
 </h2>
-<p>The <code>dtmapi</code> package is available on CRAN and can be
-installed using the following command:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"dtmapi"</span><span class="op">)</span></span></code></pre></div>
+<p>The latest version of the <code>dtmapi</code> package can be
+installed directly from <a href="https://github.com/Displacement-Tracking-Matrix/dtmapi-R" class="external-link">GitHub</a>
+using the following command (make sure the <code>remotes</code> package
+is installed):</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Displacement-Tracking-Matrix/dtmapi-R"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="load-package">Load Package<a class="anchor" aria-label="anchor" href="#load-package"></a>
 </h2>
 <p>After installation, load the package using library():</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Displacement-Tracking-Matrix/dtmapi-R" class="external-link">dtmapi</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="setting-the-subscription-key">Setting the Subscription Key<a class="anchor" aria-label="anchor" href="#setting-the-subscription-key"></a>
+<h2 id="setting-the-subscription-keys">Setting the Subscription Keys<a class="anchor" aria-label="anchor" href="#setting-the-subscription-keys"></a>
 </h2>
 <p>After creating a subscription key on <a href="https://dtm-apim-portal.iom.int" class="external-link uri">https://dtm-apim-portal.iom.int</a>, that key needs to be
-given to R. To do this, the <code>DTM_SUBSCRIPTION_KEY</code>
-environment variable needs to be defined as the subscription key. There
-are three main ways to do this, as described below.</p>
+given to R. The package has two sets of functions, each with its own
+subscription key: the <code>baseline_</code> functions use the
+<code>BASELINE_DTM_SUBSCRIPTION_KEY</code> environment variable, and the
+<code>hna_</code> functions use the
+<code>HNA_DTM_SUBSCRIPTION_KEY</code> environment variable. There are
+three main ways to set these, as described below. The examples use the
+Baseline key; the HNA key works the same way, with
+<code><a href="../reference/hna_set_subscription_key.html">hna_set_subscription_key()</a></code> and
+<code>HNA_DTM_SUBSCRIPTION_KEY</code> in place of
+<code><a href="../reference/baseline_set_subscription_key.html">baseline_set_subscription_key()</a></code> and
+<code>BASELINE_DTM_SUBSCRIPTION_KEY</code>.</p>
 <div class="section level3">
-<h3 id="using-set_subscription_key-interactive-safe-option">1. Using <code>set_subscription_key()</code>: interactive, safe
-option<a class="anchor" aria-label="anchor" href="#using-set_subscription_key-interactive-safe-option"></a>
+<h3 id="using-baseline_set_subscription_key-interactive-safe-option">1. Using <code>baseline_set_subscription_key()</code>: interactive,
+safe option<a class="anchor" aria-label="anchor" href="#using-baseline_set_subscription_key-interactive-safe-option"></a>
 </h3>
-<p>By calling <code><a href="../reference/set_subscription_key.html">set_subscription_key()</a></code>, after which the user
-is prompted to input the key into a pop-up field.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/set_subscription_key.html">set_subscription_key</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>By calling <code><a href="../reference/baseline_set_subscription_key.html">baseline_set_subscription_key()</a></code>, after which
+the user is prompted to input the key into a pop-up field.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/baseline_set_subscription_key.html">baseline_set_subscription_key</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Note that if the environment is not interactive, it is likely for the
 user to receive an error message instead, such as in the case of using
 Google Colab. In such cases see the other options described further
 below.</p>
 </div>
 <div class="section level3">
-<h3 id="using-set_subscription_key-the-non-interactive-discouraged-option">2. Using <code>set_subscription_key()</code>: the non-interactive,
-discouraged option<a class="anchor" aria-label="anchor" href="#using-set_subscription_key-the-non-interactive-discouraged-option"></a>
+<h3 id="using-baseline_set_subscription_key-the-non-interactive-discouraged-option">2. Using <code>baseline_set_subscription_key()</code>: the
+non-interactive, discouraged option<a class="anchor" aria-label="anchor" href="#using-baseline_set_subscription_key-the-non-interactive-discouraged-option"></a>
 </h3>
 <p>If the interactive option above fails for the user, such that there
 is an error instead of a pop-up, the user may rely on passing their key
-directly into <code><a href="../reference/set_subscription_key.html">set_subscription_key()</a></code> by naming the
+directly into <code><a href="../reference/baseline_set_subscription_key.html">baseline_set_subscription_key()</a></code> by naming the
 <code>key</code> parameter.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Specifying `key` is required for non-interactive use.</span></span>
-<span><span class="fu"><a href="../reference/set_subscription_key.html">set_subscription_key</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"mysubscriptionkey"</span><span class="op">)</span></span></code></pre></div>
-<p>This is basically using <code><a href="../reference/set_subscription_key.html">set_subscription_key()</a></code> as a
-wrapper for setting up the environment variable
-<code>DTM_SUBSCRIPTION_KEY</code> using base R’s
+<span><span class="fu"><a href="../reference/baseline_set_subscription_key.html">baseline_set_subscription_key</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"mysubscriptionkey"</span><span class="op">)</span></span></code></pre></div>
+<p>This is basically using <code><a href="../reference/baseline_set_subscription_key.html">baseline_set_subscription_key()</a></code>
+as a wrapper for setting up the environment variable
+<code>BASELINE_DTM_SUBSCRIPTION_KEY</code> using base R’s
 <code><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv()</a></code>, as shown below:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span><span class="st">"DTM_SUBSCRIPTION_KEY"</span> <span class="op">=</span> <span class="st">"mysubscriptionkey"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span><span class="st">"BASELINE_DTM_SUBSCRIPTION_KEY"</span> <span class="op">=</span> <span class="st">"mysubscriptionkey"</span><span class="op">)</span></span></code></pre></div>
 <p>Please note that by doing this in, say, a Google Colab script, .R
 script, or Jupyter notebook, you are leaving a secret (your subscription
 key) exposed and available for anyone to read with ease. This is why
@@ -139,8 +162,8 @@ non-interactive context.</p>
 management<a class="anchor" aria-label="anchor" href="#setting-up-the-environment-variable-with-good-secrets-management"></a>
 </h3>
 <p>If one would like to avoid re-inputting the subscription key for each
-R session, and they would like to set the subscription in a way that is
-both non-interactive and safer, then this becomes a matter of knowing
+R session, and they would like to set the subscription key in a way that
+is both non-interactive and safer, then this becomes a matter of knowing
 the right secrets management practices depending on where R is being
 used (e.g. whether that is in a local desktop, a cloud-based programming
 environment, a server, etc.).</p>
@@ -155,20 +178,22 @@ code editor such as VSCode, RStudio, or Positron, as this is the most
 common case. If these do not reflect your circumstance or use-case, then
 researching how to manage secrets generally for that circumstance should
 suffice, as the only thing specific about doing so for the
-<code>dtmapi</code> package is just the name of the environment
-variable, <code>DTM_SUBSCRIPTION_KEY</code>.</p>
+<code>dtmapi</code> package is just the names of the environment
+variables, <code>BASELINE_DTM_SUBSCRIPTION_KEY</code> and
+<code>HNA_DTM_SUBSCRIPTION_KEY</code>.</p>
 <p><strong>Using a code editor such as VSCode or RStudio on a
 desktop:</strong></p>
-<p>Use a <code>.Renviron</code> file to set the key. You can create it
+<p>Use a <code>.Renviron</code> file to set the keys. You can create it
 from scratch, and its contents should look something like this:</p>
-<pre><code><span><span class="va">DTM_SUBSCRIPTION_KEY</span> <span class="op">=</span> <span class="st">"mysubscriptionkey"</span></span>
+<pre><code><span><span class="va">BASELINE_DTM_SUBSCRIPTION_KEY</span> <span class="op">=</span> <span class="st">"mysubscriptionkey"</span></span>
+<span><span class="va">HNA_DTM_SUBSCRIPTION_KEY</span> <span class="op">=</span> <span class="st">"myothersubscriptionkey"</span></span>
 <span><span class="va">Some_Other_Env_Var</span> <span class="op">=</span> <span class="st">"something else if desired"</span></span></code></pre>
 <p>For this to work robustly, your <code>.Renviron</code> should be in
 the same <em>working directory</em> that you would like to use for your
 R sessions (i.e. it should be in the same location or folder that you
 would like your R sessions to use as a default). You can see which
 folder that currently is by running:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>This is important to know because, if your R session can start in the
 same working directory that the <code>.Renviron</code> file is located
@@ -189,12 +214,12 @@ then one quick way to proceed with editing the <code>.Renviron</code>
 file or placing it in their project directory (if they have one) is by
 calling the following line of code (make sure the <code>usethis</code>
 package is installed):</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">edit_r_environ</span><span class="op">(</span><span class="st">"project"</span><span class="op">)</span></span></code></pre></div>
 <p>Or, if one is not using an R project or equivalent, then this is an
 option as well, though using the general user directory is not
 recommended as it is likely to get lost:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">edit_r_environ</span><span class="op">(</span><span class="st">"user"</span><span class="op">)</span></span></code></pre></div>
 <p>Remember: NEVER SHARE THE <code>.RENVIRON</code> FILE.</p>
 </div>
@@ -202,105 +227,310 @@ recommended as it is likely to get lost:</p>
 <div class="section level2">
 <h2 id="get-all-countries">Get All Countries<a class="anchor" aria-label="anchor" href="#get-all-countries"></a>
 </h2>
-<p>The <code><a href="../reference/get_all_countries.html">get_all_countries()</a></code> function retrieves a list of all
-countries from the DTM API.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<p>The <code><a href="../reference/baseline_get_countries.html">baseline_get_countries()</a></code> function retrieves a list
+of all countries from the DTM API.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch all countries</span></span>
-<span><span class="va">countries_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_all_countries.html">get_all_countries</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">countries_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/baseline_get_countries.html">baseline_get_countries</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">countries_df</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">countries_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                         admin0Name admin0Pcode</span></span>
+<span><span class="co">#&gt; 1                      Afghanistan         AFG</span></span>
+<span><span class="co">#&gt; 2              Antigua and Barbuda         ATG</span></span>
+<span><span class="co">#&gt; 3                    Bahamas (the)         BHS</span></span>
+<span><span class="co">#&gt; 4                       Bangladesh         BGD</span></span>
+<span><span class="co">#&gt; 5                            Benin         BEN</span></span>
+<span><span class="co">#&gt; 6 Bolivia (Plurinational State of)         BOL</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-all-operations">Get All Operations<a class="anchor" aria-label="anchor" href="#get-all-operations"></a>
 </h2>
-<p>The <code><a href="../reference/get_all_operations.html">get_all_operations()</a></code> function retrieves a list of
-all operations from the DTM API.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<p>The <code><a href="../reference/baseline_get_operations.html">baseline_get_operations()</a></code> function retrieves a list
+of all operations from the DTM API.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch all operations</span></span>
-<span><span class="va">operations_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_all_operations.html">get_all_operations</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">operations_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/baseline_get_operations.html">baseline_get_operations</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">operations_df</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">operations_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                           operation operationStatus           admin0Name</span></span>
+<span><span class="co">#&gt; 1                   Aceh earthquake        Inactive            Indonesia</span></span>
+<span><span class="co">#&gt; 2            Armed Clashes in Sudan          Active                Sudan</span></span>
+<span><span class="co">#&gt; 3  Armed Clashes in Sudan (Monthly)          Active                Sudan</span></span>
+<span><span class="co">#&gt; 4 Armed Clashes in Sudan (Overview)          Active                Sudan</span></span>
+<span><span class="co">#&gt; 5               Arrivals in Armenia        Inactive  Republic of Armenia</span></span>
+<span><span class="co">#&gt; 6                As-Sweida Conflict          Active Syrian Arab Republic</span></span>
+<span><span class="co">#&gt;   admin0Pcode</span></span>
+<span><span class="co">#&gt; 1         IDN</span></span>
+<span><span class="co">#&gt; 2         SDN</span></span>
+<span><span class="co">#&gt; 3         SDN</span></span>
+<span><span class="co">#&gt; 4         SDN</span></span>
+<span><span class="co">#&gt; 5         ARM</span></span>
+<span><span class="co">#&gt; 6         SYR</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-idp-data-at-admin-level-0">Get IDP Data at Admin Level 0<a class="anchor" aria-label="anchor" href="#get-idp-data-at-admin-level-0"></a>
 </h2>
-<p>The <code><a href="../reference/get_idp_admin0_data.html">get_idp_admin0_data()</a></code> function retrieves Internally
+<p>The <code><a href="../reference/baseline_get_admin0.html">baseline_get_admin0()</a></code> function retrieves Internally
 Displaced Persons (IDP) data aggregated at the country level.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch IDP data at Admin Level 0</span></span>
 <span><span class="va">idp_admin0_df</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="../reference/get_idp_admin0_data.html">get_idp_admin0_data</a></span><span class="op">(</span>CountryName <span class="op">=</span> <span class="st">"Ethiopia"</span>,</span>
-<span>                      FromRoundNumber <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>                      ToRoundNumber <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/baseline_get_admin0.html">baseline_get_admin0</a></span><span class="op">(</span>admin0_name <span class="op">=</span> <span class="st">"Ethiopia"</span>,</span>
+<span>                      from_round_number <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>                      to_round_number <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin0_df</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin0_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                operation admin0Name admin0Pcode numPresentIdpInd</span></span>
+<span><span class="co">#&gt; 1 Countrywide monitoring   Ethiopia         ETH             7823</span></span>
+<span><span class="co">#&gt; 2 Countrywide monitoring   Ethiopia         ETH            21668</span></span>
+<span><span class="co">#&gt; 3 Countrywide monitoring   Ethiopia         ETH            15420</span></span>
+<span><span class="co">#&gt; 4 Countrywide monitoring   Ethiopia         ETH           772924</span></span>
+<span><span class="co">#&gt; 5 Countrywide monitoring   Ethiopia         ETH           308300</span></span>
+<span><span class="co">#&gt; 6 Countrywide monitoring   Ethiopia         ETH             6984</span></span>
+<span><span class="co">#&gt;         reportingDate yearReportingDate monthReportingDate roundNumber</span></span>
+<span><span class="co">#&gt; 1 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt; 2 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt; 3 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt; 4 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt; 5 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt; 6 2017-12-31T00:00:00              2017                 12           8</span></span>
+<span><span class="co">#&gt;   displacementReason numberMales numberFemales idpOriginAdmin1Name</span></span>
+<span><span class="co">#&gt; 1           Conflict        4088          3735                Afar</span></span>
+<span><span class="co">#&gt; 2           Conflict       11490         10178              Amhara</span></span>
+<span><span class="co">#&gt; 3           Conflict        7046          8374             Gambela</span></span>
+<span><span class="co">#&gt; 4           Conflict      375655        397269              Oromia</span></span>
+<span><span class="co">#&gt; 5           Conflict      152469        155831              Somali</span></span>
+<span><span class="co">#&gt; 6           Conflict        3170          3814              Tigray</span></span>
+<span><span class="co">#&gt;   idpOriginAdmin1Pcode assessmentType</span></span>
+<span><span class="co">#&gt; 1                 ET02             SA</span></span>
+<span><span class="co">#&gt; 2                 ET03             SA</span></span>
+<span><span class="co">#&gt; 3                 ET12             SA</span></span>
+<span><span class="co">#&gt; 4                 ET04             SA</span></span>
+<span><span class="co">#&gt; 5                 ET05             SA</span></span>
+<span><span class="co">#&gt; 6                 ET01             SA</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-idp-data-at-admin-level-1">Get IDP Data at Admin Level 1<a class="anchor" aria-label="anchor" href="#get-idp-data-at-admin-level-1"></a>
 </h2>
-<p>The get_idp_admin1_data() function retrieves IDP data aggregated at
-Admin Level 1.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<p>The <code><a href="../reference/baseline_get_admin1.html">baseline_get_admin1()</a></code> function retrieves IDP data
+aggregated at Admin Level 1.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch IDP data at Admin Level 1</span></span>
 <span><span class="va">idp_admin1_df</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="../reference/get_idp_admin1_data.html">get_idp_admin1_data</a></span><span class="op">(</span>CountryName <span class="op">=</span> <span class="st">"Sudan"</span>,</span>
-<span>                      Admin1Name <span class="op">=</span> <span class="st">"Blue Nile"</span>,</span>
-<span>                      FromReportingDate <span class="op">=</span> <span class="st">"2020-01-01"</span>,</span>
-<span>                      ToReportingDate <span class="op">=</span> <span class="st">"2024-08-15"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/baseline_get_admin1.html">baseline_get_admin1</a></span><span class="op">(</span>admin0_name <span class="op">=</span> <span class="st">"Sudan"</span>,</span>
+<span>                      admin1_name <span class="op">=</span> <span class="st">"Blue Nile"</span>,</span>
+<span>                      from_reporting_date <span class="op">=</span> <span class="st">"2020-01-01"</span>,</span>
+<span>                      to_reporting_date <span class="op">=</span> <span class="st">"2024-08-15"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `value[[3L]]()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> API request failed: HTTP 500 Internal Server Error.</span></span>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin1_df</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin1_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;">:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> object 'idp_admin1_df' not found</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-idp-data-at-admin-level-2">Get IDP Data at Admin Level 2<a class="anchor" aria-label="anchor" href="#get-idp-data-at-admin-level-2"></a>
 </h2>
-<p>The get_idp_admin2_data() function retrieves IDP data aggregated at
-Admin Level 2</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<p>The <code><a href="../reference/baseline_get_admin2.html">baseline_get_admin2()</a></code> function retrieves IDP data
+aggregated at Admin Level 2.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetch IDP data at Admin Level 2</span></span>
 <span><span class="va">idp_admin2_df</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="../reference/get_idp_admin2_data.html">get_idp_admin2_data</a></span><span class="op">(</span>Operation <span class="op">=</span> <span class="st">"Displacement due to conflict"</span>,</span>
-<span>                      CountryName <span class="op">=</span> <span class="st">"Lebanon"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/baseline_get_admin2.html">baseline_get_admin2</a></span><span class="op">(</span>operation <span class="op">=</span> <span class="st">"Displacement due to conflict"</span>,</span>
+<span>                      admin0_name <span class="op">=</span> <span class="st">"Lebanon"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display the first few rows of the data frame</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin2_df</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">idp_admin2_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      id                    operation admin0Name admin0Pcode        admin1Name</span></span>
+<span><span class="co">#&gt; 1   162 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
+<span><span class="co">#&gt; 2  1106 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
+<span><span class="co">#&gt; 3  2378 Displacement due to conflict    Lebanon         LBN       El Nabatieh</span></span>
+<span><span class="co">#&gt; 4  3207 Displacement due to conflict    Lebanon         LBN             North</span></span>
+<span><span class="co">#&gt; 5  4256 Displacement due to conflict    Lebanon         LBN Baalbek-El Hermel</span></span>
+<span><span class="co">#&gt; 6 12152 Displacement due to conflict    Lebanon         LBN     Mount Lebanon</span></span>
+<span><span class="co">#&gt;   admin1Pcode  admin2Name admin2Pcode numPresentIdpInd       reportingDate</span></span>
+<span><span class="co">#&gt; 1         LB8     Baalbek        LB21               20 2023-10-15T00:00:00</span></span>
+<span><span class="co">#&gt; 2         LB8     Baalbek        LB21               95 2023-10-15T00:00:00</span></span>
+<span><span class="co">#&gt; 3         LB4 El Nabatieh        LB44              207 2023-10-15T00:00:00</span></span>
+<span><span class="co">#&gt; 4         LB5  El Batroun        LB52                3 2023-10-15T00:00:00</span></span>
+<span><span class="co">#&gt; 5         LB8     Baalbek        LB21               31 2023-10-15T00:00:00</span></span>
+<span><span class="co">#&gt; 6         LB3       Chouf        LB33               16 2023-10-15T00:00:00</span></span>
+<span><span class="co">#&gt;   yearReportingDate monthReportingDate roundNumber displacementReason</span></span>
+<span><span class="co">#&gt; 1              2023                 10           2           Conflict</span></span>
+<span><span class="co">#&gt; 2              2023                 10           2           Conflict</span></span>
+<span><span class="co">#&gt; 3              2023                 10           2           Conflict</span></span>
+<span><span class="co">#&gt; 4              2023                 10           2           Conflict</span></span>
+<span><span class="co">#&gt; 5              2023                 10           2           Conflict</span></span>
+<span><span class="co">#&gt; 6              2023                 10           1           Conflict</span></span>
+<span><span class="co">#&gt;   numberMales numberFemales idpOriginAdmin1Name idpOriginAdmin1Pcode</span></span>
+<span><span class="co">#&gt; 1          NA            NA               South                  LB6</span></span>
+<span><span class="co">#&gt; 2          NA            NA              Beirut                  LB1</span></span>
+<span><span class="co">#&gt; 3          NA            NA         El Nabatieh                  LB4</span></span>
+<span><span class="co">#&gt; 4          NA            NA         El Nabatieh                  LB4</span></span>
+<span><span class="co">#&gt; 5          NA            NA       Mount Lebanon                  LB3</span></span>
+<span><span class="co">#&gt; 6          NA            NA               South                  LB6</span></span>
+<span><span class="co">#&gt;   assessmentType</span></span>
+<span><span class="co">#&gt; 1             BA</span></span>
+<span><span class="co">#&gt; 2             BA</span></span>
+<span><span class="co">#&gt; 3             BA</span></span>
+<span><span class="co">#&gt; 4             BA</span></span>
+<span><span class="co">#&gt; 5             BA</span></span>
+<span><span class="co">#&gt; 6             BA</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="get-all-countries-hna">Get All Countries (HNA)<a class="anchor" aria-label="anchor" href="#get-all-countries-hna"></a>
+</h2>
+<p>The <code><a href="../reference/hna_get_countries.html">hna_get_countries()</a></code> function retrieves a list of all
+countries covered by the DTM Household Needs Assessment (HNA) API.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Fetch all HNA countries</span></span>
+<span><span class="va">hna_countries_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hna_get_countries.html">hna_get_countries</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Display the first few rows of the data frame</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">hna_countries_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   admin0Pcode  admin0Name                  populationGroup</span></span>
+<span><span class="co">#&gt; 1         SDN       Sudan IDP, IDP returnee, Non displaced</span></span>
+<span><span class="co">#&gt; 2         SSD South Sudan IDP, IDP returnee, Non displaced</span></span>
+<span><span class="co">#&gt; 3         MOZ  Mozambique IDP, IDP returnee, Non displaced</span></span>
+<span><span class="co">#&gt; 4         NGA     Nigeria IDP, IDP returnee, Non displaced</span></span>
+<span><span class="co">#&gt;                    years</span></span>
+<span><span class="co">#&gt; 1       2022, 2024, 2025</span></span>
+<span><span class="co">#&gt; 2 2022, 2023, 2024, 2025</span></span>
+<span><span class="co">#&gt; 3       2022, 2024, 2025</span></span>
+<span><span class="co">#&gt; 4                   2022</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="get-the-hna-data-catalog">Get the HNA Data Catalog<a class="anchor" aria-label="anchor" href="#get-the-hna-data-catalog"></a>
+</h2>
+<p>The <code><a href="../reference/hna_get_catalog.html">hna_get_catalog()</a></code> function retrieves the HNA data
+catalog, which provides information on the indicators available in the
+HNA API, including their name, description, and data type.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Fetch the HNA data catalog</span></span>
+<span><span class="va">hna_catalog_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hna_get_catalog.html">hna_get_catalog</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Display the first few rows of the data frame</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">hna_catalog_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                     indicator_category</span></span>
+<span><span class="co">#&gt; 1              Reason for displacement</span></span>
+<span><span class="co">#&gt; 2         Food Consumption Score (FCS)</span></span>
+<span><span class="co">#&gt; 3         Household Hunger Scale (HHS)</span></span>
+<span><span class="co">#&gt; 4         Household Hunger Scale (HHS)</span></span>
+<span><span class="co">#&gt; 5 Reduced Coping Strategy Index (rCSI)</span></span>
+<span><span class="co">#&gt; 6 Reduced Coping Strategy Index (rCSI)</span></span>
+<span><span class="co">#&gt;                                                 indicator_name</span></span>
+<span><span class="co">#&gt; 1 pct_hh_m2671_hh_ddc_disp_reason_primary_disaster_non_climate</span></span>
+<span><span class="co">#&gt; 2                                      mean_i0007_hh_fcs_score</span></span>
+<span><span class="co">#&gt; 3                          pct_hh_i0006_hh_hhs_category_severe</span></span>
+<span><span class="co">#&gt; 4                     pct_hh_i0006_hh_hhs_category_very_severe</span></span>
+<span><span class="co">#&gt; 5                         pct_hh_i0002_hh_rcsi_category_phase1</span></span>
+<span><span class="co">#&gt; 6                         pct_hh_i0002_hh_rcsi_category_phase2</span></span>
+<span><span class="co">#&gt;                                                                                                                  description</span></span>
+<span><span class="co">#&gt; 1 Percentage of IDP households that reported a non-climate-related disaster (e.g., landslide) as the reason for displacement</span></span>
+<span><span class="co">#&gt; 2                                                      Mean (average) food consumption score. The score ranges from 0 to 112</span></span>
+<span><span class="co">#&gt; 3                                                   Percentage of households whose household hunger scale category is Severe</span></span>
+<span><span class="co">#&gt; 4                                              Percentage of households whose household hunger scale category is Very Severe</span></span>
+<span><span class="co">#&gt; 5                                          Percentage of households whose reduced coping strategy index falls within Phase 1</span></span>
+<span><span class="co">#&gt; 6                                          Percentage of households whose reduced coping strategy index falls within Phase 2</span></span>
+<span><span class="co">#&gt;   data_type</span></span>
+<span><span class="co">#&gt; 1     Float</span></span>
+<span><span class="co">#&gt; 2     Float</span></span>
+<span><span class="co">#&gt; 3     Float</span></span>
+<span><span class="co">#&gt; 4     Float</span></span>
+<span><span class="co">#&gt; 5     Float</span></span>
+<span><span class="co">#&gt; 6     Float</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="get-hna-data-at-admin-level-2">Get HNA Data at Admin Level 2<a class="anchor" aria-label="anchor" href="#get-hna-data-at-admin-level-2"></a>
+</h2>
+<p>The <code><a href="../reference/hna_get_admin2.html">hna_get_admin2()</a></code> function retrieves HNA data at
+Admin Level 2. Unlike the other functions, it returns a list of two
+elements: <code>data</code>, a data frame holding the requested data,
+and <code>pagination</code>, a list containing metadata on
+pagination.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Fetch HNA data at Admin Level 2</span></span>
+<span><span class="va">hna_admin2</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="../reference/hna_get_admin2.html">hna_get_admin2</a></span><span class="op">(</span>admin0_name <span class="op">=</span> <span class="st">"Nigeria"</span>,</span>
+<span>                 year <span class="op">=</span> <span class="fl">2025</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Display the first few rows of the data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">hna_admin2</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; data frame with 0 columns and 0 rows</span></span>
+<span></span>
+<span><span class="co"># Display the pagination metadata</span></span>
+<span><span class="va">hna_admin2</span><span class="op">$</span><span class="va">pagination</span></span>
+<span><span class="co">#&gt; $currentPage</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $totalPages</span></span>
+<span><span class="co">#&gt; [1] 0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $totalItems</span></span>
+<span><span class="co">#&gt; [1] 0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $hasNextPage</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $hasPreviousPage</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="function-arguments">Function Arguments<a class="anchor" aria-label="anchor" href="#function-arguments"></a>
 </h2>
 <p>Here are the descriptions for the arguments used in the functions of
-the <code>dtmapi</code> package to get IDP data. At least one of the
-following parameters must be provided: Operation, CountryName, or
-Admin0Pcode.</p>
+the <code>dtmapi</code> package to get data.</p>
 <div class="section level3">
-<h3 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a>
+<h3 id="baseline-arguments">Baseline Arguments<a class="anchor" aria-label="anchor" href="#baseline-arguments"></a>
 </h3>
+<p>For the <code>baseline_</code> functions that get IDP data, at least
+one of the following parameters must be provided: operation,
+admin0_name, or admin0_pcode.</p>
 <ul>
-<li><p><strong>Operation</strong>: Optional; Name of the DTM operation
+<li><p><strong>operation</strong>: Optional; Name of the DTM operation
 for which the data was collected.</p></li>
-<li><p><strong>CountryName</strong>: Optional; Name of the country where
+<li><p><strong>admin0_name</strong>: Optional; Name of the country where
 the data was collected.</p></li>
-<li><p><strong>Admin0Pcode</strong>: Optional; Country code (ISO 3166-1
+<li><p><strong>admin0_pcode</strong>: Optional; Country code (ISO 3166-1
 alpha-3).</p></li>
-<li><p><strong>Admin1Name</strong>: Optional; Name of level 1
+<li><p><strong>admin1_name</strong>: Optional; Name of level 1
 administrative boundaries.</p></li>
-<li><p><strong>Admin1Pcode</strong>: Optional; Place code of level 1
+<li><p><strong>admin1_pcode</strong>: Optional; Place code of level 1
 administrative boundaries.</p></li>
-<li><p><strong>Admin2Name</strong>: Optional; Name of level 2
+<li><p><strong>admin2_name</strong>: Optional; Name of level 2
 administrative boundaries.</p></li>
-<li><p><strong>Admin2Pcode</strong>: Optional; Place code of level 2
+<li><p><strong>admin2_pcode</strong>: Optional; Place code of level 2
 administrative boundaries.</p></li>
-<li><p><strong>FromReportingDate</strong>: Optional; Start date for the
+<li><p><strong>from_reporting_date</strong>: Optional; Start date for
+the reporting period (format: ‘YYYY-MM-DD’).</p></li>
+<li><p><strong>to_reporting_date</strong>: Optional; End date for the
 reporting period (format: ‘YYYY-MM-DD’).</p></li>
-<li><p><strong>ToReportingDate</strong>: Optional; End date for the
-reporting period (format: ‘YYYY-MM-DD’).</p></li>
-<li><p><strong>FromRoundNumber</strong>: Optional; Starting round number
+<li><p><strong>from_round_number</strong>: Optional; Starting round
+number for the data collection range.</p></li>
+<li><p><strong>to_round_number</strong>: Optional; Ending round number
 for the data collection range.</p></li>
-<li><p><strong>ToRoundNumber</strong>: Optional; Ending round number for
-the data collection range.</p></li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="hna-arguments">HNA Arguments<a class="anchor" aria-label="anchor" href="#hna-arguments"></a>
+</h3>
+<p>For <code><a href="../reference/hna_get_admin2.html">hna_get_admin2()</a></code>, at least one of the following
+parameters must be provided: admin0_name or admin0_pcode.</p>
+<ul>
+<li><p><strong>admin0_name</strong>: Optional; Name of the country where
+the data was collected.</p></li>
+<li><p><strong>admin0_pcode</strong>: Optional; Country code (ISO 3166-1
+alpha-3).</p></li>
+<li><p><strong>population_group</strong>: Optional; A specific
+subpopulation (e.g. internally displaced persons).</p></li>
+<li><p><strong>year</strong>: Optional; Year of data
+collection.</p></li>
+<li><p><strong>page</strong>: Optional; Pagination, to fetch a certain
+chunk of the data.</p></li>
 </ul>
 </div>
 </div>
@@ -315,7 +545,7 @@ the data collection range.</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
