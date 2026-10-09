@@ -6,8 +6,8 @@
 \usage{
 baseline_get_admin0(
   operation = NULL,
-  country_name = NULL,
-  admin0pcode = NULL,
+  admin0_name = NULL,
+  admin0_pcode = NULL,
   from_reporting_date = NULL,
   to_reporting_date = NULL,
   from_round_number = 0,
@@ -17,9 +17,9 @@ baseline_get_admin0(
 \arguments{
 \item{operation}{Optional; Name of the DTM operation for which the data was collected.}
 
-\item{country_name}{Optional; Name of the country where the data was collected.}
+\item{admin0_name}{Optional; Name of the country where the data was collected.}
 
-\item{admin0pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
+\item{admin0_pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
 
 \item{from_reporting_date}{Optional; Start date for the reporting period (format: 'YYYY-MM-DD').}
 
@@ -34,12 +34,12 @@ A data frame containing the IDP Admin0 data matching the specified criteria.
 }
 \description{
 Retrieve IDP data at Admin 0 level based on specified parameters.
-At least one of the following parameters must be provided: operation, country_name, or admin0pcode.
+At least one of the following parameters must be provided: operation, admin0_name, or admin0_pcode.
 }
 \examples{
 \dontshow{if (!identical(Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY"), "")) withAutoprint(\{ # examplesIf}
 # Fetch IDP data at Admin Level 0
-idp_admin0_df <- baseline_get_admin0(country_name = "Ethiopia",
+idp_admin0_df <- baseline_get_admin0(admin0_name = "Ethiopia",
                                      from_round_number = 1, 
                                      to_round_number = 10)
 head(idp_admin0_df)
