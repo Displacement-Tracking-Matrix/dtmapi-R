@@ -12,12 +12,12 @@
 
 hna_get_countries <- function() {
   tryCatch({
-    api_url <- "http://dtmapi.iom.int/HNA/v1/country-list"
+    api_url <- "https://dtmapi.iom.int/HNA/v1/country-list"
 
     response <-
       request(api_url) |>
       req_headers_redacted("Cache-Control" = "no-cache",
-                           "Ocp-Apim-Subscription-Key" = baseline_get_subscription_key()
+                           "Ocp-Apim-Subscription-Key" = hna_get_subscription_key()
                           ) |>
       req_perform()
 
@@ -27,12 +27,9 @@ hna_get_countries <- function() {
     }
 
     json_data <- resp_body_json(response, simplifyVector = TRUE)
-    df <- as.data.frame(json_data$result) # as.data.frame() for consistency's sake.
-
-    return(df)
+    as.data.frame(json_data$result)
 
   }, error = function(e) {
-    # Handle and report errors
-    stop("API request failed: ", e$message)
+    stop(e$message)
   })
 }

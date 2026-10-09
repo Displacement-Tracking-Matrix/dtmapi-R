@@ -13,7 +13,7 @@ baseline_get_countries <- function() {
   tryCatch({
     api_url <- "https://dtmapi.iom.int/v3/displacement/country-list"
 
-    response <- 
+    response <-
       request(api_url) |>
       req_headers_redacted("Cache-Control" = "no-cache",
                            "Ocp-Apim-Subscription-Key" = baseline_get_subscription_key()
