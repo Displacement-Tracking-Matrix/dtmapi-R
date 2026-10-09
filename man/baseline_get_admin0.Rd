@@ -5,43 +5,43 @@
 \title{Fetch IDP Admin0 Data}
 \usage{
 baseline_get_admin0(
-  Operation = NULL,
-  CountryName = NULL,
-  Admin0Pcode = NULL,
-  FromReportingDate = NULL,
-  ToReportingDate = NULL,
-  FromRoundNumber = 0,
-  ToRoundNumber = 0
+  operation = NULL,
+  country_name = NULL,
+  admin0pcode = NULL,
+  from_reporting_date = NULL,
+  to_reporting_date = NULL,
+  from_round_number = 0,
+  to_round_number = 0
 )
 }
 \arguments{
-\item{Operation}{Optional; Name of the DTM operation for which the data was collected.}
+\item{operation}{Optional; Name of the DTM operation for which the data was collected.}
 
-\item{CountryName}{Optional; Name of the country where the data was collected.}
+\item{country_name}{Optional; Name of the country where the data was collected.}
 
-\item{Admin0Pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
+\item{admin0pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
 
-\item{FromReportingDate}{Optional; Start date for the reporting period (format: 'YYYY-MM-DD').}
+\item{from_reporting_date}{Optional; Start date for the reporting period (format: 'YYYY-MM-DD').}
 
-\item{ToReportingDate}{Optional; End date for the reporting period (format: 'YYYY-MM-DD').}
+\item{to_reporting_date}{Optional; End date for the reporting period (format: 'YYYY-MM-DD').}
 
-\item{FromRoundNumber}{Optional; Starting round number for the data collection range.}
+\item{from_round_number}{Optional; Starting round number for the data collection range.}
 
-\item{ToRoundNumber}{Optional; Ending round number for the data collection range.}
+\item{to_round_number}{Optional; Ending round number for the data collection range.}
 }
 \value{
 A data frame containing the IDP Admin0 data matching the specified criteria.
 }
 \description{
 Retrieve IDP data at Admin 0 level based on specified parameters.
-At least one of the following parameters must be provided: Operation, CountryName, or Admin0Pcode.
+At least one of the following parameters must be provided: operation, country_name, or admin0pcode.
 }
 \examples{
 \dontshow{if (!identical(Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY"), "")) withAutoprint(\{ # examplesIf}
 # Fetch IDP data at Admin Level 0
-idp_admin0_df <- baseline_get_admin0(CountryName = "Ethiopia",
-                                     FromRoundNumber = 1, 
-                                     ToRoundNumber = 10)
+idp_admin0_df <- baseline_get_admin0(country_name = "Ethiopia",
+                                     from_round_number = 1, 
+                                     to_round_number = 10)
 head(idp_admin0_df)
 \dontshow{\}) # examplesIf}
 }
