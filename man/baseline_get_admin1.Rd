@@ -6,10 +6,10 @@
 \usage{
 baseline_get_admin1(
   operation = NULL,
-  country_name = NULL,
-  admin0pcode = NULL,
-  admin1name = NULL,
-  admin1pcode = NULL,
+  admin0_name = NULL,
+  admin0_pcode = NULL,
+  admin1_name = NULL,
+  admin1_pcode = NULL,
   from_reporting_date = NULL,
   to_reporting_date = NULL,
   from_round_number = NULL,
@@ -19,13 +19,13 @@ baseline_get_admin1(
 \arguments{
 \item{operation}{Optional; Name of the DTM operation for which the data was collected.}
 
-\item{country_name}{Optional; Name of the country where the data was collected.}
+\item{admin0_name}{Optional; Name of the country where the data was collected.}
 
-\item{admin0pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
+\item{admin0_pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
 
-\item{admin1name}{Optional; Name of level 1 administrative boundaries.}
+\item{admin1_name}{Optional; Name of level 1 administrative boundaries.}
 
-\item{admin1pcode}{Optional; Place code of level 1 administrative boundaries.}
+\item{admin1_pcode}{Optional; Place code of level 1 administrative boundaries.}
 
 \item{from_reporting_date}{Optional; Start date for the reporting period (format: 'YYYY-MM-DD').}
 
@@ -40,7 +40,7 @@ A data frame containing the IDP Admin1 data matching the specified criteria.
 }
 \description{
 Retrieve IDP data at Admin 1 level based on specified parameters.
-At least one of the following parameters must be provided: operation, country_name, or admin0pcode.
+At least one of the following parameters must be provided: operation, admin0_name, or admin0_pcode.
 }
 \examples{
 \dontshow{if (!identical(Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY"), "")) withAutoprint(\{ # examplesIf}

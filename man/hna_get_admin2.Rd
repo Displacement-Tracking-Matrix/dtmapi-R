@@ -5,17 +5,17 @@
 \title{Fetch HNA Admin2 Data}
 \usage{
 hna_get_admin2(
-  admin0name = NULL,
-  admin0pcode = NULL,
+  admin0_name = NULL,
+  admin0_pcode = NULL,
   population_group = NULL,
   year = NULL,
   page = NULL
 )
 }
 \arguments{
-\item{admin0name}{Optional; Name of the country where the data was collected.}
+\item{admin0_name}{Optional; Name of the country where the data was collected.}
 
-\item{admin0pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
+\item{admin0_pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
 
 \item{population_group}{Optional; A specific subpopulation (e.g. internally
 displaced persons).}
@@ -32,7 +32,7 @@ contains metadata on pagination.
 \description{
 Retrieve Household Needs Assessment data at Admin 2 level based on specified parameters.
 At least one of the following parameters must be provided:
-admin0name or admin0pcode.
+admin0_name or admin0_pcode.
 }
 \examples{
 \dontshow{if (!identical(Sys.getenv("HNA_DTM_SUBSCRIPTION_KEY"), "")) withAutoprint(\{ # examplesIf}

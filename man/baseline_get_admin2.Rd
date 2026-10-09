@@ -6,12 +6,12 @@
 \usage{
 baseline_get_admin2(
   operation = NULL,
-  country_name = NULL,
-  admin0pcode = NULL,
-  admin1name = NULL,
-  admin1pcode = NULL,
-  admin2name = NULL,
-  admin2pcode = NULL,
+  admin0_name = NULL,
+  admin0_pcode = NULL,
+  admin1_name = NULL,
+  admin1_pcode = NULL,
+  admin2_name = NULL,
+  admin2_pcode = NULL,
   from_reporting_date = NULL,
   to_reporting_date = NULL,
   from_round_number = 0,
@@ -21,17 +21,17 @@ baseline_get_admin2(
 \arguments{
 \item{operation}{Optional; Name of the DTM operation for which the data was collected.}
 
-\item{country_name}{Optional; Name of the country where the data was collected.}
+\item{admin0_name}{Optional; Name of the country where the data was collected.}
 
-\item{admin0pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
+\item{admin0_pcode}{Optional; Country code (ISO 3166-1 alpha-3).}
 
-\item{admin1name}{Optional; Name of level 1 administrative boundaries.}
+\item{admin1_name}{Optional; Name of level 1 administrative boundaries.}
 
-\item{admin1pcode}{Optional; Place code of level 1 administrative boundaries.}
+\item{admin1_pcode}{Optional; Place code of level 1 administrative boundaries.}
 
-\item{admin2name}{Optional; Name of level 2 administrative boundaries.}
+\item{admin2_name}{Optional; Name of level 2 administrative boundaries.}
 
-\item{admin2pcode}{Optional; Place code of level 2 administrative boundaries.}
+\item{admin2_pcode}{Optional; Place code of level 2 administrative boundaries.}
 
 \item{from_reporting_date}{Optional; Start date for the reporting period (format: 'YYYY-MM-DD').}
 
@@ -46,12 +46,12 @@ A data frame containing the IDP Admin2 data matching the specified criteria.
 }
 \description{
 Retrieve IDP data at Admin 2 level based on specified parameters.
-At least one of the following parameters must be provided: operation, country_name, or admin0pcode.
+At least one of the following parameters must be provided: operation, admin0_name, or admin0_pcode.
 }
 \examples{
 \dontshow{if (!identical(Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY"), "")) withAutoprint(\{ # examplesIf}
 # Fetch IDP data at Admin Level 2
-idp_admin2_df <- baseline_get_admin2(operation = "Yemen conflict", country_name = "Yemen")
+idp_admin2_df <- baseline_get_admin2(operation = "Yemen conflict", admin0_name = "Yemen")
 head(idp_admin2_df)
 \dontshow{\}) # examplesIf}
 }
