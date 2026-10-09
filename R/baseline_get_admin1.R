@@ -16,7 +16,11 @@
 #' @export
 #' @examplesIf !identical(Sys.getenv("BASELINE_DTM_SUBSCRIPTION_KEY"), "")
 #' # Fetch IDP data at Admin Level 1
-#' idp_admin1_df <- baseline_get_admin1(admin0_name = "Sudan", admin1_name = "Blue Nile")
+#' idp_admin1_df <- baseline_get_admin1(
+#'    admin0_name = "Sudan",
+#'    from_reporting_date = "2020-01-01",
+#'    to_reporting_date = "2024-08-15"
+#' )
 #' head(idp_admin1_df)
 #' @importFrom httr2 request req_perform req_url_query resp_status resp_body_json req_headers_redacted
 

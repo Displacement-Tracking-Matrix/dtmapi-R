@@ -10,7 +10,7 @@ hna_get_countries()
 A data frame containing the list of all countries covered.
 }
 \description{
-Retrieve all countries for which DTM Humanitarian Needs Assessment (HNA)
+Retrieve all countries for which DTM Household Needs Assessment (HNA)
 data is publicly available through the API.
 }
 \examples{

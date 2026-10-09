@@ -1,6 +1,6 @@
 #' Fetch All Countries (HNA)
 #'
-#' Retrieve all countries for which DTM Humanitarian Needs Assessment (HNA)
+#' Retrieve all countries for which DTM Household Needs Assessment (HNA)
 #' data is publicly available through the API.
 #'
 #' @return A data frame containing the list of all countries covered.

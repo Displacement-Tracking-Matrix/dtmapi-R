@@ -39,7 +39,7 @@ message("No token available. Code chunks will not be evaluated.")
 The `dtmapi` package provides functions to interact with the Displacement Tracking Matrix (DTM) API. This vignette demonstrates how to use the package's functions to fetch data from the API.
 
 Please note that despite the overarching term DTM API, there are,
-in fact, two distinct APIs which are currently available. These are the Baseline API (which is what simply "the DTM API" *used* to refer to) and the Humanitarian Needs Assessment (HNA) API.
+in fact, two distinct APIs which are currently available. These are the Baseline API (which is what simply "the DTM API" *USED* to refer to) and the Humanitarian Needs Assessment (HNA) API.
 
 Reflecting this, this R package comes with a set of functions that are clearly named so as to distinguish between these two APIs. Those prefixed with `baseline_` and those prefixed with `hna_`.
 
@@ -186,11 +186,11 @@ The `baseline_get_admin1()` function retrieves IDP data aggregated at Admin Leve
 
 ```{r get_idp_admin1}
 # Fetch IDP data at Admin Level 1
-idp_admin1_df <-
-  baseline_get_admin1(admin0_name = "Sudan",
-                      admin1_name = "Blue Nile",
-                      from_reporting_date = "2020-01-01",
-                      to_reporting_date = "2024-08-15")
+idp_admin1_df <- baseline_get_admin1(
+  admin0_name = "Sudan",
+  from_reporting_date = "2020-01-01",
+  to_reporting_date = "2024-08-15"
+)
 
 # Display the first few rows of the data frame
 head(idp_admin1_df)
@@ -199,6 +199,7 @@ head(idp_admin1_df)
 ## Get IDP Data at Admin Level 2
 
 The `baseline_get_admin2()` function retrieves IDP data aggregated at Admin Level 2.
+
 ```{r get_idp_admin2}
 # Fetch IDP data at Admin Level 2
 idp_admin2_df <-
@@ -211,7 +212,7 @@ head(idp_admin2_df)
 
 ## Get All Countries (HNA)
 
-The `hna_get_countries()` function retrieves a list of all countries covered by the DTM Household Needs Assessment (HNA) API.
+The `hna_get_countries()` function retrieves a list of all countries covered by the DTM Humanitarian Needs Assessment (HNA) API.
 
 ```{r hna_get_country}
 # Fetch all HNA countries
@@ -247,7 +248,7 @@ hna_admin2 <-
 head(hna_admin2$data)
 
 # Display the pagination metadata
-hna_admin2$pagination
+print(hna_admin2$pagination)
 ```
 
 ## Function Arguments

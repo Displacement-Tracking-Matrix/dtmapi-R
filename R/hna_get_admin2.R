@@ -1,7 +1,6 @@
 #' Fetch HNA Admin2 Data
 #'
-#' Retrieve Household Needs Assessment data at Admin 2 level based on
-#' specified parameters.
+#' Retrieve Household Needs Assessment data at Admin 2 level based on specified parameters.
 #' At least one of the following parameters must be provided:
 #' admin0_name or admin0_pcode.
 #'
@@ -17,8 +16,8 @@
 #' @export
 #' @examplesIf !identical(Sys.getenv("HNA_DTM_SUBSCRIPTION_KEY"), "")
 #' # Fetch HNA data at Admin Level 2
-#' hna_admin2_df <- hna_get_admin2(admin0_name = "Yemen")
-#' head(idp_admin2_df)
+#' hna_admin2 <- hna_get_admin2(admin0_name = "Mozambique", year = 2025)
+#' head(hna_admin2)
 #' @importFrom httr2 request req_perform req_url_query
 #' @importFrom httr2 resp_status resp_body_string req_headers_redacted
 

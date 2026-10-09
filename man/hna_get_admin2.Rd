@@ -30,15 +30,14 @@ The former holds the requested data, and the latter is
 contains metadata on pagination.
 }
 \description{
-Retrieve Household Needs Assessment data at Admin 2 level based on
-specified parameters.
+Retrieve Household Needs Assessment data at Admin 2 level based on specified parameters.
 At least one of the following parameters must be provided:
 admin0_name or admin0_pcode.
 }
 \examples{
 \dontshow{if (!identical(Sys.getenv("HNA_DTM_SUBSCRIPTION_KEY"), "")) withAutoprint(\{ # examplesIf}
 # Fetch HNA data at Admin Level 2
-hna_admin2_df <- hna_get_admin2(admin0_name = "Yemen")
-head(idp_admin2_df)
+hna_admin2 <- hna_get_admin2(admin0_name = "Mozambique", year = 2025)
+head(hna_admin2)
 \dontshow{\}) # examplesIf}
 }
