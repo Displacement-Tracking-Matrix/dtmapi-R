@@ -310,18 +310,42 @@ function retrieves IDP data aggregated at Admin Level 1.
 ``` r
 
 # Fetch IDP data at Admin Level 1
-idp_admin1_df <-
-  baseline_get_admin1(admin0_name = "Sudan",
-                      admin1_name = "Blue Nile",
-                      from_reporting_date = "2020-01-01",
-                      to_reporting_date = "2024-08-15")
-#> Error in `value[[3L]]()`:
-#> ! API request failed: HTTP 500 Internal Server Error.
+idp_admin1_df <- baseline_get_admin1(
+  admin0_name = "Sudan",
+  from_reporting_date = "2020-01-01",
+  to_reporting_date = "2024-08-15"
+)
 
 # Display the first few rows of the data frame
 head(idp_admin1_df)
-#> Error:
-#> ! object 'idp_admin1_df' not found
+#>      id       operation admin0Name admin0Pcode     admin1Name admin1Pcode
+#> 1 20177 Darfur conflict      Sudan         SDN Central Darfur        SD06
+#> 2 20178 Darfur conflict      Sudan         SDN Central Darfur        SD06
+#> 3 29481 Darfur conflict      Sudan         SDN South Kordofan        SD07
+#> 4 20254 Darfur conflict      Sudan         SDN    East Darfur        SD05
+#> 5 20255 Darfur conflict      Sudan         SDN    East Darfur        SD05
+#> 6 20256 Darfur conflict      Sudan         SDN    East Darfur        SD05
+#>   numPresentIdpInd       reportingDate yearReportingDate monthReportingDate
+#> 1           349709 2020-01-30T00:00:00              2020                  1
+#> 2            27500 2020-01-30T00:00:00              2020                  1
+#> 3           217683 2020-01-30T00:00:00              2020                  1
+#> 4            92867 2020-01-30T00:00:00              2020                  1
+#> 5             6230 2020-01-30T00:00:00              2020                  1
+#> 6              600 2020-01-30T00:00:00              2020                  1
+#>   roundNumber displacementReason numberMales numberFemales idpOriginAdmin1Name
+#> 1           1           Conflict          NA            NA      Central Darfur
+#> 2           1           Conflict          NA            NA        North Darfur
+#> 3           1           Conflict          NA            NA      South Kordofan
+#> 4           1           Conflict          NA            NA         East Darfur
+#> 5           1           Conflict          NA            NA        North Darfur
+#> 6           1           Conflict          NA            NA        South Darfur
+#>   idpOriginAdmin1Pcode assessmentType
+#> 1                 SD06             BA
+#> 2                 SD02             BA
+#> 3                 SD07             BA
+#> 4                 SD05             BA
+#> 5                 SD02             BA
+#> 6                 SD03             BA
 ```
 
 ## Get IDP Data at Admin Level 2
@@ -380,8 +404,8 @@ head(idp_admin2_df)
 
 The
 [`hna_get_countries()`](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/hna_get_countries.md)
-function retrieves a list of all countries covered by the DTM Household
-Needs Assessment (HNA) API.
+function retrieves a list of all countries covered by the DTM
+Humanitarian Needs Assessment (HNA) API.
 
 ``` r
 
@@ -462,13 +486,27 @@ on pagination.
 hna_admin2 <-
   hna_get_admin2(admin0_name = "Nigeria",
                  year = 2025)
+#> List of 5
+#>  $ result           :List of 2
+#>   ..$ data      : list()
+#>   ..$ pagination:List of 5
+#>   .. ..$ currentPage    : int 1
+#>   .. ..$ totalPages     : int 0
+#>   .. ..$ totalItems     : int 0
+#>   .. ..$ hasNextPage    : logi FALSE
+#>   .. ..$ hasPreviousPage: logi FALSE
+#>  $ statusCode       : int 204
+#>  $ isSuccess        : logi TRUE
+#>  $ errorMessages    : chr "No matching data found. Please verify your input and try again."
+#>  $ totalRecordsCount: int 0
+#> NULL
 
 # Display the first few rows of the data
 head(hna_admin2$data)
 #> data frame with 0 columns and 0 rows
 
 # Display the pagination metadata
-hna_admin2$pagination
+print(hna_admin2$pagination)
 #> $currentPage
 #> [1] 1
 #> 

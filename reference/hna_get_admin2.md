@@ -49,7 +49,7 @@ data, and the latter is contains metadata on pagination.
 ``` r
 if (FALSE) { # !identical(Sys.getenv("HNA_DTM_SUBSCRIPTION_KEY"), "")
 # Fetch HNA data at Admin Level 2
-hna_admin2_df <- hna_get_admin2(admin0_name = "Mozambique", year = 2025)
+hna_admin2 <- hna_get_admin2(admin0_name = "Mozambique", year = 2025)
 head(hna_admin2)
 }
 ```
