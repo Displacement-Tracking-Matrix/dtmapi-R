@@ -7,8 +7,20 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 ```{r setup, include = FALSE}
-subscription_key_available <- !identical(Sys.getenv("DTM_SUBSCRIPTION_KEY"), "")
-key_available <- subscription_key_available
+key_available <- httr2::secret_has_key("DTMAPIR_KEY")
+
+if (key_available) {
+  Sys.setenv(
+    BASELINE_DTM_SUBSCRIPTION_KEY = httr2::secret_decrypt(
+      "a6Duw21vazOwY2uvRjZKcNhsCrqkFKNKZLjpveBU55Ya6pmbPIwjRfYD6QM30aoy",
+      "DTMAPIR_KEY"
+    ),
+    HNA_DTM_SUBSCRIPTION_KEY = httr2::secret_decrypt(
+      "7ilgaf5ZSF9sqM2A-3RQgji0kiAfkqgCx1JIwbrMZKPayEtc6979ZCAx7qPD7ghD",
+      "DTMAPIR_KEY"
+    )
+  )
+}
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -24,71 +36,97 @@ message("No token available. Code chunks will not be evaluated.")
 
 ## Introduction
 
-The `dtmapi` package provides functions to interact with the Displacement Tracking Matrix (DTM) API. This vignette demonstrates how to use the package's functions to fetch data from the API. The functions covered include:
+The `dtmapi` package provides functions to interact with the Displacement Tracking Matrix (DTM) API. This vignette demonstrates how to use the package's functions to fetch data from the API.
 
--   `get_all_countries()`
+Please note that despite the overarching term DTM API, there are,
+in fact, two distinct APIs which are currently available. These are the Baseline API (which is what simply "the DTM API" *used* to refer to) and the Humanitarian Needs Assessment (HNA) API.
 
--   `get_all_operations()`
+Reflecting this, this R package comes with a set of functions that are clearly named so as to distinguish between these two APIs. Those prefixed with `baseline_` and those prefixed with `hna_`.
 
--   `get_idp_admin0_data()`
+The functions covered include:
 
--   `get_idp_admin1_data()`
+-   `baseline_get_countries()`
 
--   `get_idp_admin2_data()`
+-   `baseline_get_operations()`
+
+-   `baseline_get_admin0()`
+
+-   `baseline_get_admin1()`
+
+-   `baseline_get_admin2()`
+
+-   `hna_get_countries()`
+
+-   `hna_get_catalog()`
+
+-   `hna_get_admin2()`
+
+As well as these functions which are concern your API subscription keys.
+
+- `baseline_set_subscription_key()`
+
+- `baseline_get_subscription_key()`
+
+- `hna_set_subscription_key()`
+
+- `hna_get_subscription_key()`
+
+Notice that as a consequence of there being two distinct APIs, each API has its own pair of subscription key-related functions. Their usage is covered in this guide.
 
 ## Install Package
 
-The `dtmapi` package is available on CRAN and can be installed using the following command:
+The latest version of the `dtmapi` package can be installed directly from [GitHub](https://github.com/Displacement-Tracking-Matrix/dtmapi-R) using the following command (make sure the `remotes` package is installed):
 ```{r install, eval = FALSE}
-install.packages("dtmapi")
+remotes::install_github("Displacement-Tracking-Matrix/dtmapi-R")
 ```
 
 ## Load Package
 
 After installation, load the package using library():
-```{r import}
+```{r import, eval = TRUE}
 library(dtmapi)
 ```
 
-## Setting the Subscription Key
+## Setting the Subscription Keys
 After creating a subscription key on https://dtm-apim-portal.iom.int, that key
-needs to be given to R. To do this, the `DTM_SUBSCRIPTION_KEY` environment variable needs to be defined as the subscription key. There are three main ways to do this, as described below.
+needs to be given to R. The package has two sets of functions, each with its own subscription key: the `baseline_` functions use the `BASELINE_DTM_SUBSCRIPTION_KEY` environment variable, and the `hna_` functions use the `HNA_DTM_SUBSCRIPTION_KEY` environment variable. There are three main ways to set these, as described below. The examples use the Baseline key; the HNA key works the same way, with `hna_set_subscription_key()` and `HNA_DTM_SUBSCRIPTION_KEY` in place of `baseline_set_subscription_key()` and `BASELINE_DTM_SUBSCRIPTION_KEY`.
 
-### 1. Using `set_subscription_key()`: interactive, safe option
+### 1. Using `baseline_set_subscription_key()`: interactive, safe option
 
-By calling `set_subscription_key()`, after which the user is prompted to input the key into a pop-up field. 
+By calling `baseline_set_subscription_key()`, after which the user is prompted to input the key into a pop-up field.
 ```{r set_subscription_key_demo, eval = FALSE}
-set_subscription_key()
+baseline_set_subscription_key()
 ```
 
 Note that if the environment is not interactive, it is likely for the user to receive an error message instead, such as in the case of using Google Colab. In such cases see the other options described further below.
 
-### 2. Using `set_subscription_key()`: the non-interactive, discouraged option
+### 2. Using `baseline_set_subscription_key()`: the non-interactive, discouraged option
 
-If the interactive option above fails for the user, such that there is an error instead of a pop-up, the user may rely on passing their key directly into `set_subscription_key()` by naming the `key` parameter. 
+If the interactive option above fails for the user, such that there is an error instead of a pop-up, the user may rely on passing their key directly into `baseline_set_subscription_key()` by naming the `key` parameter.
 ```{r, eval = FALSE}
 # Specifying `key` is required for non-interactive use.
-set_subscription_key(key = "mysubscriptionkey")
+baseline_set_subscription_key(key = "mysubscriptionkey")
 ```
 
-This is basically using `set_subscription_key()` as a wrapper for setting up the environment variable `DTM_SUBSCRIPTION_KEY` using base R's `Sys.setenv()`, as shown below:
+This is basically using `baseline_set_subscription_key()` as a wrapper for setting up the environment variable `BASELINE_DTM_SUBSCRIPTION_KEY` using base R's `Sys.setenv()`, as shown below:
 ```{r, eval = FALSE}
-Sys.setenv("DTM_SUBSCRIPTION_KEY" = "mysubscriptionkey")
+Sys.setenv("BASELINE_DTM_SUBSCRIPTION_KEY" = "mysubscriptionkey")
 ```
 
 Please note that by doing this in, say, a Google Colab script, .R script, or Jupyter notebook, you are leaving a secret (your subscription key) exposed and available for anyone to read with ease. This is why this option is not recommended, but it will allow you to get things working faster if you are not familiar with managing secrets in a non-interactive context.
 
 ### 3. Setting up the environment variable with good secrets management
 
-If one would like to avoid re-inputting the subscription key for each R session, and they would like to set the subscription in a way that is both non-interactive and safer, then this becomes a matter of knowing the right secrets management practices depending on where R is being used (e.g. whether that is in a local desktop, a cloud-based programming environment, a server, etc.).
+If one would like to avoid re-inputting the subscription key for each R session, and they would like to set the subscription key in a way that is both non-interactive and safer, then this becomes a matter of knowing the right secrets management practices depending on where R is being used (e.g. whether that is in a local desktop, a cloud-based programming environment, a server, etc.).
 
-In the vast majority of cases, the approach is the fundamentally the same: anything that directly stores your key should be **separate from the rest of your code**, and your code accesses the key through an **environment variable**. That is the main principle to the most common way to manage your secrets. What differs by where R is being used is _how_ this principle is applied. Below, the user guide will mostly focus on how this is handled when using a code editor such as VSCode, RStudio, or Positron, as this is the most common case. If these do not reflect your circumstance or use-case, then researching how to manage secrets generally for that circumstance should suffice, as the only thing specific about doing so for the `dtmapi` package is just the name of the environment variable, `DTM_SUBSCRIPTION_KEY`.
+In the vast majority of cases, the approach is the fundamentally the same: anything that directly stores your key should be **separate from the rest of your code**, and your code accesses the key through an **environment variable**. That is the main principle to the most common way to manage your secrets. What differs by where R is being used is _how_ this principle is applied. Below, the user guide will mostly focus on how this is handled when using a code editor such as VSCode, RStudio, or Positron, as this is the most common case. If these do not reflect your circumstance or use-case, then researching how to manage secrets generally for that circumstance should suffice, as the only thing specific about doing so for the `dtmapi` package is just the names of the environment variables, `BASELINE_DTM_SUBSCRIPTION_KEY` and `HNA_DTM_SUBSCRIPTION_KEY`.
 
 **Using a code editor such as VSCode or RStudio on a desktop:**
 
-Use a `.Renviron` file to set the key. You can create it from scratch, and its contents should look something like this:
+Use a `.Renviron` file to set the keys. You can create it from scratch, and its contents should look something like this:
 ```
-DTM_SUBSCRIPTION_KEY = "mysubscriptionkey"
+BASELINE_DTM_SUBSCRIPTION_KEY = "mysubscriptionkey"
+HNA_DTM_SUBSCRIPTION_KEY = "myothersubscriptionkey"
 Some_Other_Env_Var = "something else if desired"
 ```
 For this to work robustly, your `.Renviron` should be in the same *working directory* that you would like to use for your R sessions (i.e. it should be in the same location or folder that you would like your R sessions to use as a default). You can see which folder that currently is by running:
@@ -115,11 +153,11 @@ Remember: NEVER SHARE THE `.RENVIRON` FILE.
 
 ## Get All Countries
 
-The `get_all_countries()` function retrieves a list of all countries from the DTM API.
+The `baseline_get_countries()` function retrieves a list of all countries from the DTM API.
 
 ```{r get_country}
 # Fetch all countries
-countries_df <- get_all_countries()
+countries_df <- baseline_get_countries()
 
 # Display the first few rows of the data frame
 head(countries_df)
@@ -127,11 +165,11 @@ head(countries_df)
 
 ## Get All Operations
 
-The `get_all_operations()` function retrieves a list of all operations from the DTM API.
+The `baseline_get_operations()` function retrieves a list of all operations from the DTM API.
 
 ```{r get_operations}
 # Fetch all operations
-operations_df <- get_all_operations()
+operations_df <- baseline_get_operations()
 
 # Display the first few rows of the data frame
 head(operations_df)
@@ -139,14 +177,14 @@ head(operations_df)
 
 ## Get IDP Data at Admin Level 0
 
-The `get_idp_admin0_data()` function retrieves Internally Displaced Persons (IDP) data aggregated at the country level.
+The `baseline_get_admin0()` function retrieves Internally Displaced Persons (IDP) data aggregated at the country level.
 
 ```{r get_idp_admin0}
 # Fetch IDP data at Admin Level 0
 idp_admin0_df <-
-  get_idp_admin0_data(CountryName = "Ethiopia",
-                      FromRoundNumber = 0,
-                      ToRoundNumber = 10)
+  baseline_get_admin0(country_name = "Ethiopia",
+                      from_round_number = 0,
+                      to_round_number = 10)
 
 # Display the first few rows of the data frame
 head(idp_admin0_df)
@@ -154,15 +192,15 @@ head(idp_admin0_df)
 
 ## Get IDP Data at Admin Level 1
 
-The get_idp_admin1_data() function retrieves IDP data aggregated at Admin Level 1.
+The `baseline_get_admin1()` function retrieves IDP data aggregated at Admin Level 1.
 
 ```{r get_idp_admin1}
 # Fetch IDP data at Admin Level 1
-idp_admin1_df <-
-  get_idp_admin1_data(CountryName = "Sudan",
-                      Admin1Name = "Blue Nile",
-                      FromReportingDate = "2020-01-01",
-                      ToReportingDate = "2024-08-15")
+idp_admin1_df <- baseline_get_admin1(
+  admin0_name = "Sudan",
+  from_reporting_date = "2020-01-01",
+  to_reporting_date = "2024-08-15"
+)
 
 # Display the first few rows of the data frame
 head(idp_admin1_df)
@@ -170,40 +208,99 @@ head(idp_admin1_df)
 
 ## Get IDP Data at Admin Level 2
 
-The get_idp_admin2_data() function retrieves IDP data aggregated at Admin Level 2
+The `baseline_get_admin2()` function retrieves IDP data aggregated at Admin Level 2.
+
 ```{r get_idp_admin2}
 # Fetch IDP data at Admin Level 2
 idp_admin2_df <-
-  get_idp_admin2_data(Operation = "Displacement due to conflict",
-                      CountryName = "Lebanon")
+  baseline_get_admin2(operation = "Displacement due to conflict",
+                      country_name = "Lebanon")
 
 # Display the first few rows of the data frame
 head(idp_admin2_df)
 ```
+
+## Get All Countries (HNA)
+
+The `hna_get_countries()` function retrieves a list of all countries covered by the DTM Humanitarian Needs Assessment (HNA) API.
+
+```{r hna_get_country}
+# Fetch all HNA countries
+hna_countries_df <- hna_get_countries()
+
+# Display the first few rows of the data frame
+head(hna_countries_df)
+```
+
+## Get the HNA Data Catalog
+
+The `hna_get_catalog()` function retrieves the HNA data catalog, which provides information on the indicators available in the HNA API, including their name, description, and data type.
+
+```{r hna_get_catalog}
+# Fetch the HNA data catalog
+hna_catalog_df <- hna_get_catalog()
+
+# Display the first few rows of the data frame
+head(hna_catalog_df)
+```
+
+## Get HNA Data at Admin Level 2
+
+The `hna_get_admin2()` function retrieves HNA data at Admin Level 2. Unlike the other functions, it returns a list of two elements: `data`, a data frame holding the requested data, and `pagination`, a list containing metadata on pagination.
+
+```{r hna_get_admin2}
+# Fetch HNA data at Admin Level 2
+hna_admin2 <-
+  hna_get_admin2(admin0name = "Nigeria",
+                 year = 2025)
+
+# Display the first few rows of the data
+head(hna_admin2$data)
+
+# Display the pagination metadata
+print(hna_admin2$pagination)
+```
+
 ## Function Arguments
 
-Here are the descriptions for the arguments used in the functions of the `dtmapi` package to get IDP data. At least one of the following parameters must be provided: Operation, CountryName, or Admin0Pcode.
+Here are the descriptions for the arguments used in the functions of the `dtmapi` package to get data.
 
-### Arguments
+### Baseline Arguments
 
-- **Operation**: Optional; Name of the DTM operation for which the data was collected.
+For the `baseline_` functions that get IDP data, at least one of the following parameters must be provided: operation, country_name, or admin0pcode.
 
-- **CountryName**: Optional; Name of the country where the data was collected.
+- **operation**: Optional; Name of the DTM operation for which the data was collected.
 
-- **Admin0Pcode**: Optional; Country code (ISO 3166-1 alpha-3).
+- **country_name**: Optional; Name of the country where the data was collected.
 
-- **Admin1Name**: Optional; Name of level 1 administrative boundaries.
+- **admin0pcode**: Optional; Country code (ISO 3166-1 alpha-3).
 
-- **Admin1Pcode**: Optional; Place code of level 1 administrative boundaries.
+- **admin1name**: Optional; Name of level 1 administrative boundaries.
 
-- **Admin2Name**: Optional; Name of level 2 administrative boundaries.
+- **admin1pcode**: Optional; Place code of level 1 administrative boundaries.
 
-- **Admin2Pcode**: Optional; Place code of level 2 administrative boundaries.
+- **admin2name**: Optional; Name of level 2 administrative boundaries.
 
-- **FromReportingDate**: Optional; Start date for the reporting period (format: 'YYYY-MM-DD').
+- **admin2pcode**: Optional; Place code of level 2 administrative boundaries.
 
-- **ToReportingDate**: Optional; End date for the reporting period (format: 'YYYY-MM-DD').
+- **from_reporting_date**: Optional; Start date for the reporting period (format: 'YYYY-MM-DD').
 
-- **FromRoundNumber**: Optional; Starting round number for the data collection range.
+- **to_reporting_date**: Optional; End date for the reporting period (format: 'YYYY-MM-DD').
 
-- **ToRoundNumber**: Optional; Ending round number for the data collection range.
+- **from_round_number**: Optional; Starting round number for the data collection range.
+
+- **to_round_number**: Optional; Ending round number for the data collection range.
+
+### HNA Arguments
+
+For `hna_get_admin2()`, at least one of the following parameters must be provided: admin0name or admin0pcode.
+
+- **admin0name**: Optional; Name of the country where the data was collected.
+
+- **admin0pcode**: Optional; Country code (ISO 3166-1 alpha-3).
+
+- **population_group**: Optional; A specific subpopulation (e.g. internally displaced persons).
+
+- **year**: Optional; Year of data collection.
+
+- **page**: Optional; Pagination, to fetch a certain chunk of the data.
