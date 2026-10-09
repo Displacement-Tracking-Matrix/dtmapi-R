@@ -1,17 +1,17 @@
 #' Set the user's Baseline API subscription key in order to make the API calls.
 #'
 #' The API subscription key will be stored as an environment variable named
+#' "BASELINE_DTM_SUBSCRIPTION_KEY".
 #' @param key
 #' Either NULL or a string representing the key. NULL is preferable: using it
 #' will prompt the user to type the subscription key in a graphical user
-#' "BASELINE_DTM_SUBSCRIPTION_KEY".
 #' interface that masks it.
 #' @return Nothing. Creates / overwrites an environment variable
 #' as a side effect.
 #' @export
 #' @examples
 #' \dontrun{
-#' # Generally, calling baseline_set_subscription_key() without the key as an
+#' # Generally, calling `baseline_set_subscription_key()` without the key as an
 #' # argument is best, as the user can then be prompted to input the key without
 #' # typing it directly into the console, making it more secure and less
 #' # likely to exposed.
