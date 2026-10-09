@@ -34,10 +34,9 @@ matrix.
 Please note that despite the overarching term DTM API, there are, in
 fact, two distinct APIs which are currently available. These are the
 Baseline API (which is what simply “the DTM API” *USED* to refer to) and
-the Humanitarian Needs Assessment (HNA) API. Reflecting this, the
-functions in `dtmapi` are clearly named so as to distinguish between
-these two APIs: those prefixed with `baseline_` and those prefixed with
-`hna_`.
+the Household Needs Assessment (HNA) API. Reflecting this, the functions
+in `dtmapi` are clearly named so as to distinguish between these two
+APIs: those prefixed with `baseline_` and those prefixed with `hna_`.
 
 Please find more information about [DTM API
 here.](https://dtm.iom.int/data-and-analysis/dtm-api)
@@ -111,7 +110,7 @@ These all retrieve data from the DTM API and return said data in the
 form of data frames.
 
 Certain parameters have to be specified to any of these, the most
-important of which are either the `country_name` or the `operation`. For
+important of which are either the `admin0_name` or the `operation`. For
 information on the other parameters and indeed all functions in
 `dtmapi`, [see the documentation
 here.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html)
@@ -123,7 +122,7 @@ following use of `baseline_get_admin1()`:
 # Load the package
 library(dtmapi)
 
-idp_admin1_df <- baseline_get_admin1(country_name = "Sudan",
+idp_admin1_df <- baseline_get_admin1(admin0_name = "Sudan",
                                      from_reporting_date = "2020-01-01",
                                      to_reporting_date = "2024-08-15")
 
@@ -208,18 +207,605 @@ When the HNA subscription key is set, HNA data at Admin Level 2 may be
 retrieved through `hna_get_admin2()`. Unlike the `baseline_` functions,
 it returns a list of two elements: `data`, a data frame holding the
 requested data, and `pagination`, a list containing metadata on
-pagination.
+pagination. This metadata is relative to the data returned, of course,
+rather than being about the API’s pagination in general.
 
 ``` r
 # Load the package
 library(dtmapi)
 
-hna_admin2 <- hna_get_admin2(admin0name = "Nigeria",
-                             year = 2025)
+hna_admin2 <- hna_get_admin2(
+  admin0_name = "Mozambique",
+  year = 2025
+)
 
-# Display the first few rows of the data
+# Compare the data frame, previewed here:
 head(hna_admin2$data)
-#> data frame with 0 columns and 0 rows
+#>    id m3693_meta_adm0_name m0302_meta_adm0_pcode m3694_meta_adm1_name
+#> 1  59           Mozambique                   MOZ         Cabo Delgado
+#> 2  66           Mozambique                   MOZ         Cabo Delgado
+#> 3 118           Mozambique                   MOZ         Cabo Delgado
+#> 4 121           Mozambique                   MOZ         Cabo Delgado
+#> 5 176           Mozambique                   MOZ              Nampula
+#> 6 208           Mozambique                   MOZ               Niassa
+#>   m0303_meta_adm1_pcode m3695_meta_adm2_name m0304_meta_adm2_pcode year
+#> 1                  MZ01                  Ibo                MZ0105 2025
+#> 2                  MZ01    Mocimboa Da Praia                MZ0110 2025
+#> 3                  MZ01              Ancuabe                MZ0101 2025
+#> 4                  MZ01               Metuge                MZ0109 2025
+#> 5                  MZ07    Cidade De Nampula                MZ0702 2025
+#> 6                  MZ08               Mecula                MZ0814 2025
+#>   m2788_loc_assessment_strata num_households num_m2661_hh_members
+#> 1               Non displaced            265                 1126
+#> 2                         IDP            200                  755
+#> 3               Non displaced            282                 1184
+#> 4               Non displaced            287                 1223
+#> 5                         IDP            256                 1134
+#> 6               Non displaced            269                 1047
+#>   mean_num_m26611_hh_members mean_num_m3674_hh_num_female_0_17
+#> 1                        4.2                               0.8
+#> 2                        3.8                               0.7
+#> 3                        4.2                               1.0
+#> 4                        4.3                               1.3
+#> 5                        4.4                               1.1
+#> 6                        3.9                               0.3
+#>   mean_num_m3677_hh_num_male_0_17 mean_num_m3675_hh_num_female_18_59
+#> 1                             0.9                                1.1
+#> 2                             0.7                                1.1
+#> 3                             1.0                                1.1
+#> 4                             0.8                                1.2
+#> 5                             0.8                                1.4
+#> 6                             0.5                                1.3
+#>   mean_num_m3678_hh_num_male_18_59 mean_num_m3676_hh_num_female_60_plus
+#> 1                              1.1                                  0.1
+#> 2                              1.1                                  0.0
+#> 3                              0.9                                  0.1
+#> 4                              0.8                                  0.1
+#> 5                              0.9                                  0.0
+#> 6                              1.3                                  0.2
+#>   mean_num_m3679_hh_num_male_60_plus mean_num_m3680_hh_num_female
+#> 1                                0.2                          2.0
+#> 2                                0.1                          1.9
+#> 3                                0.1                          2.2
+#> 4                                0.1                          2.5
+#> 5                                0.1                          2.6
+#> 6                                0.3                          1.8
+#>   mean_num_m3681_hh_num_male pct_hh_m2671_hh_ddc_disp_reason_primary_conflict
+#> 1                        2.2                                               NA
+#> 2                        1.9                                               NA
+#> 3                        2.0                                               NA
+#> 4                        1.8                                               NA
+#> 5                        1.8                                               NA
+#> 6                        2.1                                               NA
+#>   pct_hh_m2671_hh_ddc_disp_reason_primary_disaster_climate
+#> 1                                                       NA
+#> 2                                                       NA
+#> 3                                                       NA
+#> 4                                                       NA
+#> 5                                                       NA
+#> 6                                                       NA
+#>   pct_hh_m2671_hh_ddc_disp_reason_primary_disaster_non_climate
+#> 1                                                           NA
+#> 2                                                           NA
+#> 3                                                           NA
+#> 4                                                           NA
+#> 5                                                           NA
+#> 6                                                           NA
+#>   pct_hh_m2671_hh_ddc_disp_reason_primary_other mean_i0001_hh_fcs_score
+#> 1                                            NA                      NA
+#> 2                                            NA                      NA
+#> 3                                            NA                      NA
+#> 4                                            NA                      NA
+#> 5                                            NA                      NA
+#> 6                                            NA                      NA
+#>   pct_hh_i0002_hh_fcs_category_acceptable
+#> 1                                      NA
+#> 2                                      NA
+#> 3                                      NA
+#> 4                                      NA
+#> 5                                      NA
+#> 6                                      NA
+#>   pct_hh_i0002_hh_fcs_category_borderline pct_hh_i0002_hh_fcs_category_poor
+#> 1                                      NA                                NA
+#> 2                                      NA                                NA
+#> 3                                      NA                                NA
+#> 4                                      NA                                NA
+#> 5                                      NA                                NA
+#> 6                                      NA                                NA
+#>   mean_i0007_hh_hhs_score pct_hh_i0008_hh_hhs_category_none
+#> 1                      NA                                NA
+#> 2                      NA                                NA
+#> 3                      NA                                NA
+#> 4                      NA                                NA
+#> 5                      NA                                NA
+#> 6                      NA                                NA
+#>   pct_hh_i0008_hh_hhs_category_little pct_hh_i0008_hh_hhs_category_moderate
+#> 1                                  NA                                    NA
+#> 2                                  NA                                    NA
+#> 3                                  NA                                    NA
+#> 4                                  NA                                    NA
+#> 5                                  NA                                    NA
+#> 6                                  NA                                    NA
+#>   pct_hh_i0008_hh_hhs_category_severe pct_hh_i0008_hh_hhs_category_very_severe
+#> 1                                  NA                                       NA
+#> 2                                  NA                                       NA
+#> 3                                  NA                                       NA
+#> 4                                  NA                                       NA
+#> 5                                  NA                                       NA
+#> 6                                  NA                                       NA
+#>   mean_i0001_hh_rcsi_score pct_hh_i0002_hh_rcsi_category_phase1
+#> 1                       NA                                   NA
+#> 2                       NA                                   NA
+#> 3                       NA                                   NA
+#> 4                       NA                                   NA
+#> 5                       NA                                   NA
+#> 6                       NA                                   NA
+#>   pct_hh_i0002_hh_rcsi_category_phase2 pct_hh_i0002_hh_rcsi_category_phase3
+#> 1                                   NA                                   NA
+#> 2                                   NA                                   NA
+#> 3                                   NA                                   NA
+#> 4                                   NA                                   NA
+#> 5                                   NA                                   NA
+#> 6                                   NA                                   NA
+#>   pct_hh_i0002_hh_rcsi_category_phase4 pct_hh_i0004_hh_lcs_category_none
+#> 1                                   NA                                NA
+#> 2                                   NA                                NA
+#> 3                                   NA                                NA
+#> 4                                   NA                                NA
+#> 5                                   NA                                NA
+#> 6                                   NA                                NA
+#>   pct_hh_i0004_hh_lcs_category_stress pct_hh_i0004_hh_lcs_category_crisis
+#> 1                                  NA                                  NA
+#> 2                                  NA                                  NA
+#> 3                                  NA                                  NA
+#> 4                                  NA                                  NA
+#> 5                                  NA                                  NA
+#> 6                                  NA                                  NA
+#>   pct_hh_i0004_hh_lcs_category_emergency num_hh_m2879_hh_shelter_damage_type
+#> 1                                     NA                                 261
+#> 2                                     NA                                 192
+#> 3                                     NA                                 280
+#> 4                                     NA                                 287
+#> 5                                     NA                                 256
+#> 6                                     NA                                 246
+#>   pct_hh_m2879_hh_shelter_damage_type_floor
+#> 1                                     4.598
+#> 2                                    23.438
+#> 3                                     9.643
+#> 4                                    13.240
+#> 5                                     6.641
+#> 6                                     5.285
+#>   pct_hh_m2879_hh_shelter_damage_type_none
+#> 1                                   42.912
+#> 2                                   23.958
+#> 3                                   48.571
+#> 4                                   25.436
+#> 5                                   60.547
+#> 6                                   39.024
+#>   pct_hh_m2879_hh_shelter_damage_type_walls
+#> 1                                    16.475
+#> 2                                    51.042
+#> 3                                    23.571
+#> 4                                     8.014
+#> 5                                    17.969
+#> 6                                     7.317
+#>   pct_hh_m2879_hh_shelter_damage_type_windows_doors
+#> 1                                            14.176
+#> 2                                            10.938
+#> 3                                             4.286
+#> 4                                            12.195
+#> 5                                             1.563
+#> 6                                            21.545
+#>   pct_hh_m2879_hh_shelter_damage_type_roof
+#> 1                                    3.448
+#> 2                                    5.729
+#> 3                                    7.500
+#> 4                                   16.028
+#> 5                                    0.781
+#> 6                                   19.512
+#>   pct_hh_m2879_hh_shelter_damage_type_roof_partial
+#> 1                                           31.034
+#> 2                                           26.042
+#> 3                                           30.357
+#> 4                                           33.798
+#> 5                                           21.875
+#> 6                                           31.707
+#>   num_hh_m2880_hh_shelter_enclosure_issues
+#> 1                                      261
+#> 2                                      192
+#> 3                                      280
+#> 4                                      287
+#> 5                                      256
+#> 6                                      246
+#>   pct_hh_m2880_hh_shelter_enclosure_issues_ventilation
+#> 1                                                0.000
+#> 2                                                5.729
+#> 3                                               10.714
+#> 4                                                3.484
+#> 5                                                1.172
+#> 6                                                0.813
+#>   pct_hh_m2880_hh_shelter_enclosure_issues_none
+#> 1                                        46.360
+#> 2                                        33.854
+#> 3                                        17.143
+#> 4                                        27.178
+#> 5                                        69.922
+#> 6                                        42.276
+#>   pct_hh_m2880_hh_shelter_enclosure_issues_privacy
+#> 1                                           22.989
+#> 2                                           39.063
+#> 3                                           12.143
+#> 4                                           14.634
+#> 5                                            2.344
+#> 6                                           39.024
+#>   pct_hh_m2880_hh_shelter_enclosure_issues_insulation
+#> 1                                              13.027
+#> 2                                              13.542
+#> 3                                               9.643
+#> 4                                              19.164
+#> 5                                               7.422
+#> 6                                               5.285
+#>   pct_hh_m2880_hh_shelter_enclosure_issues_leakage_rain
+#> 1                                                14.176
+#> 2                                                30.208
+#> 3                                                36.786
+#> 4                                                16.725
+#> 5                                                24.609
+#> 6                                                 3.659
+#>   pct_hh_m2880_hh_shelter_enclosure_issues_dnk
+#> 1                                        0.383
+#> 2                                        5.208
+#> 3                                        0.357
+#> 4                                        0.000
+#> 5                                        0.000
+#> 6                                        3.252
+#>   pct_hh_m2880_hh_shelter_enclosure_issues_pnta
+#> 1                                         0.000
+#> 2                                         3.125
+#> 3                                         0.000
+#> 4                                         0.000
+#> 5                                         0.000
+#> 6                                         1.220
+#>   pct_hh_m2880_hh_shelter_enclosure_issues_flooding
+#> 1                                                NA
+#> 2                                                NA
+#> 3                                                NA
+#> 4                                                NA
+#> 5                                                NA
+#> 6                                                NA
+#>   pct_hh_m2880_hh_shelter_enclosure_issues_space
+#> 1                                         18.391
+#> 2                                         20.833
+#> 3                                         13.571
+#> 4                                         13.240
+#> 5                                          4.297
+#> 6                                         21.138
+#>   pct_hh_m2880_hh_shelter_enclosure_issues_lock
+#> 1                                         1.533
+#> 2                                         7.292
+#> 3                                         2.500
+#> 4                                         0.697
+#> 5                                         0.391
+#> 6                                         0.000
+#>   num_hh_m2954_health_barriers_encountered
+#> 1                                       NA
+#> 2                                       NA
+#> 3                                       NA
+#> 4                                       NA
+#> 5                                       NA
+#> 6                                       NA
+#>   pct_hh_m2954_health_barriers_encountered_documentation
+#> 1                                                     NA
+#> 2                                                     NA
+#> 3                                                     NA
+#> 4                                                     NA
+#> 5                                                     NA
+#> 6                                                     NA
+#>   pct_hh_m2954_health_barriers_encountered_fear_deportation
+#> 1                                                        NA
+#> 2                                                        NA
+#> 3                                                        NA
+#> 4                                                        NA
+#> 5                                                        NA
+#> 6                                                        NA
+#>   pct_hh_m2954_health_barriers_encountered_other
+#> 1                                             NA
+#> 2                                             NA
+#> 3                                             NA
+#> 4                                             NA
+#> 5                                             NA
+#> 6                                             NA
+#>   pct_hh_m2954_health_barriers_encountered_legal
+#> 1                                             NA
+#> 2                                             NA
+#> 3                                             NA
+#> 4                                             NA
+#> 5                                             NA
+#> 6                                             NA
+#>   pct_hh_m2954_health_barriers_encountered_insecurity
+#> 1                                                  NA
+#> 2                                                  NA
+#> 3                                                  NA
+#> 4                                                  NA
+#> 5                                                  NA
+#> 6                                                  NA
+#>   pct_hh_m2954_health_barriers_encountered_language
+#> 1                                                NA
+#> 2                                                NA
+#> 3                                                NA
+#> 4                                                NA
+#> 5                                                NA
+#> 6                                                NA
+#>   pct_hh_m2954_health_barriers_encountered_dnk
+#> 1                                           NA
+#> 2                                           NA
+#> 3                                           NA
+#> 4                                           NA
+#> 5                                           NA
+#> 6                                           NA
+#>   pct_hh_m2954_health_barriers_encountered_transport
+#> 1                                                 NA
+#> 2                                                 NA
+#> 3                                                 NA
+#> 4                                                 NA
+#> 5                                                 NA
+#> 6                                                 NA
+#>   pct_hh_m2954_health_barriers_encountered_distance
+#> 1                                                NA
+#> 2                                                NA
+#> 3                                                NA
+#> 4                                                NA
+#> 5                                                NA
+#> 6                                                NA
+#>   pct_hh_m2954_health_barriers_encountered_discrimination
+#> 1                                                      NA
+#> 2                                                      NA
+#> 3                                                      NA
+#> 4                                                      NA
+#> 5                                                      NA
+#> 6                                                      NA
+#>   pct_hh_m2954_health_barriers_encountered_access_intermittent
+#> 1                                                           NA
+#> 2                                                           NA
+#> 3                                                           NA
+#> 4                                                           NA
+#> 5                                                           NA
+#> 6                                                           NA
+#>   pct_hh_m2954_health_barriers_encountered_insurance
+#> 1                                                 NA
+#> 2                                                 NA
+#> 3                                                 NA
+#> 4                                                 NA
+#> 5                                                 NA
+#> 6                                                 NA
+#>   pct_hh_m2954_health_barriers_encountered_finances
+#> 1                                                NA
+#> 2                                                NA
+#> 3                                                NA
+#> 4                                                NA
+#> 5                                                NA
+#> 6                                                NA
+#>   pct_hh_m2954_health_barriers_encountered_none
+#> 1                                            NA
+#> 2                                            NA
+#> 3                                            NA
+#> 4                                            NA
+#> 5                                            NA
+#> 6                                            NA
+#>   pct_hh_m2954_health_barriers_encountered_pnta
+#> 1                                            NA
+#> 2                                            NA
+#> 3                                            NA
+#> 4                                            NA
+#> 5                                            NA
+#> 6                                            NA
+#>   pct_hh_m2954_health_barriers_encountered_female_staff
+#> 1                                                    NA
+#> 2                                                    NA
+#> 3                                                    NA
+#> 4                                                    NA
+#> 5                                                    NA
+#> 6                                                    NA
+#>   pct_hh_m2954_health_barriers_encountered_dnk_where
+#> 1                                                 NA
+#> 2                                                 NA
+#> 3                                                 NA
+#> 4                                                 NA
+#> 5                                                 NA
+#> 6                                                 NA
+#>   num_hh_m2938_sanitation_problems pct_hh_m2938_sanitation_problems_drainage
+#> 1                               NA                                        NA
+#> 2                               NA                                        NA
+#> 3                               NA                                        NA
+#> 4                               NA                                        NA
+#> 5                               NA                                        NA
+#> 6                               NA                                        NA
+#>   pct_hh_m2938_sanitation_problems_discrimination
+#> 1                                              NA
+#> 2                                              NA
+#> 3                                              NA
+#> 4                                              NA
+#> 5                                              NA
+#> 6                                              NA
+#>   pct_hh_m2938_sanitation_problems_no_segregation
+#> 1                                              NA
+#> 2                                              NA
+#> 3                                              NA
+#> 4                                              NA
+#> 5                                              NA
+#> 6                                              NA
+#>   pct_hh_m2938_sanitation_problems_security
+#> 1                                        NA
+#> 2                                        NA
+#> 3                                        NA
+#> 4                                        NA
+#> 5                                        NA
+#> 6                                        NA
+#>   pct_hh_m2938_sanitation_problems_distance
+#> 1                                        NA
+#> 2                                        NA
+#> 3                                        NA
+#> 4                                        NA
+#> 5                                        NA
+#> 6                                        NA
+#>   pct_hh_m2938_sanitation_problems_no_privacy
+#> 1                                          NA
+#> 2                                          NA
+#> 3                                          NA
+#> 4                                          NA
+#> 5                                          NA
+#> 6                                          NA
+#>   pct_hh_m2938_sanitation_problems_crowded
+#> 1                                       NA
+#> 2                                       NA
+#> 3                                       NA
+#> 4                                       NA
+#> 5                                       NA
+#> 6                                       NA
+#>   pct_hh_m2938_sanitation_problems_unclean
+#> 1                                       NA
+#> 2                                       NA
+#> 3                                       NA
+#> 4                                       NA
+#> 5                                       NA
+#> 6                                       NA
+#>   pct_hh_m2938_sanitation_problems_not_functioning
+#> 1                                               NA
+#> 2                                               NA
+#> 3                                               NA
+#> 4                                               NA
+#> 5                                               NA
+#> 6                                               NA
+#>   pct_hh_m2938_sanitation_problems_garbage_collection
+#> 1                                                  NA
+#> 2                                                  NA
+#> 3                                                  NA
+#> 4                                                  NA
+#> 5                                                  NA
+#> 6                                                  NA
+#>   pct_hh_m2938_sanitation_problems_dnk pct_hh_m2938_sanitation_problems_other
+#> 1                                   NA                                     NA
+#> 2                                   NA                                     NA
+#> 3                                   NA                                     NA
+#> 4                                   NA                                     NA
+#> 5                                   NA                                     NA
+#> 6                                   NA                                     NA
+#>   pct_hh_m2938_sanitation_problems_pnta num_hh_m2730_hh_priority_needs
+#> 1                                    NA                             NA
+#> 2                                    NA                             NA
+#> 3                                    NA                             NA
+#> 4                                    NA                             NA
+#> 5                                    NA                             NA
+#> 6                                    NA                             NA
+#>   pct_hh_m2730_hh_priority_needs_none pct_hh_m2730_hh_priority_needs_sanitation
+#> 1                                  NA                                        NA
+#> 2                                  NA                                        NA
+#> 3                                  NA                                        NA
+#> 4                                  NA                                        NA
+#> 5                                  NA                                        NA
+#> 6                                  NA                                        NA
+#>   pct_hh_m2730_hh_priority_needs_access_market
+#> 1                                           NA
+#> 2                                           NA
+#> 3                                           NA
+#> 4                                           NA
+#> 5                                           NA
+#> 6                                           NA
+#>   pct_hh_m2730_hh_priority_needs_food pct_hh_m2730_hh_priority_needs_education
+#> 1                                  NA                                       NA
+#> 2                                  NA                                       NA
+#> 3                                  NA                                       NA
+#> 4                                  NA                                       NA
+#> 5                                  NA                                       NA
+#> 6                                  NA                                       NA
+#>   pct_hh_m2730_hh_priority_needs_shelter pct_hh_m2730_hh_priority_needs_health
+#> 1                                     NA                                    NA
+#> 2                                     NA                                    NA
+#> 3                                     NA                                    NA
+#> 4                                     NA                                    NA
+#> 5                                     NA                                    NA
+#> 6                                     NA                                    NA
+#>   pct_hh_m2730_hh_priority_needs_nfi pct_hh_m2730_hh_priority_needs_water
+#> 1                                 NA                                   NA
+#> 2                                 NA                                   NA
+#> 3                                 NA                                   NA
+#> 4                                 NA                                   NA
+#> 5                                 NA                                   NA
+#> 6                                 NA                                   NA
+#>   pct_hh_m2730_hh_priority_needs_security
+#> 1                                      NA
+#> 2                                      NA
+#> 3                                      NA
+#> 4                                      NA
+#> 5                                      NA
+#> 6                                      NA
+#>   pct_hh_m2730_hh_priority_needs_return_support
+#> 1                                            NA
+#> 2                                            NA
+#> 3                                            NA
+#> 4                                            NA
+#> 5                                            NA
+#> 6                                            NA
+#>   pct_hh_m2730_hh_priority_needs_pss pct_hh_m2730_hh_priority_needs_cash
+#> 1                                 NA                                  NA
+#> 2                                 NA                                  NA
+#> 3                                 NA                                  NA
+#> 4                                 NA                                  NA
+#> 5                                 NA                                  NA
+#> 6                                 NA                                  NA
+#>   pct_hh_m2730_hh_priority_needs_legal_consular
+#> 1                                            NA
+#> 2                                            NA
+#> 3                                            NA
+#> 4                                            NA
+#> 5                                            NA
+#> 6                                            NA
+#>   pct_hh_m2730_hh_priority_needs_reunification
+#> 1                                           NA
+#> 2                                           NA
+#> 3                                           NA
+#> 4                                           NA
+#> 5                                           NA
+#> 6                                           NA
+#>   pct_hh_m2730_hh_priority_needs_livelihood
+#> 1                                        NA
+#> 2                                        NA
+#> 3                                        NA
+#> 4                                        NA
+#> 5                                        NA
+#> 6                                        NA
+#>   pct_hh_m2730_hh_priority_needs_other pct_hh_m2730_hh_priority_needs_pnta
+#> 1                                   NA                                  NA
+#> 2                                   NA                                  NA
+#> 3                                   NA                                  NA
+#> 4                                   NA                                  NA
+#> 5                                   NA                                  NA
+#> 6                                   NA                                  NA
+#>   pct_hh_m2730_hh_priority_needs_dnk
+#> 1                                 NA
+#> 2                                 NA
+#> 3                                 NA
+#> 4                                 NA
+#> 5                                 NA
+#> 6                                 NA
+
+
+# With the pagination metadata:
+print(hna_admin2$pagination)
+#> $currentPage
+#> [1] 1
+#> 
+#> $totalPages
+#> [1] 1
+#> 
+#> $totalItems
+#> [1] 97
+#> 
+#> $hasNextPage
+#> [1] FALSE
+#> 
+#> $hasPreviousPage
+#> [1] FALSE
 ```
 
 The countries covered by the HNA API, and the indicators available in

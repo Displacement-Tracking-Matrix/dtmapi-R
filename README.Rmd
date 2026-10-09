@@ -47,7 +47,7 @@ knitr::opts_chunk$set(
 `dtmapi` is an R package developed by [Displacement Tracking Matrix (DTM)](https://dtm.iom.int/). This package allows the humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by DTM. It provides non-sensitive Internally Displaced Person (IDP) figures, aggregated at the country, Admin 1 (states, provinces, or equivalent), and Admin 2 (smaller subnational administrative areas) levels. Country Names and Operations can be found in this [data coverage](https://dtm.iom.int/data-and-analysis/dtm-api/data-coverage) matrix.
 
 Please note that despite the overarching term DTM API, there are,
-in fact, two distinct APIs which are currently available. These are the Baseline API (which is what simply "the DTM API" *USED* to refer to) and the Humanitarian Needs Assessment (HNA) API. Reflecting this, the functions in `dtmapi` are clearly named so as to distinguish between these two APIs: those prefixed with `baseline_` and those prefixed with `hna_`.
+in fact, two distinct APIs which are currently available. These are the Baseline API (which is what simply "the DTM API" *USED* to refer to) and the Household Needs Assessment (HNA) API. Reflecting this, the functions in `dtmapi` are clearly named so as to distinguish between these two APIs: those prefixed with `baseline_` and those prefixed with `hna_`.
 
 Please find more information
 about [DTM API here.](https://dtm.iom.int/data-and-analysis/dtm-api)
@@ -98,7 +98,7 @@ When the Baseline subscription key is set, data on internal displacement may be 
 These all retrieve data from the DTM API and return said data in
 the form of data frames.
 
-Certain parameters have to be specified to any of these, the most important of which are either the `country_name` or the `operation`. For information on the other parameters
+Certain parameters have to be specified to any of these, the most important of which are either the `admin0_name` or the `operation`. For information on the other parameters
 and indeed all functions in `dtmapi`,  [see the documentation here.](https://displacement-tracking-matrix.github.io/dtmapi-R/reference/index.html)
 
 As a representative example of the earlier mentioned functions, see the following use of `baseline_get_admin1()`:
@@ -107,7 +107,7 @@ As a representative example of the earlier mentioned functions, see the followin
 # Load the package
 library(dtmapi)
 
-idp_admin1_df <- baseline_get_admin1(country_name = "Sudan",
+idp_admin1_df <- baseline_get_admin1(admin0_name = "Sudan",
                                      from_reporting_date = "2020-01-01",
                                      to_reporting_date = "2024-08-15")
 
@@ -138,17 +138,23 @@ operations_df <- baseline_get_operations()
 head(operations_df)
 ```
 
-When the HNA subscription key is set, HNA data at Admin Level 2 may be retrieved through `hna_get_admin2()`. Unlike the `baseline_` functions, it returns a list of two elements: `data`, a data frame holding the requested data, and `pagination`, a list containing metadata on pagination.
+When the HNA subscription key is set, HNA data at Admin Level 2 may be retrieved through `hna_get_admin2()`. Unlike the `baseline_` functions, it returns a list of two elements: `data`, a data frame holding the requested data, and `pagination`, a list containing metadata on pagination. This metadata is relative to the data returned, of course, rather than being about the API's pagination in general.
 
 ```{r}
 # Load the package
 library(dtmapi)
 
-hna_admin2 <- hna_get_admin2(admin0name = "Nigeria",
-                             year = 2025)
+hna_admin2 <- hna_get_admin2(
+  admin0_name = "Mozambique",
+  year = 2025
+)
 
-# Display the first few rows of the data
+# Compare the data frame, previewed here:
 head(hna_admin2$data)
+
+
+# With the pagination metadata:
+print(hna_admin2$pagination)
 ```
 
 The countries covered by the HNA API, and the indicators available in it, can be obtained by using the `hna_get_countries()` and `hna_get_catalog()` functions, which do not take any arguments.
@@ -166,4 +172,4 @@ Feel free to explore the repository, contribute, or raise any issues you may enc
 
 ## Contact
 For any questions or feedback, please reach out to us at
-[dtmdataconsolidation@iom.int](mailto:dtmdataconsolidation@iom.int)
+[dtmdataconsolidation@iom.int](mailto:dtmdataconsolidation@iom.int).
